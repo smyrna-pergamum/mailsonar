@@ -1,0 +1,5 @@
+timestamp,sender,recipient,ip,message_id,action,details
+2026-11-25T08:00:00Z,analyst@example.test,team@example.test,192.0.2.10,m-1,delivered,normal message
+2026-11-25T08:05:00Z,account@example.test,,192.0.2.20,,login,authentication failed
+2026-11-25T08:09:00Z,account@example.test,external@example.test,192.0.2.20,m-2,New-InboxRule,review forwarding configuration
+2026-11-25T08:11:00Z,unknown@example.test,account@example.test,198.51.100.8,m-3,received,dmarc=fail

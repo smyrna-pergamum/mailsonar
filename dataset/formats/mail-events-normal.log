@@ -1,0 +1,200 @@
+2026-10-29T19:01:05+00:00 entra-id sign_in_pop Henry Taylor  [192.0.2.1] <pop-1532@a>
+2026-11-13T13:02:33+00:00 entra-id sign_in_imap David Brown  [198.51.100.1] <imap-2190@e>
+2026-11-15T19:24:30+00:00 exchange-online-audit PermanentDelete Jack Thomas Frank Miller [192.0.2.3] <permanentdelete-6216@a>
+2026-11-21T08:50:59+00:00 exchange-online-audit SafelistAdd Jack Thomas David Brown [192.0.2.2] <safelistadd-7935@e>
+2026-10-26T10:13:57+00:00 exchange-online-audit Forward Henry Taylor Carol Smith [192.0.2.1] <forward-8471@p>
+2026-11-04T09:49:46+00:00 entra-id sign_in_conditional_access Frank Miller  [203.0.113.2] <conditional_access-6035@a>
+2026-10-27T20:04:00+00:00 exim retry <>@p <>@m [198.51.100.2] <489358@l>
+2026-10-29T20:02:11+00:00 msexchange-send on behalf Send on Behalf Bob Johnson <s> Irene Anderson <a> [198.51.100.2] <4825-6128@x>
+2026-11-22T10:32:45+00:00 google-workspace reject_message Carol Smith@<redacted> Payroll@<redacted> [192.0.2.1] <632410@m>
+2026-11-03T13:52:37+00:00 entra-id sign_in_interactive Emma Davis  [192.0.2.1] <interactive-4217@a>
+2026-11-11T05:41:31+00:00 msexchange-failed login Failed Login Bob Johnson <p> Grace Wilson <e> [203.0.113.1] <2062-3668@m>
+2026-11-20T22:07:14+00:00 google-workspace login_attempt David Brown@<redacted> Irene Anderson@<redacted> [198.51.100.1] <919245@t>
+2026-11-15T05:09:47+00:00 google-workspace send_message Irene Anderson@<redacted> Frank Miller@<redacted> [192.0.2.1] <358114@s>
+2026-10-30T06:44:48+00:00 msexchange-new-inboxrule New-InboxRule Henry Taylor <e> David Brown <.> [192.0.2.2] <7272-1698@e>
+2026-11-06T01:32:18+00:00 smtp-generic RCPT TO <>@l <>@s [192.0.2.1] <562247@o>
+2026-11-15T14:43:51+00:00 entra-id sign_in_mfa Henry Taylor  [192.0.2.2] <mfa-6758@t>
+2026-11-23T11:56:10+00:00 exchange-online-audit Remove-Member David Brown Finance Dept [203.0.113.1] <remove-member-4145@m>
+2026-10-31T01:42:19+00:00 google-workspace deliver_message Henry Taylor@<redacted> Henry Taylor@<redacted> [198.51.100.2] <512617@x>
+2026-11-14T03:19:30+00:00 postfix auth_cram_md5 <>@o <>@a [192.0.2.3] <161569@a>
+2026-11-20T16:42:04+00:00 msexchange-set-inboxrule Set-InboxRule Jack Thomas <m> Legal Dept <l> [192.0.2.3] <3240-3689@p>
+2026-10-26T06:28:52+00:00 google-workspace receive_message Emma Davis@<redacted> Legal Dept@<redacted> [192.0.2.1] <151964@.>
+2026-11-25T16:42:26+00:00 msexchange-send as Send As Alice Williams <t> Carol Smith <e> [203.0.113.2] <4455-8260@e>
+2026-11-06T13:54:29+00:00 exchange-online-audit UpdateRule Carol Smith Legal Dept [203.0.113.1] <updaterule-7118@m>
+2026-11-15T21:50:11+00:00 entra-id sign_in_conditional_access Grace Wilson  [198.51.100.2] <conditional_access-2423@m>
+2026-11-17T17:22:17+00:00 entra-id sign_in_pop Irene Anderson  [192.0.2.3] <pop-2799@l>
+2026-11-08T22:10:08+00:00 exim retry <>@e <>@a [192.0.2.3] <766511@r>
+2026-11-23T11:42:45+00:00 msexchange-mailbox login Mailbox Login Carol Smith <.> Legal Dept <m> [192.0.2.1] <9847-8940@a>
+2026-11-10T07:50:32+00:00 exchange-online-audit MarkAsRead Jack Thomas Finance Dept [192.0.2.1] <markasread-6537@m>
+2026-11-07T22:06:55+00:00 msexchange-deliver Deliver David Brown <e> Benefits <.> [198.51.100.2] <5067-4822@e>
+2026-11-08T03:52:44+00:00 msexchange-send on behalf Send on Behalf Carol Smith <m> Bob Johnson <p> [198.51.100.1] <2252-9626@p>
+2026-10-26T18:45:43+00:00 exchange-online-audit UpdateRule David Brown Payroll [198.51.100.2] <updaterule-1264@x>
+2026-11-06T18:45:41+00:00 dovecot copy Carol Smith Alice Williams [192.0.2.2] <428345@p>
+2026-11-20T14:14:30+00:00 msexchange-failed login Failed Login Henry Taylor <s> Finance Dept <s> [192.0.2.2] <7894-2273@x>
+2026-11-19T16:16:42+00:00 msexchange-send Send Grace Wilson <e> Frank Miller <e> [192.0.2.2] <6846-7611@m>
+2026-11-02T00:14:12+00:00 msexchange-new-inboxrule New-InboxRule Carol Smith <e> HR Dept <m> [192.0.2.2] <6536-5769@a>
+2026-11-22T23:22:57+00:00 exchange-online-audit PermanentDelete Grace Wilson David Brown [192.0.2.2] <permanentdelete-1503@x>
+2026-10-30T21:05:26+00:00 entra-id sign_in_imap Irene Anderson  [192.0.2.2] <imap-3330@e>
+2026-11-09T15:44:35+00:00 postfix connect <>@i <>@r [203.0.113.2] <838521@l>
+2026-11-01T13:14:17+00:00 msexchange-failed login Failed Login Irene Anderson <t> Legal Dept <m> [198.51.100.2] <4324-9788@t>
+2026-11-25T18:59:30+00:00 google-workspace login_attempt Emma Davis@<redacted> Bob Johnson@<redacted> [198.51.100.2] <374508@.>
+2026-11-21T05:43:03+00:00 entra-id sign_in_mfa Alice Williams  [192.0.2.1] <mfa-5299@l>
+2026-10-31T07:34:51+00:00 msexchange-send on behalf Send on Behalf David Brown <x> Benefits <a> [203.0.113.1] <6392-3151@e>
+2026-11-12T19:36:29+00:00 smtp-generic HELO <>@e <>@. [203.0.113.1] <208486@a>
+2026-10-30T06:12:04+00:00 exchange-online-audit SendMail David Brown Frank Miller [192.0.2.3] <x-4916@e>
+2026-11-06T07:50:48+00:00 dovecot logout Grace Wilson IT Admin [192.0.2.1] <537089@l>
+2026-11-03T18:31:34+00:00 postfix warning <>@a <>@e [198.51.100.2] <902575@e>
+2026-11-18T05:08:31+00:00 msexchange-send on behalf Send on Behalf Emma Davis <p> Benefits <e> [192.0.2.2] <9122-8651@t>
+2026-11-16T01:02:24+00:00 google-workspace delete_message Henry Taylor@<redacted> Finance Dept@<redacted> [198.51.100.1] <431174@c>
+2026-11-25T17:35:04+00:00 exchange-online-audit CopyToFolder Carol Smith Support Desk [192.0.2.2] <copytofolder-6970@l>
+2026-10-26T20:15:17+00:00 msexchange-receive Receive Emma Davis <t> Grace Wilson <t> [198.51.100.2] <7284-7754@e>
+2026-11-13T16:32:47+00:00 msexchange-failed login Failed Login Irene Anderson <.> Irene Anderson <m> [192.0.2.2] <3654-4397@a>
+2026-11-25T10:10:44+00:00 msexchange-send Send Carol Smith <p> HR Dept <s> [192.0.2.2] <4762-3877@x>
+2026-10-30T14:37:25+00:00 msexchange-send Send Emma Davis <m> Benefits <a> [192.0.2.3] <1046-4905@x>
+2026-11-17T18:07:34+00:00 exchange-online-audit Add-Member Carol Smith Carol Smith [192.0.2.1] <add-member-9548@m>
+2026-11-15T08:17:17+00:00 msexchange-send Send Bob Johnson <p> Legal Dept <m> [192.0.2.3] <8890-8790@e>
+2026-11-23T21:06:43+00:00 google-workspace login_attempt Alice Williams@<redacted> HR Dept@<redacted> [203.0.113.1] <756174@x>
+2026-11-06T18:51:48+00:00 msexchange-send Send Emma Davis <x> IT Admin <o> [198.51.100.1] <2222-2172@e>
+2026-11-11T12:05:04+00:00 msexchange-new-inboxrule New-InboxRule Grace Wilson <e> Jack Thomas <m> [203.0.113.2] <8996-1795@s>
+2026-10-29T20:07:59+00:00 entra-id sign_in_interactive Grace Wilson  [192.0.2.3] <interactive-3901@p>
+2026-11-03T11:24:07+00:00 smtp-generic RCPT TO <>@x <>@t [192.0.2.2] <577358@m>
+2026-11-10T09:37:23+00:00 postfix disconnect <>@e <>@t [192.0.2.1] <135990@.>
+2026-11-20T23:30:47+00:00 msexchange-failed login Failed Login Grace Wilson <x> HR Dept <l> [198.51.100.2] <8819-1884@t>
+2026-11-09T09:05:22+00:00 google-workspace delete_message Jack Thomas@<redacted> Alice Williams@<redacted> [198.51.100.1] <309841@l>
+2026-10-29T06:04:38+00:00 exchange-online-audit PermanentDelete Jack Thomas Carol Smith [198.51.100.1] <permanentdelete-1059@m>
+2026-10-30T22:11:09+00:00 msexchange-send Send Grace Wilson <p> Benefits <.> [192.0.2.1] <1919-6614@n>
+2026-11-14T21:54:51+00:00 msexchange-set-inboxrule Set-InboxRule Emma Davis <t> Emma Davis <m> [198.51.100.1] <5959-3162@l>
+2026-11-24T18:43:09+00:00 msexchange-set-inboxrule Set-InboxRule Bob Johnson <.> Payroll <e> [203.0.113.1] <4609-7911@e>
+2026-11-11T02:31:29+00:00 msexchange-set-inboxrule Set-InboxRule Irene Anderson <a> Alice Williams <.> [192.0.2.3] <6543-3454@.>
+2026-11-01T01:02:41+00:00 msexchange-send as Send As Carol Smith <e> David Brown <l> [198.51.100.2] <9556-9009@m>
+2026-11-24T04:26:41+00:00 msexchange-receive Receive David Brown <a> Payroll <e> [203.0.113.1] <1071-6820@l>
+2026-11-03T09:57:58+00:00 exchange-online-audit DeleteRule Henry Taylor Henry Taylor [198.51.100.1] <deleterule-3235@.>
+2026-11-12T07:12:21+00:00 exchange-online-audit CopyToFolder Bob Johnson Legal Dept [203.0.113.1] <copytofolder-9544@p>
+2026-10-30T22:08:43+00:00 dovecot auth Grace Wilson Alice Williams [192.0.2.2] <434522@o>
+2026-11-01T10:09:22+00:00 exchange-online-audit SendMail Jack Thomas Bob Johnson [192.0.2.3] <SendMail-2853@n>
+2026-11-05T08:53:46+00:00 msexchange-receive Receive Henry Taylor <l> Emma Davis <r> [198.51.100.1] <3649-9343@e>
+2026-11-03T19:00:19+00:00 msexchange-set-inboxrule Set-InboxRule Irene Anderson <m> Support Desk <a> [192.0.2.1] <6006-9855@g>
+2026-11-19T11:39:55+00:00 google-workspace send_message Frank Miller@<redacted> HR Dept@<redacted> [192.0.2.1] <413801@e>
+2026-11-08T15:02:21+00:00 postfix auth_plain <>@m <>@m [203.0.113.2] <669171@l>
+2026-11-20T22:15:25+00:00 msexchange-mailbox login Mailbox Login Frank Miller <x> Benefits <t> [203.0.113.2] <5862-8532@m>
+2026-11-23T03:34:44+00:00 exchange-online-audit OAuth3PAppConsent Emma Davis Frank Miller [203.0.113.2] <oauth3pappconsent-1977@e>
+2026-11-12T18:16:39+00:00 entra-id sign_in_mfa Henry Taylor  [203.0.113.2] <mfa-3950@p>
+2026-11-02T05:15:54+00:00 msexchange-mailbox login Mailbox Login Jack Thomas <s> IT Admin <p> [198.51.100.2] <9948-8428@t>
+2026-11-15T12:56:52+00:00 exchange-online-audit Forward Bob Johnson Finance Dept [198.51.100.1] <forward-8433@e>
+2026-11-21T01:47:51+00:00 exchange-online-audit CopyToFolder Emma Davis Frank Miller [192.0.2.1] <copytofolder-2616@c>
+2026-11-19T08:40:56+00:00 smtp-generic HELO <>@. <>@m [192.0.2.1] <639535@m>
+2026-11-05T22:28:57+00:00 msexchange-receive Receive Grace Wilson <l> Payroll <.> [203.0.113.2] <4222-2194@t>
+2026-11-20T16:54:18+00:00 msexchange-send as Send As Carol Smith <e> Emma Davis <m> [192.0.2.3] <4455-8462@m>
+2026-11-20T17:34:49+00:00 google-workspace phishing_report Jack Thomas@<redacted> Alice Williams@<redacted> [198.51.100.2] <209456@x>
+2026-10-28T15:56:43+00:00 exchange-online-audit ResetPassword Alice Williams David Brown [198.51.100.2] <resetpassword-9052@e>
+2026-11-15T10:57:17+00:00 exchange-online-audit Forward Carol Smith Grace Wilson [203.0.113.1] <forward-3992@t>
+2026-11-07T08:29:00+00:00 smtp-generic QUIT <>@m <>@. [203.0.113.2] <814383@r>
+2026-11-24T18:06:38+00:00 msexchange-mailbox login Mailbox Login David Brown <e> Support Desk <e> [192.0.2.3] <8541-6684@l>
+2026-11-10T14:06:17+00:00 exchange-online-audit OAuth3PAppConsent Henry Taylor Jack Thomas [203.0.113.1] <oauth3pappconsent-9269@t>
+2026-10-31T13:00:10+00:00 exchange-online-audit Forward David Brown Finance Dept [198.51.100.2] <forward-2756@c>
+2026-11-10T20:56:14+00:00 msexchange-mailbox login Mailbox Login Emma Davis <p> Henry Taylor <e> [192.0.2.3] <6080-1633@e>
+2026-11-22T14:11:16+00:00 msexchange-send Send Alice Williams <a> Alice Williams <l> [203.0.113.2] <8561-1474@e>
+2026-11-23T08:34:24+00:00 entra-id sign_in_conditional_access Frank Miller  [203.0.113.2] <conditional_access-2318@m>
+2026-11-10T19:27:47+00:00 entra-id sign_in_interactive Grace Wilson  [203.0.113.2] <interactive-6342@t>
+2026-11-11T13:27:34+00:00 google-workspace modify_headers Emma Davis@<redacted> Henry Taylor@<redacted> [192.0.2.3] <810769@t>
+2026-11-02T06:46:57+00:00 exchange-online-audit SafelistAdd Irene Anderson Support Desk [198.51.100.2] <safelistadd-5861@e>
+2026-11-19T01:23:22+00:00 rspamd learn <>@l <>@e [192.0.2.1] <976890@x>
+2026-11-19T07:29:14+00:00 entra-id sign_in_imap Irene Anderson  [198.51.100.2] <imap-7339@a>
+2026-11-17T01:40:20+00:00 entra-id sign_in_interactive Irene Anderson  [192.0.2.1] <interactive-8987@e>
+2026-11-09T14:32:06+00:00 rspamd spam <>@e <>@t [192.0.2.2] <410220@m>
+2026-11-23T12:49:09+00:00 exchange-online-audit HardDelete Alice Williams David Brown [203.0.113.1] <harddelete-3502@p>
+2026-11-02T07:53:06+00:00 entra-id sign_in_mfa Emma Davis  [198.51.100.1] <mfa-9849@.>
+2026-11-23T15:33:16+00:00 postfix connect <>@e <>@t [192.0.2.1] <329096@.>
+2026-11-13T04:09:46+00:00 google-workspace modify_headers Henry Taylor@<redacted> Emma Davis@<redacted> [203.0.113.1] <877255@a>
+2026-11-19T16:23:35+00:00 msexchange-deliver Deliver Alice Williams <l> Legal Dept <x> [203.0.113.1] <8060-2494@s>
+2026-11-13T08:17:16+00:00 exchange-online-audit UpdateRule Bob Johnson Support Desk [203.0.113.1] <updaterule-4213@l>
+2026-11-25T07:30:56+00:00 msexchange-receive Receive Emma Davis <c> Bob Johnson <a> [203.0.113.2] <2202-8791@m>
+2026-10-31T14:20:14+00:00 msexchange-send Send Jack Thomas <.> Finance Dept <t> [192.0.2.2] <6472-6023@t>
+2026-11-01T15:20:57+00:00 exchange-online-audit Add-Member Frank Miller Bob Johnson [192.0.2.1] <add-member-9706@l>
+2026-11-14T08:10:55+00:00 dovecot auth Henry Taylor Alice Williams [198.51.100.1] <939748@g>
+2026-11-09T16:57:59+00:00 exchange-online-audit ResetPassword Alice Williams Irene Anderson [192.0.2.3] <resetpassword-8482@m>
+2026-11-17T21:31:21+00:00 smtp-generic RCPT TO <>@c <>@x [192.0.2.1] <442483@x>
+2026-11-04T14:26:32+00:00 msexchange-set-inboxrule Set-InboxRule Emma Davis <e> Benefits <x> [192.0.2.3] <9197-6040@t>
+2026-11-23T06:54:06+00:00 msexchange-send Send Jack Thomas <a> Benefits <e> [198.51.100.1] <4619-2828@a>
+2026-11-11T02:40:12+00:00 msexchange-send Send Carol Smith <e> Legal Dept <e> [198.51.100.1] <1351-4865@s>
+2026-11-25T21:04:53+00:00 exchange-online-audit Set-Mailbox Frank Miller Bob Johnson [192.0.2.3] <set-mailbox-8331@s>
+2026-11-24T20:24:19+00:00 google-workspace reject_message Carol Smith@<redacted> Benefits@<redacted> [203.0.113.2] <634299@g>
+2026-11-22T02:37:56+00:00 msexchange-receive Receive Frank Miller <n> Grace Wilson <a> [198.51.100.2] <2079-6001@s>
+2026-11-11T19:16:50+00:00 exchange-online-audit Add-Member Grace Wilson Finance Dept [192.0.2.2] <add-member-2407@x>
+2026-11-14T19:30:44+00:00 msexchange-mailbox login Mailbox Login Frank Miller <.> Bob Johnson <a> [203.0.113.1] <8416-7847@e>
+2026-11-16T06:37:25+00:00 msexchange-receive Receive Irene Anderson <t> Jack Thomas <s> [192.0.2.2] <5895-3045@e>
+2026-11-01T19:59:42+00:00 google-workspace change_permission Emma Davis@<redacted> Irene Anderson@<redacted> [203.0.113.1] <770109@o>
+2026-11-21T17:50:29+00:00 exchange-online-audit PermanentDelete Henry Taylor Henry Taylor [192.0.2.2] <permanentdelete-1996@e>
+2026-11-18T18:46:14+00:00 entra-id sign_in_interactive David Brown  [203.0.113.1] <interactive-3141@t>
+2026-11-15T06:56:14+00:00 exchange-online-audit OAuth3PAppConsent Emma Davis Irene Anderson [203.0.113.1] <oauth3pappconsent-3929@r>
+2026-11-01T22:44:40+00:00 exchange-online-audit CopyToFolder Emma Davis Grace Wilson [198.51.100.2] <copytofolder-7858@p>
+2026-11-16T12:15:40+00:00 exchange-online-audit Set-Mailbox Bob Johnson Henry Taylor [203.0.113.2] <set-mailbox-6257@e>
+2026-11-22T02:01:15+00:00 msexchange-send on behalf Send on Behalf Grace Wilson <p> IT Admin <e> [198.51.100.1] <9805-2132@e>
+2026-11-23T02:37:50+00:00 entra-id sign_in_interactive Jack Thomas  [192.0.2.1] <interactive-8634@m>
+2026-11-06T14:27:57+00:00 msexchange-send on behalf Send on Behalf Irene Anderson <t> HR Dept <c> [192.0.2.3] <3217-6914@a>
+2026-11-01T21:09:14+00:00 entra-id sign_in_interactive Grace Wilson  [203.0.113.2] <interactive-1037@e>
+2026-11-08T07:01:17+00:00 msexchange-send Send Jack Thomas <m> David Brown <e> [192.0.2.1] <4494-1102@i>
+2026-11-07T21:41:38+00:00 msexchange-send as Send As David Brown <a> Jack Thomas <x> [198.51.100.2] <9480-7784@t>
+2026-11-15T07:57:14+00:00 exchange-online-audit MoveToFolder Alice Williams Carol Smith [192.0.2.2] <movetofolder-2403@l>
+2026-11-17T13:53:07+00:00 msexchange-set-inboxrule Set-InboxRule David Brown <p> Jack Thomas <p> [203.0.113.2] <4329-3927@c>
+2026-10-26T13:33:35+00:00 entra-id sign_in_interactive Emma Davis  [203.0.113.1] <interactive-8167@e>
+2026-11-06T00:07:05+00:00 entra-id sign_in_mfa Alice Williams  [198.51.100.2] <mfa-6709@p>
+2026-11-24T14:47:57+00:00 exim fail <>@x <>@m [192.0.2.3] <355700@t>
+2026-11-22T04:59:05+00:00 msexchange-deliver Deliver Alice Williams <.> Emma Davis <t> [192.0.2.2] <9099-1560@p>
+2026-11-22T01:33:44+00:00 dovecot auth Irene Anderson Henry Taylor [192.0.2.1] <737504@e>
+2026-10-26T22:58:36+00:00 smtp-generic QUIT <>@t <>@e [198.51.100.2] <249491@x>
+2026-11-02T02:19:49+00:00 postfix auth_cram_md5 <>@e <>@t [192.0.2.1] <146822@m>
+2026-11-21T23:29:50+00:00 entra-id sign_in_smtp Alice Williams  [198.51.100.1] <smtp-9565@p>
+2026-11-25T08:33:23+00:00 msexchange-failed login Failed Login Irene Anderson <m> IT Admin <a> [198.51.100.2] <3931-7802@l>
+2026-11-04T14:01:00+00:00 msexchange-mailbox login Mailbox Login Jack Thomas <x> Carol Smith <s> [192.0.2.2] <9172-2296@a>
+2026-11-16T07:31:25+00:00 exchange-online-audit Forward Jack Thomas IT Admin [192.0.2.3] <forward-8141@s>
+2026-10-30T03:49:38+00:00 entra-id sign_in_mfa Frank Miller  [192.0.2.1] <mfa-4837@.>
+2026-11-03T11:44:11+00:00 msexchange-send Send Emma Davis <o> Finance Dept <e> [198.51.100.2] <9716-5409@.>
+2026-11-11T12:45:45+00:00 postfix connect <>@s <>@e [203.0.113.1] <895887@n>
+2026-11-14T10:26:27+00:00 postfix auth_cram_md5 <>@c <>@l [203.0.113.1] <652863@m>
+2026-11-13T12:08:46+00:00 msexchange-send Send Alice Williams <e> Alice Williams <x> [198.51.100.2] <3665-5393@r>
+2026-11-19T03:40:49+00:00 msexchange-send as Send As Bob Johnson <x> IT Admin <.> [192.0.2.2] <1876-3475@p>
+2026-11-18T17:52:03+00:00 entra-id sign_in_mfa Henry Taylor  [203.0.113.1] <mfa-7189@r>
+2026-11-20T10:51:52+00:00 msexchange-failed login Failed Login Jack Thomas <o> Emma Davis <t> [198.51.100.1] <6822-3874@o>
+2026-11-07T01:34:04+00:00 msexchange-failed login Failed Login Frank Miller <x> Bob Johnson <e> [192.0.2.2] <3163-6351@e>
+2026-11-01T19:43:31+00:00 msexchange-send as Send As Irene Anderson <m> Support Desk <c> [203.0.113.1] <7837-3117@l>
+2026-11-02T22:31:16+00:00 msexchange-failed login Failed Login Jack Thomas <e> Alice Williams <e> [203.0.113.2] <5934-8618@a>
+2026-11-14T23:47:32+00:00 msexchange-send as Send As Frank Miller <.> HR Dept <t> [198.51.100.2] <8949-3148@e>
+2026-11-01T08:28:31+00:00 exim defer <>@a <>@s [198.51.100.2] <868650@t>
+2026-10-27T19:01:25+00:00 msexchange-send Send Carol Smith <i> Payroll <p> [198.51.100.2] <9965-1833@e>
+2026-11-04T19:38:12+00:00 smtp-generic EHLO <>@. <>@e [192.0.2.3] <679996@e>
+2026-11-02T11:51:42+00:00 msexchange-receive Receive Irene Anderson <t> Frank Miller <e> [192.0.2.2] <8469-4873@r>
+2026-11-20T12:40:21+00:00 dovecot move Carol Smith Grace Wilson [192.0.2.2] <995950@e>
+2026-11-18T15:58:30+00:00 exchange-online-audit Forward Emma Davis Emma Davis [198.51.100.1] <forward-8212@x>
+2026-11-18T04:16:27+00:00 exchange-online-audit SafelistAdd Bob Johnson Frank Miller [192.0.2.3] <safelistadd-5064@p>
+2026-10-30T12:19:28+00:00 msexchange-failed login Failed Login Emma Davis <c> Payroll <o> [192.0.2.3] <7698-8769@m>
+2026-11-25T01:37:37+00:00 exchange-online-audit OAuth3PAppConsent Irene Anderson Irene Anderson [192.0.2.1] <oauth3pappconsent-8742@x>
+2026-11-24T21:46:52+00:00 amazon-ses SendData <>@x <>@a [192.0.2.1] <814855@t>
+2026-10-27T01:24:34+00:00 exchange-online-audit Redirection Henry Taylor David Brown [192.0.2.1] <redirection-7224@.>
+2026-10-29T13:52:54+00:00 exchange-online-audit MarkAsRead Carol Smith HR Dept [203.0.113.2] <markasread-2694@o>
+2026-11-01T01:47:27+00:00 exchange-online-audit CreateRule Irene Anderson IT Admin [203.0.113.1] <createrule-4471@r>
+2026-11-25T10:29:07+00:00 exchange-online-audit Add-Member Bob Johnson Jack Thomas [198.51.100.2] <add-member-6023@e>
+2026-11-18T01:40:48+00:00 amazon-ses Delivery <>@. <>@e [198.51.100.2] <767376@.>
+2026-11-13T02:41:35+00:00 postfix disconnect <>@l <>@e [198.51.100.2] <247600@g>
+2026-11-11T22:21:27+00:00 msexchange-mailbox login Mailbox Login Bob Johnson <m> Finance Dept <l> [192.0.2.3] <9359-8298@x>
+2026-11-03T11:40:57+00:00 entra-id sign_in_smtp Grace Wilson  [203.0.113.1] <smtp-6120@e>
+2026-11-15T18:38:48+00:00 entra-id sign_in_pop Alice Williams  [198.51.100.1] <pop-1868@e>
+2026-11-23T08:11:02+00:00 google-workspace receive_message Emma Davis@<redacted> Legal Dept@<redacted> [203.0.113.1] <219491@.>
+2026-11-19T07:28:31+00:00 postfix disconnect <>@t <>@. [203.0.113.2] <247565@a>
+2026-10-29T22:33:36+00:00 exchange-online-audit Set-Mailbox Henry Taylor Payroll [203.0.113.2] <set-mailbox-5902@e>
+2026-11-11T21:49:04+00:00 exchange-online-audit UpdateRule David Brown Support Desk [198.51.100.1] <updaterule-3667@l>
+2026-11-19T10:36:53+00:00 msexchange-new-inboxrule New-InboxRule Frank Miller <p> Grace Wilson <c> [192.0.2.3] <3468-3087@.>
+2026-11-11T21:08:50+00:00 entra-id sign_in_smtp Carol Smith  [192.0.2.1] <smtp-6111@x>
+2026-11-21T20:18:35+00:00 exchange-online-audit ResetPassword Henry Taylor David Brown [198.51.100.1] <resetpassword-1372@p>
+2026-11-08T16:14:35+00:00 dovecot logout Henry Taylor Frank Miller [192.0.2.3] <799096@l>
+2026-11-19T21:20:03+00:00 google-workspace change_permission Bob Johnson@<redacted> Legal Dept@<redacted> [192.0.2.2] <824069@.>
+2026-11-01T06:04:17+00:00 msexchange-set-inboxrule Set-InboxRule Alice Williams <a> Finance Dept <p> [198.51.100.1] <1280-4172@e>
+2026-11-01T23:51:53+00:00 exchange-online-audit Forward Emma Davis Jack Thomas [192.0.2.1] <forward-7023@g>
+2026-10-30T23:48:30+00:00 google-workspace send_message Grace Wilson@<redacted> Henry Taylor@<redacted> [203.0.113.1] <953288@e>
+2026-11-13T14:52:07+00:00 msexchange-send Send David Brown <e> Henry Taylor <a> [192.0.2.1] <9246-6015@x>
+2026-11-07T02:45:34+00:00 msexchange-set-inboxrule Set-InboxRule Alice Williams <p> David Brown <a> [203.0.113.1] <1828-8154@.>
+2026-11-07T19:16:33+00:00 google-workspace receive_message Grace Wilson@<redacted> Emma Davis@<redacted> [203.0.113.2] <545192@p>
+2026-11-03T00:18:28+00:00 exchange-online-audit Add-Member Henry Taylor HR Dept [203.0.113.2] <add-member-8727@o>
+2026-10-31T21:14:45+00:00 smtp-generic DATA <>@x <>@e [192.0.2.1] <915526@a>
+2026-11-09T03:50:20+00:00 exim defer <>@t <>@p [203.0.113.1] <306648@x>
+2026-11-24T17:33:59+00:00 exim accept <>@m <>@s [198.51.100.2] <253880@m>

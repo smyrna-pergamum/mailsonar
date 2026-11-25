@@ -1,0 +1,29 @@
+# Dependencies and build output
+node_modules/
+dist/
+src-tauri/target/
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Local editor and OS files
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# Logs and temporary files
+npm-debug.log*
+yarn-error.log*
+*.tmp
+
+# Backups and local secrets
+*.bak
+*.bak-*
+.env
+.env.*
+
+# Models and local inference binaries (never commit user models)
+*.gguf

@@ -1,0 +1,354 @@
+{
+  "evtx_files": [
+    {
+      "index": 0,
+      "source": "entra-id",
+      "action": "sign_in_pop",
+      "timestamp": "2026-10-29T19:01:05+00:00",
+      "event_id": "evt-6303572"
+    },
+    {
+      "index": 1,
+      "source": "entra-id",
+      "action": "sign_in_imap",
+      "timestamp": "2026-11-13T13:02:33+00:00",
+      "event_id": "evt-4723128"
+    },
+    {
+      "index": 2,
+      "source": "exchange-online-audit",
+      "action": "PermanentDelete",
+      "timestamp": "2026-11-15T19:24:30+00:00",
+      "event_id": "evt-2973939"
+    },
+    {
+      "index": 3,
+      "source": "exchange-online-audit",
+      "action": "SafelistAdd",
+      "timestamp": "2026-11-21T08:50:59+00:00",
+      "event_id": "evt-2830201"
+    },
+    {
+      "index": 4,
+      "source": "exchange-online-audit",
+      "action": "Forward",
+      "timestamp": "2026-10-26T10:13:57+00:00",
+      "event_id": "evt-2407602"
+    },
+    {
+      "index": 5,
+      "source": "entra-id",
+      "action": "sign_in_conditional_access",
+      "timestamp": "2026-11-04T09:49:46+00:00",
+      "event_id": "evt-4012369"
+    },
+    {
+      "index": 6,
+      "source": "exim",
+      "action": "retry",
+      "timestamp": "2026-10-27T20:04:00+00:00",
+      "event_id": "evt-3329133"
+    },
+    {
+      "index": 7,
+      "source": "msexchange-send on behalf",
+      "action": "Send on Behalf",
+      "timestamp": "2026-10-29T20:02:11+00:00",
+      "event_id": "evt-8353631"
+    },
+    {
+      "index": 8,
+      "source": "google-workspace",
+      "action": "reject_message",
+      "timestamp": "2026-11-22T10:32:45+00:00",
+      "event_id": "evt-8022899"
+    },
+    {
+      "index": 9,
+      "source": "entra-id",
+      "action": "sign_in_interactive",
+      "timestamp": "2026-11-03T13:52:37+00:00",
+      "event_id": "evt-1730892"
+    },
+    {
+      "index": 10,
+      "source": "msexchange-failed login",
+      "action": "Failed Login",
+      "timestamp": "2026-11-11T05:41:31+00:00",
+      "event_id": "evt-1100380"
+    },
+    {
+      "index": 11,
+      "source": "google-workspace",
+      "action": "login_attempt",
+      "timestamp": "2026-11-20T22:07:14+00:00",
+      "event_id": "evt-5870224"
+    },
+    {
+      "index": 12,
+      "source": "google-workspace",
+      "action": "send_message",
+      "timestamp": "2026-11-15T05:09:47+00:00",
+      "event_id": "evt-6513962"
+    },
+    {
+      "index": 13,
+      "source": "msexchange-new-inboxrule",
+      "action": "New-InboxRule",
+      "timestamp": "2026-10-30T06:44:48+00:00",
+      "event_id": "evt-3365874"
+    },
+    {
+      "index": 14,
+      "source": "smtp-generic",
+      "action": "RCPT TO",
+      "timestamp": "2026-11-06T01:32:18+00:00",
+      "event_id": "evt-5350993"
+    },
+    {
+      "index": 15,
+      "source": "entra-id",
+      "action": "sign_in_mfa",
+      "timestamp": "2026-11-15T14:43:51+00:00",
+      "event_id": "evt-2269655"
+    },
+    {
+      "index": 16,
+      "source": "exchange-online-audit",
+      "action": "Remove-Member",
+      "timestamp": "2026-11-23T11:56:10+00:00",
+      "event_id": "evt-1918071"
+    },
+    {
+      "index": 17,
+      "source": "google-workspace",
+      "action": "deliver_message",
+      "timestamp": "2026-10-31T01:42:19+00:00",
+      "event_id": "evt-3746051"
+    },
+    {
+      "index": 18,
+      "source": "postfix",
+      "action": "auth_cram_md5",
+      "timestamp": "2026-11-14T03:19:30+00:00",
+      "event_id": "evt-9531474"
+    },
+    {
+      "index": 19,
+      "source": "msexchange-set-inboxrule",
+      "action": "Set-InboxRule",
+      "timestamp": "2026-11-20T16:42:04+00:00",
+      "event_id": "evt-7186186"
+    },
+    {
+      "index": 20,
+      "source": "google-workspace",
+      "action": "receive_message",
+      "timestamp": "2026-10-26T06:28:52+00:00",
+      "event_id": "evt-2326634"
+    },
+    {
+      "index": 21,
+      "source": "msexchange-send as",
+      "action": "Send As",
+      "timestamp": "2026-11-25T16:42:26+00:00",
+      "event_id": "evt-7623071"
+    },
+    {
+      "index": 22,
+      "source": "exchange-online-audit",
+      "action": "UpdateRule",
+      "timestamp": "2026-11-06T13:54:29+00:00",
+      "event_id": "evt-6288180"
+    },
+    {
+      "index": 23,
+      "source": "entra-id",
+      "action": "sign_in_conditional_access",
+      "timestamp": "2026-11-15T21:50:11+00:00",
+      "event_id": "evt-5507789"
+    },
+    {
+      "index": 24,
+      "source": "entra-id",
+      "action": "sign_in_pop",
+      "timestamp": "2026-11-17T17:22:17+00:00",
+      "event_id": "evt-2358129"
+    },
+    {
+      "index": 25,
+      "source": "exim",
+      "action": "retry",
+      "timestamp": "2026-11-08T22:10:08+00:00",
+      "event_id": "evt-7820186"
+    },
+    {
+      "index": 26,
+      "source": "msexchange-mailbox login",
+      "action": "Mailbox Login",
+      "timestamp": "2026-11-23T11:42:45+00:00",
+      "event_id": "evt-4077319"
+    },
+    {
+      "index": 27,
+      "source": "exchange-online-audit",
+      "action": "MarkAsRead",
+      "timestamp": "2026-11-10T07:50:32+00:00",
+      "event_id": "evt-6751711"
+    },
+    {
+      "index": 28,
+      "source": "msexchange-deliver",
+      "action": "Deliver",
+      "timestamp": "2026-11-07T22:06:55+00:00",
+      "event_id": "evt-8329860"
+    },
+    {
+      "index": 29,
+      "source": "msexchange-send on behalf",
+      "action": "Send on Behalf",
+      "timestamp": "2026-11-08T03:52:44+00:00",
+      "event_id": "evt-1778313"
+    },
+    {
+      "index": 30,
+      "source": "exchange-online-audit",
+      "action": "UpdateRule",
+      "timestamp": "2026-10-26T18:45:43+00:00",
+      "event_id": "evt-7568444"
+    },
+    {
+      "index": 31,
+      "source": "dovecot",
+      "action": "copy",
+      "timestamp": "2026-11-06T18:45:41+00:00",
+      "event_id": "evt-8112060"
+    },
+    {
+      "index": 32,
+      "source": "msexchange-failed login",
+      "action": "Failed Login",
+      "timestamp": "2026-11-20T14:14:30+00:00",
+      "event_id": "evt-8506310"
+    },
+    {
+      "index": 33,
+      "source": "msexchange-send",
+      "action": "Send",
+      "timestamp": "2026-11-19T16:16:42+00:00",
+      "event_id": "evt-8513116"
+    },
+    {
+      "index": 34,
+      "source": "msexchange-new-inboxrule",
+      "action": "New-InboxRule",
+      "timestamp": "2026-11-02T00:14:12+00:00",
+      "event_id": "evt-3337057"
+    },
+    {
+      "index": 35,
+      "source": "exchange-online-audit",
+      "action": "PermanentDelete",
+      "timestamp": "2026-11-22T23:22:57+00:00",
+      "event_id": "evt-4710731"
+    },
+    {
+      "index": 36,
+      "source": "entra-id",
+      "action": "sign_in_imap",
+      "timestamp": "2026-10-30T21:05:26+00:00",
+      "event_id": "evt-6642939"
+    },
+    {
+      "index": 37,
+      "source": "postfix",
+      "action": "connect",
+      "timestamp": "2026-11-09T15:44:35+00:00",
+      "event_id": "evt-1016102"
+    },
+    {
+      "index": 38,
+      "source": "msexchange-failed login",
+      "action": "Failed Login",
+      "timestamp": "2026-11-01T13:14:17+00:00",
+      "event_id": "evt-5242695"
+    },
+    {
+      "index": 39,
+      "source": "google-workspace",
+      "action": "login_attempt",
+      "timestamp": "2026-11-25T18:59:30+00:00",
+      "event_id": "evt-1032549"
+    },
+    {
+      "index": 40,
+      "source": "entra-id",
+      "action": "sign_in_mfa",
+      "timestamp": "2026-11-21T05:43:03+00:00",
+      "event_id": "evt-4606761"
+    },
+    {
+      "index": 41,
+      "source": "msexchange-send on behalf",
+      "action": "Send on Behalf",
+      "timestamp": "2026-10-31T07:34:51+00:00",
+      "event_id": "evt-6576634"
+    },
+    {
+      "index": 42,
+      "source": "smtp-generic",
+      "action": "HELO",
+      "timestamp": "2026-11-12T19:36:29+00:00",
+      "event_id": "evt-1976688"
+    },
+    {
+      "index": 43,
+      "source": "exchange-online-audit",
+      "action": "SendMail",
+      "timestamp": "2026-10-30T06:12:04+00:00",
+      "event_id": "evt-9528030"
+    },
+    {
+      "index": 44,
+      "source": "dovecot",
+      "action": "logout",
+      "timestamp": "2026-11-06T07:50:48+00:00",
+      "event_id": "evt-1538873"
+    },
+    {
+      "index": 45,
+      "source": "postfix",
+      "action": "warning",
+      "timestamp": "2026-11-03T18:31:34+00:00",
+      "event_id": "evt-9365828"
+    },
+    {
+      "index": 46,
+      "source": "msexchange-send on behalf",
+      "action": "Send on Behalf",
+      "timestamp": "2026-11-18T05:08:31+00:00",
+      "event_id": "evt-2084304"
+    },
+    {
+      "index": 47,
+      "source": "google-workspace",
+      "action": "delete_message",
+      "timestamp": "2026-11-16T01:02:24+00:00",
+      "event_id": "evt-9673493"
+    },
+    {
+      "index": 48,
+      "source": "exchange-online-audit",
+      "action": "CopyToFolder",
+      "timestamp": "2026-11-25T17:35:04+00:00",
+      "event_id": "evt-7588178"
+    },
+    {
+      "index": 49,
+      "source": "msexchange-receive",
+      "action": "Receive",
+      "timestamp": "2026-10-26T20:15:17+00:00",
+      "event_id": "evt-2831708"
+    }
+  ]
+}

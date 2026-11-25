@@ -1,0 +1,354 @@
+{
+  "msg_files": [
+    {
+      "index": 0,
+      "from": "sender",
+      "to": "recipient",
+      "subject": "Mail DFIR Test evt-6303572",
+      "source": "entra-id"
+    },
+    {
+      "index": 1,
+      "from": "sender",
+      "to": "recipient",
+      "subject": "Mail DFIR Test evt-4723128",
+      "source": "entra-id"
+    },
+    {
+      "index": 2,
+      "from": "sender",
+      "to": "recipient",
+      "subject": "Mail DFIR Test evt-2973939",
+      "source": "exchange-online-audit"
+    },
+    {
+      "index": 3,
+      "from": "sender",
+      "to": "recipient",
+      "subject": "Mail DFIR Test evt-2830201",
+      "source": "exchange-online-audit"
+    },
+    {
+      "index": 4,
+      "from": "sender",
+      "to": "recipient",
+      "subject": "Mail DFIR Test evt-2407602",
+      "source": "exchange-online-audit"
+    },
+    {
+      "index": 5,
+      "from": "sender",
+      "to": "recipient",
+      "subject": "Mail DFIR Test evt-4012369",
+      "source": "entra-id"
+    },
+    {
+      "index": 6,
+      "from": "",
+      "to": "",
+      "subject": "Mail DFIR Test evt-3329133",
+      "source": "exim"
+    },
+    {
+      "index": 7,
+      "from": "Bob Johnson",
+      "to": "Irene Anderson",
+      "subject": "Mail DFIR Test evt-8353631",
+      "source": "msexchange-send on behalf"
+    },
+    {
+      "index": 8,
+      "from": "Carol Smith@",
+      "to": "Payroll@",
+      "subject": "Mail DFIR Test evt-8022899",
+      "source": "google-workspace"
+    },
+    {
+      "index": 9,
+      "from": "sender",
+      "to": "recipient",
+      "subject": "Mail DFIR Test evt-1730892",
+      "source": "entra-id"
+    },
+    {
+      "index": 10,
+      "from": "Bob Johnson",
+      "to": "Grace Wilson",
+      "subject": "Mail DFIR Test evt-1100380",
+      "source": "msexchange-failed login"
+    },
+    {
+      "index": 11,
+      "from": "David Brown@",
+      "to": "Irene Anderson@",
+      "subject": "Mail DFIR Test evt-5870224",
+      "source": "google-workspace"
+    },
+    {
+      "index": 12,
+      "from": "Irene Anderson@",
+      "to": "Frank Miller@",
+      "subject": "Mail DFIR Test evt-6513962",
+      "source": "google-workspace"
+    },
+    {
+      "index": 13,
+      "from": "Henry Taylor",
+      "to": "David Brown",
+      "subject": "Mail DFIR Test evt-3365874",
+      "source": "msexchange-new-inboxrule"
+    },
+    {
+      "index": 14,
+      "from": "",
+      "to": "",
+      "subject": "Mail DFIR Test evt-5350993",
+      "source": "smtp-generic"
+    },
+    {
+      "index": 15,
+      "from": "sender",
+      "to": "recipient",
+      "subject": "Mail DFIR Test evt-2269655",
+      "source": "entra-id"
+    },
+    {
+      "index": 16,
+      "from": "sender",
+      "to": "recipient",
+      "subject": "Mail DFIR Test evt-1918071",
+      "source": "exchange-online-audit"
+    },
+    {
+      "index": 17,
+      "from": "Henry Taylor@",
+      "to": "Henry Taylor@",
+      "subject": "Mail DFIR Test evt-3746051",
+      "source": "google-workspace"
+    },
+    {
+      "index": 18,
+      "from": "",
+      "to": "",
+      "subject": "Mail DFIR Test evt-9531474",
+      "source": "postfix"
+    },
+    {
+      "index": 19,
+      "from": "Jack Thomas",
+      "to": "Legal Dept",
+      "subject": "Mail DFIR Test evt-7186186",
+      "source": "msexchange-set-inboxrule"
+    },
+    {
+      "index": 20,
+      "from": "Emma Davis@",
+      "to": "Legal Dept@",
+      "subject": "Mail DFIR Test evt-2326634",
+      "source": "google-workspace"
+    },
+    {
+      "index": 21,
+      "from": "Alice Williams",
+      "to": "Carol Smith",
+      "subject": "Mail DFIR Test evt-7623071",
+      "source": "msexchange-send as"
+    },
+    {
+      "index": 22,
+      "from": "sender",
+      "to": "recipient",
+      "subject": "Mail DFIR Test evt-6288180",
+      "source": "exchange-online-audit"
+    },
+    {
+      "index": 23,
+      "from": "sender",
+      "to": "recipient",
+      "subject": "Mail DFIR Test evt-5507789",
+      "source": "entra-id"
+    },
+    {
+      "index": 24,
+      "from": "sender",
+      "to": "recipient",
+      "subject": "Mail DFIR Test evt-2358129",
+      "source": "entra-id"
+    },
+    {
+      "index": 25,
+      "from": "",
+      "to": "",
+      "subject": "Mail DFIR Test evt-7820186",
+      "source": "exim"
+    },
+    {
+      "index": 26,
+      "from": "Carol Smith",
+      "to": "Legal Dept",
+      "subject": "Mail DFIR Test evt-4077319",
+      "source": "msexchange-mailbox login"
+    },
+    {
+      "index": 27,
+      "from": "sender",
+      "to": "recipient",
+      "subject": "Mail DFIR Test evt-6751711",
+      "source": "exchange-online-audit"
+    },
+    {
+      "index": 28,
+      "from": "David Brown",
+      "to": "Benefits",
+      "subject": "Mail DFIR Test evt-8329860",
+      "source": "msexchange-deliver"
+    },
+    {
+      "index": 29,
+      "from": "Carol Smith",
+      "to": "Bob Johnson",
+      "subject": "Mail DFIR Test evt-1778313",
+      "source": "msexchange-send on behalf"
+    },
+    {
+      "index": 30,
+      "from": "sender",
+      "to": "recipient",
+      "subject": "Mail DFIR Test evt-7568444",
+      "source": "exchange-online-audit"
+    },
+    {
+      "index": 31,
+      "from": "sender",
+      "to": "recipient",
+      "subject": "Mail DFIR Test evt-8112060",
+      "source": "dovecot"
+    },
+    {
+      "index": 32,
+      "from": "Henry Taylor",
+      "to": "Finance Dept",
+      "subject": "Mail DFIR Test evt-8506310",
+      "source": "msexchange-failed login"
+    },
+    {
+      "index": 33,
+      "from": "Grace Wilson",
+      "to": "Frank Miller",
+      "subject": "Mail DFIR Test evt-8513116",
+      "source": "msexchange-send"
+    },
+    {
+      "index": 34,
+      "from": "Carol Smith",
+      "to": "HR Dept",
+      "subject": "Mail DFIR Test evt-3337057",
+      "source": "msexchange-new-inboxrule"
+    },
+    {
+      "index": 35,
+      "from": "sender",
+      "to": "recipient",
+      "subject": "Mail DFIR Test evt-4710731",
+      "source": "exchange-online-audit"
+    },
+    {
+      "index": 36,
+      "from": "sender",
+      "to": "recipient",
+      "subject": "Mail DFIR Test evt-6642939",
+      "source": "entra-id"
+    },
+    {
+      "index": 37,
+      "from": "",
+      "to": "",
+      "subject": "Mail DFIR Test evt-1016102",
+      "source": "postfix"
+    },
+    {
+      "index": 38,
+      "from": "Irene Anderson",
+      "to": "Legal Dept",
+      "subject": "Mail DFIR Test evt-5242695",
+      "source": "msexchange-failed login"
+    },
+    {
+      "index": 39,
+      "from": "Emma Davis@",
+      "to": "Bob Johnson@",
+      "subject": "Mail DFIR Test evt-1032549",
+      "source": "google-workspace"
+    },
+    {
+      "index": 40,
+      "from": "sender",
+      "to": "recipient",
+      "subject": "Mail DFIR Test evt-4606761",
+      "source": "entra-id"
+    },
+    {
+      "index": 41,
+      "from": "David Brown",
+      "to": "Benefits",
+      "subject": "Mail DFIR Test evt-6576634",
+      "source": "msexchange-send on behalf"
+    },
+    {
+      "index": 42,
+      "from": "",
+      "to": "",
+      "subject": "Mail DFIR Test evt-1976688",
+      "source": "smtp-generic"
+    },
+    {
+      "index": 43,
+      "from": "sender",
+      "to": "recipient",
+      "subject": "Mail DFIR Test evt-9528030",
+      "source": "exchange-online-audit"
+    },
+    {
+      "index": 44,
+      "from": "sender",
+      "to": "recipient",
+      "subject": "Mail DFIR Test evt-1538873",
+      "source": "dovecot"
+    },
+    {
+      "index": 45,
+      "from": "",
+      "to": "",
+      "subject": "Mail DFIR Test evt-9365828",
+      "source": "postfix"
+    },
+    {
+      "index": 46,
+      "from": "Emma Davis",
+      "to": "Benefits",
+      "subject": "Mail DFIR Test evt-2084304",
+      "source": "msexchange-send on behalf"
+    },
+    {
+      "index": 47,
+      "from": "Henry Taylor@",
+      "to": "Finance Dept@",
+      "subject": "Mail DFIR Test evt-9673493",
+      "source": "google-workspace"
+    },
+    {
+      "index": 48,
+      "from": "sender",
+      "to": "recipient",
+      "subject": "Mail DFIR Test evt-7588178",
+      "source": "exchange-online-audit"
+    },
+    {
+      "index": 49,
+      "from": "Emma Davis",
+      "to": "Grace Wilson",
+      "subject": "Mail DFIR Test evt-2831708",
+      "source": "msexchange-receive"
+    }
+  ]
+}

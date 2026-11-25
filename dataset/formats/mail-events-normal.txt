@@ -1,0 +1,200 @@
+timestamp=2026-10-29T19:01:05+00:00	source=entra-id	sender=Henry Taylor	action=sign_in_pop	ip=192.0.2.1	message_id=<pop-1532@a>
+timestamp=2026-11-13T13:02:33+00:00	source=entra-id	sender=David Brown	action=sign_in_imap	ip=198.51.100.1	message_id=<imap-2190@e>
+timestamp=2026-11-15T19:24:30+00:00	source=exchange-online-audit	sender=Jack Thomas	recipient=Frank Miller	action=PermanentDelete	ip=192.0.2.3	message_id=<permanentdelete-6216@a>
+timestamp=2026-11-21T08:50:59+00:00	source=exchange-online-audit	sender=Jack Thomas	recipient=David Brown	action=SafelistAdd	ip=192.0.2.2	message_id=<safelistadd-7935@e>
+timestamp=2026-10-26T10:13:57+00:00	source=exchange-online-audit	sender=Henry Taylor	recipient=Carol Smith	action=Forward	ip=192.0.2.1	message_id=<forward-8471@p>
+timestamp=2026-11-04T09:49:46+00:00	source=entra-id	sender=Frank Miller	action=sign_in_conditional_access	ip=203.0.113.2	message_id=<conditional_access-6035@a>
+timestamp=2026-10-27T20:04:00+00:00	source=exim	sender=<>@p	recipient=<>@m	action=retry	ip=198.51.100.2	message_id=<489358@l>
+timestamp=2026-10-29T20:02:11+00:00	source=msexchange-send on behalf	sender=Bob Johnson <s>	recipient=Irene Anderson <a>	action=Send on Behalf	ip=198.51.100.2	message_id=<4825-6128@x>
+timestamp=2026-11-22T10:32:45+00:00	source=google-workspace	sender=Carol Smith@<redacted>	recipient=Payroll@<redacted>	action=reject_message	ip=192.0.2.1	message_id=<632410@m>
+timestamp=2026-11-03T13:52:37+00:00	source=entra-id	sender=Emma Davis	action=sign_in_interactive	ip=192.0.2.1	message_id=<interactive-4217@a>
+timestamp=2026-11-11T05:41:31+00:00	source=msexchange-failed login	sender=Bob Johnson <p>	recipient=Grace Wilson <e>	action=Failed Login	ip=203.0.113.1	message_id=<2062-3668@m>
+timestamp=2026-11-20T22:07:14+00:00	source=google-workspace	sender=David Brown@<redacted>	recipient=Irene Anderson@<redacted>	action=login_attempt	ip=198.51.100.1	message_id=<919245@t>
+timestamp=2026-11-15T05:09:47+00:00	source=google-workspace	sender=Irene Anderson@<redacted>	recipient=Frank Miller@<redacted>	action=send_message	ip=192.0.2.1	message_id=<358114@s>
+timestamp=2026-10-30T06:44:48+00:00	source=msexchange-new-inboxrule	sender=Henry Taylor <e>	recipient=David Brown <.>	action=New-InboxRule	ip=192.0.2.2	message_id=<7272-1698@e>
+timestamp=2026-11-06T01:32:18+00:00	source=smtp-generic	sender=<>@l	recipient=<>@s	action=RCPT TO	ip=192.0.2.1	message_id=<562247@o>
+timestamp=2026-11-15T14:43:51+00:00	source=entra-id	sender=Henry Taylor	action=sign_in_mfa	ip=192.0.2.2	message_id=<mfa-6758@t>
+timestamp=2026-11-23T11:56:10+00:00	source=exchange-online-audit	sender=David Brown	recipient=Finance Dept	action=Remove-Member	ip=203.0.113.1	message_id=<remove-member-4145@m>
+timestamp=2026-10-31T01:42:19+00:00	source=google-workspace	sender=Henry Taylor@<redacted>	recipient=Henry Taylor@<redacted>	action=deliver_message	ip=198.51.100.2	message_id=<512617@x>
+timestamp=2026-11-14T03:19:30+00:00	source=postfix	sender=<>@o	recipient=<>@a	action=auth_cram_md5	ip=192.0.2.3	message_id=<161569@a>
+timestamp=2026-11-20T16:42:04+00:00	source=msexchange-set-inboxrule	sender=Jack Thomas <m>	recipient=Legal Dept <l>	action=Set-InboxRule	ip=192.0.2.3	message_id=<3240-3689@p>
+timestamp=2026-10-26T06:28:52+00:00	source=google-workspace	sender=Emma Davis@<redacted>	recipient=Legal Dept@<redacted>	action=receive_message	ip=192.0.2.1	message_id=<151964@.>
+timestamp=2026-11-25T16:42:26+00:00	source=msexchange-send as	sender=Alice Williams <t>	recipient=Carol Smith <e>	action=Send As	ip=203.0.113.2	message_id=<4455-8260@e>
+timestamp=2026-11-06T13:54:29+00:00	source=exchange-online-audit	sender=Carol Smith	recipient=Legal Dept	action=UpdateRule	ip=203.0.113.1	message_id=<updaterule-7118@m>
+timestamp=2026-11-15T21:50:11+00:00	source=entra-id	sender=Grace Wilson	action=sign_in_conditional_access	ip=198.51.100.2	message_id=<conditional_access-2423@m>
+timestamp=2026-11-17T17:22:17+00:00	source=entra-id	sender=Irene Anderson	action=sign_in_pop	ip=192.0.2.3	message_id=<pop-2799@l>
+timestamp=2026-11-08T22:10:08+00:00	source=exim	sender=<>@e	recipient=<>@a	action=retry	ip=192.0.2.3	message_id=<766511@r>
+timestamp=2026-11-23T11:42:45+00:00	source=msexchange-mailbox login	sender=Carol Smith <.>	recipient=Legal Dept <m>	action=Mailbox Login	ip=192.0.2.1	message_id=<9847-8940@a>
+timestamp=2026-11-10T07:50:32+00:00	source=exchange-online-audit	sender=Jack Thomas	recipient=Finance Dept	action=MarkAsRead	ip=192.0.2.1	message_id=<markasread-6537@m>
+timestamp=2026-11-07T22:06:55+00:00	source=msexchange-deliver	sender=David Brown <e>	recipient=Benefits <.>	action=Deliver	ip=198.51.100.2	message_id=<5067-4822@e>
+timestamp=2026-11-08T03:52:44+00:00	source=msexchange-send on behalf	sender=Carol Smith <m>	recipient=Bob Johnson <p>	action=Send on Behalf	ip=198.51.100.1	message_id=<2252-9626@p>
+timestamp=2026-10-26T18:45:43+00:00	source=exchange-online-audit	sender=David Brown	recipient=Payroll	action=UpdateRule	ip=198.51.100.2	message_id=<updaterule-1264@x>
+timestamp=2026-11-06T18:45:41+00:00	source=dovecot	sender=Carol Smith	recipient=Alice Williams	action=copy	ip=192.0.2.2	message_id=<428345@p>
+timestamp=2026-11-20T14:14:30+00:00	source=msexchange-failed login	sender=Henry Taylor <s>	recipient=Finance Dept <s>	action=Failed Login	ip=192.0.2.2	message_id=<7894-2273@x>
+timestamp=2026-11-19T16:16:42+00:00	source=msexchange-send	sender=Grace Wilson <e>	recipient=Frank Miller <e>	action=Send	ip=192.0.2.2	message_id=<6846-7611@m>
+timestamp=2026-11-02T00:14:12+00:00	source=msexchange-new-inboxrule	sender=Carol Smith <e>	recipient=HR Dept <m>	action=New-InboxRule	ip=192.0.2.2	message_id=<6536-5769@a>
+timestamp=2026-11-22T23:22:57+00:00	source=exchange-online-audit	sender=Grace Wilson	recipient=David Brown	action=PermanentDelete	ip=192.0.2.2	message_id=<permanentdelete-1503@x>
+timestamp=2026-10-30T21:05:26+00:00	source=entra-id	sender=Irene Anderson	action=sign_in_imap	ip=192.0.2.2	message_id=<imap-3330@e>
+timestamp=2026-11-09T15:44:35+00:00	source=postfix	sender=<>@i	recipient=<>@r	action=connect	ip=203.0.113.2	message_id=<838521@l>
+timestamp=2026-11-01T13:14:17+00:00	source=msexchange-failed login	sender=Irene Anderson <t>	recipient=Legal Dept <m>	action=Failed Login	ip=198.51.100.2	message_id=<4324-9788@t>
+timestamp=2026-11-25T18:59:30+00:00	source=google-workspace	sender=Emma Davis@<redacted>	recipient=Bob Johnson@<redacted>	action=login_attempt	ip=198.51.100.2	message_id=<374508@.>
+timestamp=2026-11-21T05:43:03+00:00	source=entra-id	sender=Alice Williams	action=sign_in_mfa	ip=192.0.2.1	message_id=<mfa-5299@l>
+timestamp=2026-10-31T07:34:51+00:00	source=msexchange-send on behalf	sender=David Brown <x>	recipient=Benefits <a>	action=Send on Behalf	ip=203.0.113.1	message_id=<6392-3151@e>
+timestamp=2026-11-12T19:36:29+00:00	source=smtp-generic	sender=<>@e	recipient=<>@.	action=HELO	ip=203.0.113.1	message_id=<208486@a>
+timestamp=2026-10-30T06:12:04+00:00	source=exchange-online-audit	sender=David Brown	recipient=Frank Miller	action=SendMail	ip=192.0.2.3	message_id=<x-4916@e>
+timestamp=2026-11-06T07:50:48+00:00	source=dovecot	sender=Grace Wilson	recipient=IT Admin	action=logout	ip=192.0.2.1	message_id=<537089@l>
+timestamp=2026-11-03T18:31:34+00:00	source=postfix	sender=<>@a	recipient=<>@e	action=warning	ip=198.51.100.2	message_id=<902575@e>
+timestamp=2026-11-18T05:08:31+00:00	source=msexchange-send on behalf	sender=Emma Davis <p>	recipient=Benefits <e>	action=Send on Behalf	ip=192.0.2.2	message_id=<9122-8651@t>
+timestamp=2026-11-16T01:02:24+00:00	source=google-workspace	sender=Henry Taylor@<redacted>	recipient=Finance Dept@<redacted>	action=delete_message	ip=198.51.100.1	message_id=<431174@c>
+timestamp=2026-11-25T17:35:04+00:00	source=exchange-online-audit	sender=Carol Smith	recipient=Support Desk	action=CopyToFolder	ip=192.0.2.2	message_id=<copytofolder-6970@l>
+timestamp=2026-10-26T20:15:17+00:00	source=msexchange-receive	sender=Emma Davis <t>	recipient=Grace Wilson <t>	action=Receive	ip=198.51.100.2	message_id=<7284-7754@e>
+timestamp=2026-11-13T16:32:47+00:00	source=msexchange-failed login	sender=Irene Anderson <.>	recipient=Irene Anderson <m>	action=Failed Login	ip=192.0.2.2	message_id=<3654-4397@a>
+timestamp=2026-11-25T10:10:44+00:00	source=msexchange-send	sender=Carol Smith <p>	recipient=HR Dept <s>	action=Send	ip=192.0.2.2	message_id=<4762-3877@x>
+timestamp=2026-10-30T14:37:25+00:00	source=msexchange-send	sender=Emma Davis <m>	recipient=Benefits <a>	action=Send	ip=192.0.2.3	message_id=<1046-4905@x>
+timestamp=2026-11-17T18:07:34+00:00	source=exchange-online-audit	sender=Carol Smith	recipient=Carol Smith	action=Add-Member	ip=192.0.2.1	message_id=<add-member-9548@m>
+timestamp=2026-11-15T08:17:17+00:00	source=msexchange-send	sender=Bob Johnson <p>	recipient=Legal Dept <m>	action=Send	ip=192.0.2.3	message_id=<8890-8790@e>
+timestamp=2026-11-23T21:06:43+00:00	source=google-workspace	sender=Alice Williams@<redacted>	recipient=HR Dept@<redacted>	action=login_attempt	ip=203.0.113.1	message_id=<756174@x>
+timestamp=2026-11-06T18:51:48+00:00	source=msexchange-send	sender=Emma Davis <x>	recipient=IT Admin <o>	action=Send	ip=198.51.100.1	message_id=<2222-2172@e>
+timestamp=2026-11-11T12:05:04+00:00	source=msexchange-new-inboxrule	sender=Grace Wilson <e>	recipient=Jack Thomas <m>	action=New-InboxRule	ip=203.0.113.2	message_id=<8996-1795@s>
+timestamp=2026-10-29T20:07:59+00:00	source=entra-id	sender=Grace Wilson	action=sign_in_interactive	ip=192.0.2.3	message_id=<interactive-3901@p>
+timestamp=2026-11-03T11:24:07+00:00	source=smtp-generic	sender=<>@x	recipient=<>@t	action=RCPT TO	ip=192.0.2.2	message_id=<577358@m>
+timestamp=2026-11-10T09:37:23+00:00	source=postfix	sender=<>@e	recipient=<>@t	action=disconnect	ip=192.0.2.1	message_id=<135990@.>
+timestamp=2026-11-20T23:30:47+00:00	source=msexchange-failed login	sender=Grace Wilson <x>	recipient=HR Dept <l>	action=Failed Login	ip=198.51.100.2	message_id=<8819-1884@t>
+timestamp=2026-11-09T09:05:22+00:00	source=google-workspace	sender=Jack Thomas@<redacted>	recipient=Alice Williams@<redacted>	action=delete_message	ip=198.51.100.1	message_id=<309841@l>
+timestamp=2026-10-29T06:04:38+00:00	source=exchange-online-audit	sender=Jack Thomas	recipient=Carol Smith	action=PermanentDelete	ip=198.51.100.1	message_id=<permanentdelete-1059@m>
+timestamp=2026-10-30T22:11:09+00:00	source=msexchange-send	sender=Grace Wilson <p>	recipient=Benefits <.>	action=Send	ip=192.0.2.1	message_id=<1919-6614@n>
+timestamp=2026-11-14T21:54:51+00:00	source=msexchange-set-inboxrule	sender=Emma Davis <t>	recipient=Emma Davis <m>	action=Set-InboxRule	ip=198.51.100.1	message_id=<5959-3162@l>
+timestamp=2026-11-24T18:43:09+00:00	source=msexchange-set-inboxrule	sender=Bob Johnson <.>	recipient=Payroll <e>	action=Set-InboxRule	ip=203.0.113.1	message_id=<4609-7911@e>
+timestamp=2026-11-11T02:31:29+00:00	source=msexchange-set-inboxrule	sender=Irene Anderson <a>	recipient=Alice Williams <.>	action=Set-InboxRule	ip=192.0.2.3	message_id=<6543-3454@.>
+timestamp=2026-11-01T01:02:41+00:00	source=msexchange-send as	sender=Carol Smith <e>	recipient=David Brown <l>	action=Send As	ip=198.51.100.2	message_id=<9556-9009@m>
+timestamp=2026-11-24T04:26:41+00:00	source=msexchange-receive	sender=David Brown <a>	recipient=Payroll <e>	action=Receive	ip=203.0.113.1	message_id=<1071-6820@l>
+timestamp=2026-11-03T09:57:58+00:00	source=exchange-online-audit	sender=Henry Taylor	recipient=Henry Taylor	action=DeleteRule	ip=198.51.100.1	message_id=<deleterule-3235@.>
+timestamp=2026-11-12T07:12:21+00:00	source=exchange-online-audit	sender=Bob Johnson	recipient=Legal Dept	action=CopyToFolder	ip=203.0.113.1	message_id=<copytofolder-9544@p>
+timestamp=2026-10-30T22:08:43+00:00	source=dovecot	sender=Grace Wilson	recipient=Alice Williams	action=auth	ip=192.0.2.2	message_id=<434522@o>
+timestamp=2026-11-01T10:09:22+00:00	source=exchange-online-audit	sender=Jack Thomas	recipient=Bob Johnson	action=SendMail	ip=192.0.2.3	message_id=<SendMail-2853@n>
+timestamp=2026-11-05T08:53:46+00:00	source=msexchange-receive	sender=Henry Taylor <l>	recipient=Emma Davis <r>	action=Receive	ip=198.51.100.1	message_id=<3649-9343@e>
+timestamp=2026-11-03T19:00:19+00:00	source=msexchange-set-inboxrule	sender=Irene Anderson <m>	recipient=Support Desk <a>	action=Set-InboxRule	ip=192.0.2.1	message_id=<6006-9855@g>
+timestamp=2026-11-19T11:39:55+00:00	source=google-workspace	sender=Frank Miller@<redacted>	recipient=HR Dept@<redacted>	action=send_message	ip=192.0.2.1	message_id=<413801@e>
+timestamp=2026-11-08T15:02:21+00:00	source=postfix	sender=<>@m	recipient=<>@m	action=auth_plain	ip=203.0.113.2	message_id=<669171@l>
+timestamp=2026-11-20T22:15:25+00:00	source=msexchange-mailbox login	sender=Frank Miller <x>	recipient=Benefits <t>	action=Mailbox Login	ip=203.0.113.2	message_id=<5862-8532@m>
+timestamp=2026-11-23T03:34:44+00:00	source=exchange-online-audit	sender=Emma Davis	recipient=Frank Miller	action=OAuth3PAppConsent	ip=203.0.113.2	message_id=<oauth3pappconsent-1977@e>
+timestamp=2026-11-12T18:16:39+00:00	source=entra-id	sender=Henry Taylor	action=sign_in_mfa	ip=203.0.113.2	message_id=<mfa-3950@p>
+timestamp=2026-11-02T05:15:54+00:00	source=msexchange-mailbox login	sender=Jack Thomas <s>	recipient=IT Admin <p>	action=Mailbox Login	ip=198.51.100.2	message_id=<9948-8428@t>
+timestamp=2026-11-15T12:56:52+00:00	source=exchange-online-audit	sender=Bob Johnson	recipient=Finance Dept	action=Forward	ip=198.51.100.1	message_id=<forward-8433@e>
+timestamp=2026-11-21T01:47:51+00:00	source=exchange-online-audit	sender=Emma Davis	recipient=Frank Miller	action=CopyToFolder	ip=192.0.2.1	message_id=<copytofolder-2616@c>
+timestamp=2026-11-19T08:40:56+00:00	source=smtp-generic	sender=<>@.	recipient=<>@m	action=HELO	ip=192.0.2.1	message_id=<639535@m>
+timestamp=2026-11-05T22:28:57+00:00	source=msexchange-receive	sender=Grace Wilson <l>	recipient=Payroll <.>	action=Receive	ip=203.0.113.2	message_id=<4222-2194@t>
+timestamp=2026-11-20T16:54:18+00:00	source=msexchange-send as	sender=Carol Smith <e>	recipient=Emma Davis <m>	action=Send As	ip=192.0.2.3	message_id=<4455-8462@m>
+timestamp=2026-11-20T17:34:49+00:00	source=google-workspace	sender=Jack Thomas@<redacted>	recipient=Alice Williams@<redacted>	action=phishing_report	ip=198.51.100.2	message_id=<209456@x>
+timestamp=2026-10-28T15:56:43+00:00	source=exchange-online-audit	sender=Alice Williams	recipient=David Brown	action=ResetPassword	ip=198.51.100.2	message_id=<resetpassword-9052@e>
+timestamp=2026-11-15T10:57:17+00:00	source=exchange-online-audit	sender=Carol Smith	recipient=Grace Wilson	action=Forward	ip=203.0.113.1	message_id=<forward-3992@t>
+timestamp=2026-11-07T08:29:00+00:00	source=smtp-generic	sender=<>@m	recipient=<>@.	action=QUIT	ip=203.0.113.2	message_id=<814383@r>
+timestamp=2026-11-24T18:06:38+00:00	source=msexchange-mailbox login	sender=David Brown <e>	recipient=Support Desk <e>	action=Mailbox Login	ip=192.0.2.3	message_id=<8541-6684@l>
+timestamp=2026-11-10T14:06:17+00:00	source=exchange-online-audit	sender=Henry Taylor	recipient=Jack Thomas	action=OAuth3PAppConsent	ip=203.0.113.1	message_id=<oauth3pappconsent-9269@t>
+timestamp=2026-10-31T13:00:10+00:00	source=exchange-online-audit	sender=David Brown	recipient=Finance Dept	action=Forward	ip=198.51.100.2	message_id=<forward-2756@c>
+timestamp=2026-11-10T20:56:14+00:00	source=msexchange-mailbox login	sender=Emma Davis <p>	recipient=Henry Taylor <e>	action=Mailbox Login	ip=192.0.2.3	message_id=<6080-1633@e>
+timestamp=2026-11-22T14:11:16+00:00	source=msexchange-send	sender=Alice Williams <a>	recipient=Alice Williams <l>	action=Send	ip=203.0.113.2	message_id=<8561-1474@e>
+timestamp=2026-11-23T08:34:24+00:00	source=entra-id	sender=Frank Miller	action=sign_in_conditional_access	ip=203.0.113.2	message_id=<conditional_access-2318@m>
+timestamp=2026-11-10T19:27:47+00:00	source=entra-id	sender=Grace Wilson	action=sign_in_interactive	ip=203.0.113.2	message_id=<interactive-6342@t>
+timestamp=2026-11-11T13:27:34+00:00	source=google-workspace	sender=Emma Davis@<redacted>	recipient=Henry Taylor@<redacted>	action=modify_headers	ip=192.0.2.3	message_id=<810769@t>
+timestamp=2026-11-02T06:46:57+00:00	source=exchange-online-audit	sender=Irene Anderson	recipient=Support Desk	action=SafelistAdd	ip=198.51.100.2	message_id=<safelistadd-5861@e>
+timestamp=2026-11-19T01:23:22+00:00	source=rspamd	sender=<>@l	recipient=<>@e	action=learn	ip=192.0.2.1	message_id=<976890@x>
+timestamp=2026-11-19T07:29:14+00:00	source=entra-id	sender=Irene Anderson	action=sign_in_imap	ip=198.51.100.2	message_id=<imap-7339@a>
+timestamp=2026-11-17T01:40:20+00:00	source=entra-id	sender=Irene Anderson	action=sign_in_interactive	ip=192.0.2.1	message_id=<interactive-8987@e>
+timestamp=2026-11-09T14:32:06+00:00	source=rspamd	sender=<>@e	recipient=<>@t	action=spam	ip=192.0.2.2	message_id=<410220@m>
+timestamp=2026-11-23T12:49:09+00:00	source=exchange-online-audit	sender=Alice Williams	recipient=David Brown	action=HardDelete	ip=203.0.113.1	message_id=<harddelete-3502@p>
+timestamp=2026-11-02T07:53:06+00:00	source=entra-id	sender=Emma Davis	action=sign_in_mfa	ip=198.51.100.1	message_id=<mfa-9849@.>
+timestamp=2026-11-23T15:33:16+00:00	source=postfix	sender=<>@e	recipient=<>@t	action=connect	ip=192.0.2.1	message_id=<329096@.>
+timestamp=2026-11-13T04:09:46+00:00	source=google-workspace	sender=Henry Taylor@<redacted>	recipient=Emma Davis@<redacted>	action=modify_headers	ip=203.0.113.1	message_id=<877255@a>
+timestamp=2026-11-19T16:23:35+00:00	source=msexchange-deliver	sender=Alice Williams <l>	recipient=Legal Dept <x>	action=Deliver	ip=203.0.113.1	message_id=<8060-2494@s>
+timestamp=2026-11-13T08:17:16+00:00	source=exchange-online-audit	sender=Bob Johnson	recipient=Support Desk	action=UpdateRule	ip=203.0.113.1	message_id=<updaterule-4213@l>
+timestamp=2026-11-25T07:30:56+00:00	source=msexchange-receive	sender=Emma Davis <c>	recipient=Bob Johnson <a>	action=Receive	ip=203.0.113.2	message_id=<2202-8791@m>
+timestamp=2026-10-31T14:20:14+00:00	source=msexchange-send	sender=Jack Thomas <.>	recipient=Finance Dept <t>	action=Send	ip=192.0.2.2	message_id=<6472-6023@t>
+timestamp=2026-11-01T15:20:57+00:00	source=exchange-online-audit	sender=Frank Miller	recipient=Bob Johnson	action=Add-Member	ip=192.0.2.1	message_id=<add-member-9706@l>
+timestamp=2026-11-14T08:10:55+00:00	source=dovecot	sender=Henry Taylor	recipient=Alice Williams	action=auth	ip=198.51.100.1	message_id=<939748@g>
+timestamp=2026-11-09T16:57:59+00:00	source=exchange-online-audit	sender=Alice Williams	recipient=Irene Anderson	action=ResetPassword	ip=192.0.2.3	message_id=<resetpassword-8482@m>
+timestamp=2026-11-17T21:31:21+00:00	source=smtp-generic	sender=<>@c	recipient=<>@x	action=RCPT TO	ip=192.0.2.1	message_id=<442483@x>
+timestamp=2026-11-04T14:26:32+00:00	source=msexchange-set-inboxrule	sender=Emma Davis <e>	recipient=Benefits <x>	action=Set-InboxRule	ip=192.0.2.3	message_id=<9197-6040@t>
+timestamp=2026-11-23T06:54:06+00:00	source=msexchange-send	sender=Jack Thomas <a>	recipient=Benefits <e>	action=Send	ip=198.51.100.1	message_id=<4619-2828@a>
+timestamp=2026-11-11T02:40:12+00:00	source=msexchange-send	sender=Carol Smith <e>	recipient=Legal Dept <e>	action=Send	ip=198.51.100.1	message_id=<1351-4865@s>
+timestamp=2026-11-25T21:04:53+00:00	source=exchange-online-audit	sender=Frank Miller	recipient=Bob Johnson	action=Set-Mailbox	ip=192.0.2.3	message_id=<set-mailbox-8331@s>
+timestamp=2026-11-24T20:24:19+00:00	source=google-workspace	sender=Carol Smith@<redacted>	recipient=Benefits@<redacted>	action=reject_message	ip=203.0.113.2	message_id=<634299@g>
+timestamp=2026-11-22T02:37:56+00:00	source=msexchange-receive	sender=Frank Miller <n>	recipient=Grace Wilson <a>	action=Receive	ip=198.51.100.2	message_id=<2079-6001@s>
+timestamp=2026-11-11T19:16:50+00:00	source=exchange-online-audit	sender=Grace Wilson	recipient=Finance Dept	action=Add-Member	ip=192.0.2.2	message_id=<add-member-2407@x>
+timestamp=2026-11-14T19:30:44+00:00	source=msexchange-mailbox login	sender=Frank Miller <.>	recipient=Bob Johnson <a>	action=Mailbox Login	ip=203.0.113.1	message_id=<8416-7847@e>
+timestamp=2026-11-16T06:37:25+00:00	source=msexchange-receive	sender=Irene Anderson <t>	recipient=Jack Thomas <s>	action=Receive	ip=192.0.2.2	message_id=<5895-3045@e>
+timestamp=2026-11-01T19:59:42+00:00	source=google-workspace	sender=Emma Davis@<redacted>	recipient=Irene Anderson@<redacted>	action=change_permission	ip=203.0.113.1	message_id=<770109@o>
+timestamp=2026-11-21T17:50:29+00:00	source=exchange-online-audit	sender=Henry Taylor	recipient=Henry Taylor	action=PermanentDelete	ip=192.0.2.2	message_id=<permanentdelete-1996@e>
+timestamp=2026-11-18T18:46:14+00:00	source=entra-id	sender=David Brown	action=sign_in_interactive	ip=203.0.113.1	message_id=<interactive-3141@t>
+timestamp=2026-11-15T06:56:14+00:00	source=exchange-online-audit	sender=Emma Davis	recipient=Irene Anderson	action=OAuth3PAppConsent	ip=203.0.113.1	message_id=<oauth3pappconsent-3929@r>
+timestamp=2026-11-01T22:44:40+00:00	source=exchange-online-audit	sender=Emma Davis	recipient=Grace Wilson	action=CopyToFolder	ip=198.51.100.2	message_id=<copytofolder-7858@p>
+timestamp=2026-11-16T12:15:40+00:00	source=exchange-online-audit	sender=Bob Johnson	recipient=Henry Taylor	action=Set-Mailbox	ip=203.0.113.2	message_id=<set-mailbox-6257@e>
+timestamp=2026-11-22T02:01:15+00:00	source=msexchange-send on behalf	sender=Grace Wilson <p>	recipient=IT Admin <e>	action=Send on Behalf	ip=198.51.100.1	message_id=<9805-2132@e>
+timestamp=2026-11-23T02:37:50+00:00	source=entra-id	sender=Jack Thomas	action=sign_in_interactive	ip=192.0.2.1	message_id=<interactive-8634@m>
+timestamp=2026-11-06T14:27:57+00:00	source=msexchange-send on behalf	sender=Irene Anderson <t>	recipient=HR Dept <c>	action=Send on Behalf	ip=192.0.2.3	message_id=<3217-6914@a>
+timestamp=2026-11-01T21:09:14+00:00	source=entra-id	sender=Grace Wilson	action=sign_in_interactive	ip=203.0.113.2	message_id=<interactive-1037@e>
+timestamp=2026-11-08T07:01:17+00:00	source=msexchange-send	sender=Jack Thomas <m>	recipient=David Brown <e>	action=Send	ip=192.0.2.1	message_id=<4494-1102@i>
+timestamp=2026-11-07T21:41:38+00:00	source=msexchange-send as	sender=David Brown <a>	recipient=Jack Thomas <x>	action=Send As	ip=198.51.100.2	message_id=<9480-7784@t>
+timestamp=2026-11-15T07:57:14+00:00	source=exchange-online-audit	sender=Alice Williams	recipient=Carol Smith	action=MoveToFolder	ip=192.0.2.2	message_id=<movetofolder-2403@l>
+timestamp=2026-11-17T13:53:07+00:00	source=msexchange-set-inboxrule	sender=David Brown <p>	recipient=Jack Thomas <p>	action=Set-InboxRule	ip=203.0.113.2	message_id=<4329-3927@c>
+timestamp=2026-10-26T13:33:35+00:00	source=entra-id	sender=Emma Davis	action=sign_in_interactive	ip=203.0.113.1	message_id=<interactive-8167@e>
+timestamp=2026-11-06T00:07:05+00:00	source=entra-id	sender=Alice Williams	action=sign_in_mfa	ip=198.51.100.2	message_id=<mfa-6709@p>
+timestamp=2026-11-24T14:47:57+00:00	source=exim	sender=<>@x	recipient=<>@m	action=fail	ip=192.0.2.3	message_id=<355700@t>
+timestamp=2026-11-22T04:59:05+00:00	source=msexchange-deliver	sender=Alice Williams <.>	recipient=Emma Davis <t>	action=Deliver	ip=192.0.2.2	message_id=<9099-1560@p>
+timestamp=2026-11-22T01:33:44+00:00	source=dovecot	sender=Irene Anderson	recipient=Henry Taylor	action=auth	ip=192.0.2.1	message_id=<737504@e>
+timestamp=2026-10-26T22:58:36+00:00	source=smtp-generic	sender=<>@t	recipient=<>@e	action=QUIT	ip=198.51.100.2	message_id=<249491@x>
+timestamp=2026-11-02T02:19:49+00:00	source=postfix	sender=<>@e	recipient=<>@t	action=auth_cram_md5	ip=192.0.2.1	message_id=<146822@m>
+timestamp=2026-11-21T23:29:50+00:00	source=entra-id	sender=Alice Williams	action=sign_in_smtp	ip=198.51.100.1	message_id=<smtp-9565@p>
+timestamp=2026-11-25T08:33:23+00:00	source=msexchange-failed login	sender=Irene Anderson <m>	recipient=IT Admin <a>	action=Failed Login	ip=198.51.100.2	message_id=<3931-7802@l>
+timestamp=2026-11-04T14:01:00+00:00	source=msexchange-mailbox login	sender=Jack Thomas <x>	recipient=Carol Smith <s>	action=Mailbox Login	ip=192.0.2.2	message_id=<9172-2296@a>
+timestamp=2026-11-16T07:31:25+00:00	source=exchange-online-audit	sender=Jack Thomas	recipient=IT Admin	action=Forward	ip=192.0.2.3	message_id=<forward-8141@s>
+timestamp=2026-10-30T03:49:38+00:00	source=entra-id	sender=Frank Miller	action=sign_in_mfa	ip=192.0.2.1	message_id=<mfa-4837@.>
+timestamp=2026-11-03T11:44:11+00:00	source=msexchange-send	sender=Emma Davis <o>	recipient=Finance Dept <e>	action=Send	ip=198.51.100.2	message_id=<9716-5409@.>
+timestamp=2026-11-11T12:45:45+00:00	source=postfix	sender=<>@s	recipient=<>@e	action=connect	ip=203.0.113.1	message_id=<895887@n>
+timestamp=2026-11-14T10:26:27+00:00	source=postfix	sender=<>@c	recipient=<>@l	action=auth_cram_md5	ip=203.0.113.1	message_id=<652863@m>
+timestamp=2026-11-13T12:08:46+00:00	source=msexchange-send	sender=Alice Williams <e>	recipient=Alice Williams <x>	action=Send	ip=198.51.100.2	message_id=<3665-5393@r>
+timestamp=2026-11-19T03:40:49+00:00	source=msexchange-send as	sender=Bob Johnson <x>	recipient=IT Admin <.>	action=Send As	ip=192.0.2.2	message_id=<1876-3475@p>
+timestamp=2026-11-18T17:52:03+00:00	source=entra-id	sender=Henry Taylor	action=sign_in_mfa	ip=203.0.113.1	message_id=<mfa-7189@r>
+timestamp=2026-11-20T10:51:52+00:00	source=msexchange-failed login	sender=Jack Thomas <o>	recipient=Emma Davis <t>	action=Failed Login	ip=198.51.100.1	message_id=<6822-3874@o>
+timestamp=2026-11-07T01:34:04+00:00	source=msexchange-failed login	sender=Frank Miller <x>	recipient=Bob Johnson <e>	action=Failed Login	ip=192.0.2.2	message_id=<3163-6351@e>
+timestamp=2026-11-01T19:43:31+00:00	source=msexchange-send as	sender=Irene Anderson <m>	recipient=Support Desk <c>	action=Send As	ip=203.0.113.1	message_id=<7837-3117@l>
+timestamp=2026-11-02T22:31:16+00:00	source=msexchange-failed login	sender=Jack Thomas <e>	recipient=Alice Williams <e>	action=Failed Login	ip=203.0.113.2	message_id=<5934-8618@a>
+timestamp=2026-11-14T23:47:32+00:00	source=msexchange-send as	sender=Frank Miller <.>	recipient=HR Dept <t>	action=Send As	ip=198.51.100.2	message_id=<8949-3148@e>
+timestamp=2026-11-01T08:28:31+00:00	source=exim	sender=<>@a	recipient=<>@s	action=defer	ip=198.51.100.2	message_id=<868650@t>
+timestamp=2026-10-27T19:01:25+00:00	source=msexchange-send	sender=Carol Smith <i>	recipient=Payroll <p>	action=Send	ip=198.51.100.2	message_id=<9965-1833@e>
+timestamp=2026-11-04T19:38:12+00:00	source=smtp-generic	sender=<>@.	recipient=<>@e	action=EHLO	ip=192.0.2.3	message_id=<679996@e>
+timestamp=2026-11-02T11:51:42+00:00	source=msexchange-receive	sender=Irene Anderson <t>	recipient=Frank Miller <e>	action=Receive	ip=192.0.2.2	message_id=<8469-4873@r>
+timestamp=2026-11-20T12:40:21+00:00	source=dovecot	sender=Carol Smith	recipient=Grace Wilson	action=move	ip=192.0.2.2	message_id=<995950@e>
+timestamp=2026-11-18T15:58:30+00:00	source=exchange-online-audit	sender=Emma Davis	recipient=Emma Davis	action=Forward	ip=198.51.100.1	message_id=<forward-8212@x>
+timestamp=2026-11-18T04:16:27+00:00	source=exchange-online-audit	sender=Bob Johnson	recipient=Frank Miller	action=SafelistAdd	ip=192.0.2.3	message_id=<safelistadd-5064@p>
+timestamp=2026-10-30T12:19:28+00:00	source=msexchange-failed login	sender=Emma Davis <c>	recipient=Payroll <o>	action=Failed Login	ip=192.0.2.3	message_id=<7698-8769@m>
+timestamp=2026-11-25T01:37:37+00:00	source=exchange-online-audit	sender=Irene Anderson	recipient=Irene Anderson	action=OAuth3PAppConsent	ip=192.0.2.1	message_id=<oauth3pappconsent-8742@x>
+timestamp=2026-11-24T21:46:52+00:00	source=amazon-ses	sender=<>@x	recipient=<>@a	action=SendData	ip=192.0.2.1	message_id=<814855@t>
+timestamp=2026-10-27T01:24:34+00:00	source=exchange-online-audit	sender=Henry Taylor	recipient=David Brown	action=Redirection	ip=192.0.2.1	message_id=<redirection-7224@.>
+timestamp=2026-10-29T13:52:54+00:00	source=exchange-online-audit	sender=Carol Smith	recipient=HR Dept	action=MarkAsRead	ip=203.0.113.2	message_id=<markasread-2694@o>
+timestamp=2026-11-01T01:47:27+00:00	source=exchange-online-audit	sender=Irene Anderson	recipient=IT Admin	action=CreateRule	ip=203.0.113.1	message_id=<createrule-4471@r>
+timestamp=2026-11-25T10:29:07+00:00	source=exchange-online-audit	sender=Bob Johnson	recipient=Jack Thomas	action=Add-Member	ip=198.51.100.2	message_id=<add-member-6023@e>
+timestamp=2026-11-18T01:40:48+00:00	source=amazon-ses	sender=<>@.	recipient=<>@e	action=Delivery	ip=198.51.100.2	message_id=<767376@.>
+timestamp=2026-11-13T02:41:35+00:00	source=postfix	sender=<>@l	recipient=<>@e	action=disconnect	ip=198.51.100.2	message_id=<247600@g>
+timestamp=2026-11-11T22:21:27+00:00	source=msexchange-mailbox login	sender=Bob Johnson <m>	recipient=Finance Dept <l>	action=Mailbox Login	ip=192.0.2.3	message_id=<9359-8298@x>
+timestamp=2026-11-03T11:40:57+00:00	source=entra-id	sender=Grace Wilson	action=sign_in_smtp	ip=203.0.113.1	message_id=<smtp-6120@e>
+timestamp=2026-11-15T18:38:48+00:00	source=entra-id	sender=Alice Williams	action=sign_in_pop	ip=198.51.100.1	message_id=<pop-1868@e>
+timestamp=2026-11-23T08:11:02+00:00	source=google-workspace	sender=Emma Davis@<redacted>	recipient=Legal Dept@<redacted>	action=receive_message	ip=203.0.113.1	message_id=<219491@.>
+timestamp=2026-11-19T07:28:31+00:00	source=postfix	sender=<>@t	recipient=<>@.	action=disconnect	ip=203.0.113.2	message_id=<247565@a>
+timestamp=2026-10-29T22:33:36+00:00	source=exchange-online-audit	sender=Henry Taylor	recipient=Payroll	action=Set-Mailbox	ip=203.0.113.2	message_id=<set-mailbox-5902@e>
+timestamp=2026-11-11T21:49:04+00:00	source=exchange-online-audit	sender=David Brown	recipient=Support Desk	action=UpdateRule	ip=198.51.100.1	message_id=<updaterule-3667@l>
+timestamp=2026-11-19T10:36:53+00:00	source=msexchange-new-inboxrule	sender=Frank Miller <p>	recipient=Grace Wilson <c>	action=New-InboxRule	ip=192.0.2.3	message_id=<3468-3087@.>
+timestamp=2026-11-11T21:08:50+00:00	source=entra-id	sender=Carol Smith	action=sign_in_smtp	ip=192.0.2.1	message_id=<smtp-6111@x>
+timestamp=2026-11-21T20:18:35+00:00	source=exchange-online-audit	sender=Henry Taylor	recipient=David Brown	action=ResetPassword	ip=198.51.100.1	message_id=<resetpassword-1372@p>
+timestamp=2026-11-08T16:14:35+00:00	source=dovecot	sender=Henry Taylor	recipient=Frank Miller	action=logout	ip=192.0.2.3	message_id=<799096@l>
+timestamp=2026-11-19T21:20:03+00:00	source=google-workspace	sender=Bob Johnson@<redacted>	recipient=Legal Dept@<redacted>	action=change_permission	ip=192.0.2.2	message_id=<824069@.>
+timestamp=2026-11-01T06:04:17+00:00	source=msexchange-set-inboxrule	sender=Alice Williams <a>	recipient=Finance Dept <p>	action=Set-InboxRule	ip=198.51.100.1	message_id=<1280-4172@e>
+timestamp=2026-11-01T23:51:53+00:00	source=exchange-online-audit	sender=Emma Davis	recipient=Jack Thomas	action=Forward	ip=192.0.2.1	message_id=<forward-7023@g>
+timestamp=2026-10-30T23:48:30+00:00	source=google-workspace	sender=Grace Wilson@<redacted>	recipient=Henry Taylor@<redacted>	action=send_message	ip=203.0.113.1	message_id=<953288@e>
+timestamp=2026-11-13T14:52:07+00:00	source=msexchange-send	sender=David Brown <e>	recipient=Henry Taylor <a>	action=Send	ip=192.0.2.1	message_id=<9246-6015@x>
+timestamp=2026-11-07T02:45:34+00:00	source=msexchange-set-inboxrule	sender=Alice Williams <p>	recipient=David Brown <a>	action=Set-InboxRule	ip=203.0.113.1	message_id=<1828-8154@.>
+timestamp=2026-11-07T19:16:33+00:00	source=google-workspace	sender=Grace Wilson@<redacted>	recipient=Emma Davis@<redacted>	action=receive_message	ip=203.0.113.2	message_id=<545192@p>
+timestamp=2026-11-03T00:18:28+00:00	source=exchange-online-audit	sender=Henry Taylor	recipient=HR Dept	action=Add-Member	ip=203.0.113.2	message_id=<add-member-8727@o>
+timestamp=2026-10-31T21:14:45+00:00	source=smtp-generic	sender=<>@x	recipient=<>@e	action=DATA	ip=192.0.2.1	message_id=<915526@a>
+timestamp=2026-11-09T03:50:20+00:00	source=exim	sender=<>@t	recipient=<>@p	action=defer	ip=203.0.113.1	message_id=<306648@x>
+timestamp=2026-11-24T17:33:59+00:00	source=exim	sender=<>@m	recipient=<>@s	action=accept	ip=198.51.100.2	message_id=<253880@m>

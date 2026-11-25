@@ -1,0 +1,3 @@
+drain3==0.9.11
+pysigma>=0.11,<2
+reportlab>=4,<5

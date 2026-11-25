@@ -1,0 +1,43 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "MailSonar",
+  "version": "1.0.0",
+  "identifier": "org.maildfir.desktop",
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "beforeBuildCommand": "npm run build",
+    "devUrl": "http://127.0.0.1:1420",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "MailSonar | Investigation Workbench",
+        "width": 1280,
+        "height": 850,
+        "minWidth": 850,
+        "minHeight": 600
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; style-src 'self' 'unsafe-inline'; connect-src ipc: http://ipc.localhost; img-src 'self' data:"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "publisher": "MailSonar",
+    "copyright": "Copyright (c) 2026 MailSonar",
+    "category": "Utility",
+    "shortDescription": "Local-first email forensics and incident response",
+    "longDescription": "MailSonar is a local-first email forensics and incident-response workbench with deterministic parsing, detection and correlation, an optional consent-gated AI gateway, the BEACON assistant, the HELM agent and the WAYPOINT workflow studio.",
+    "resources": [
+      "engine/*"
+    ],
+    "icon": [
+      "icons/icon.png",
+      "icons/icon.ico",
+      "icons/icon.icns"
+    ]
+  }
+}

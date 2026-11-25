@@ -1,0 +1,1 @@
+{"schema":"mail-dfir.parser/1","id":"example-mail-gateway","name":"Example gateway mapping","fields":{"sender":"SenderAddress","recipient":"RecipientAddress","action":"EventId","timestamp":"DateTime","message_id":"MessageId","ip":"ClientIp"}}

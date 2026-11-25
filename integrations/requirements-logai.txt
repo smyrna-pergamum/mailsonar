@@ -1,0 +1,2 @@
+# Separate environment recommended due to legacy dependencies; validate Python/version compatibility.
+logai==0.1.5

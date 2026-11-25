@@ -1,0 +1,454 @@
+{
+  "eml_files": [
+    {
+      "index": 0,
+      "from": "sender",
+      "to": "recipient",
+      "subject": "Mail DFIR Test Event evt-6303572",
+      "date": "2026-10-29T19:01:05+00:00",
+      "message_id": "<pop-1532@a>",
+      "source": "entra-id"
+    },
+    {
+      "index": 1,
+      "from": "sender",
+      "to": "recipient",
+      "subject": "Mail DFIR Test Event evt-4723128",
+      "date": "2026-11-13T13:02:33+00:00",
+      "message_id": "<imap-2190@e>",
+      "source": "entra-id"
+    },
+    {
+      "index": 2,
+      "from": "sender",
+      "to": "recipient",
+      "subject": "Mail DFIR Test Event evt-2973939",
+      "date": "2026-11-15T19:24:30+00:00",
+      "message_id": "<permanentdelete-6216@a>",
+      "source": "exchange-online-audit"
+    },
+    {
+      "index": 3,
+      "from": "sender",
+      "to": "recipient",
+      "subject": "Mail DFIR Test Event evt-2830201",
+      "date": "2026-11-21T08:50:59+00:00",
+      "message_id": "<safelistadd-7935@e>",
+      "source": "exchange-online-audit"
+    },
+    {
+      "index": 4,
+      "from": "sender",
+      "to": "recipient",
+      "subject": "Mail DFIR Test Event evt-2407602",
+      "date": "2026-10-26T10:13:57+00:00",
+      "message_id": "<forward-8471@p>",
+      "source": "exchange-online-audit"
+    },
+    {
+      "index": 5,
+      "from": "sender",
+      "to": "recipient",
+      "subject": "Mail DFIR Test Event evt-4012369",
+      "date": "2026-11-04T09:49:46+00:00",
+      "message_id": "<conditional_access-6035@a>",
+      "source": "entra-id"
+    },
+    {
+      "index": 6,
+      "from": "",
+      "to": "",
+      "subject": "Mail DFIR Test Event evt-3329133",
+      "date": "2026-10-27T20:04:00+00:00",
+      "message_id": "<489358@l>",
+      "source": "exim"
+    },
+    {
+      "index": 7,
+      "from": "Bob Johnson",
+      "to": "Irene Anderson",
+      "subject": "Mail DFIR Test Event evt-8353631",
+      "date": "2026-10-29T20:02:11+00:00",
+      "message_id": "<4825-6128@x>",
+      "source": "msexchange-send on behalf"
+    },
+    {
+      "index": 8,
+      "from": "Carol Smith@",
+      "to": "Payroll@",
+      "subject": "Mail DFIR Test Event evt-8022899",
+      "date": "2026-11-22T10:32:45+00:00",
+      "message_id": "<632410@m>",
+      "source": "google-workspace"
+    },
+    {
+      "index": 9,
+      "from": "sender",
+      "to": "recipient",
+      "subject": "Mail DFIR Test Event evt-1730892",
+      "date": "2026-11-03T13:52:37+00:00",
+      "message_id": "<interactive-4217@a>",
+      "source": "entra-id"
+    },
+    {
+      "index": 10,
+      "from": "Bob Johnson",
+      "to": "Grace Wilson",
+      "subject": "Mail DFIR Test Event evt-1100380",
+      "date": "2026-11-11T05:41:31+00:00",
+      "message_id": "<2062-3668@m>",
+      "source": "msexchange-failed login"
+    },
+    {
+      "index": 11,
+      "from": "David Brown@",
+      "to": "Irene Anderson@",
+      "subject": "Mail DFIR Test Event evt-5870224",
+      "date": "2026-11-20T22:07:14+00:00",
+      "message_id": "<919245@t>",
+      "source": "google-workspace"
+    },
+    {
+      "index": 12,
+      "from": "Irene Anderson@",
+      "to": "Frank Miller@",
+      "subject": "Mail DFIR Test Event evt-6513962",
+      "date": "2026-11-15T05:09:47+00:00",
+      "message_id": "<358114@s>",
+      "source": "google-workspace"
+    },
+    {
+      "index": 13,
+      "from": "Henry Taylor",
+      "to": "David Brown",
+      "subject": "Mail DFIR Test Event evt-3365874",
+      "date": "2026-10-30T06:44:48+00:00",
+      "message_id": "<7272-1698@e>",
+      "source": "msexchange-new-inboxrule"
+    },
+    {
+      "index": 14,
+      "from": "",
+      "to": "",
+      "subject": "Mail DFIR Test Event evt-5350993",
+      "date": "2026-11-06T01:32:18+00:00",
+      "message_id": "<562247@o>",
+      "source": "smtp-generic"
+    },
+    {
+      "index": 15,
+      "from": "sender",
+      "to": "recipient",
+      "subject": "Mail DFIR Test Event evt-2269655",
+      "date": "2026-11-15T14:43:51+00:00",
+      "message_id": "<mfa-6758@t>",
+      "source": "entra-id"
+    },
+    {
+      "index": 16,
+      "from": "sender",
+      "to": "recipient",
+      "subject": "Mail DFIR Test Event evt-1918071",
+      "date": "2026-11-23T11:56:10+00:00",
+      "message_id": "<remove-member-4145@m>",
+      "source": "exchange-online-audit"
+    },
+    {
+      "index": 17,
+      "from": "Henry Taylor@",
+      "to": "Henry Taylor@",
+      "subject": "Mail DFIR Test Event evt-3746051",
+      "date": "2026-10-31T01:42:19+00:00",
+      "message_id": "<512617@x>",
+      "source": "google-workspace"
+    },
+    {
+      "index": 18,
+      "from": "",
+      "to": "",
+      "subject": "Mail DFIR Test Event evt-9531474",
+      "date": "2026-11-14T03:19:30+00:00",
+      "message_id": "<161569@a>",
+      "source": "postfix"
+    },
+    {
+      "index": 19,
+      "from": "Jack Thomas",
+      "to": "Legal Dept",
+      "subject": "Mail DFIR Test Event evt-7186186",
+      "date": "2026-11-20T16:42:04+00:00",
+      "message_id": "<3240-3689@p>",
+      "source": "msexchange-set-inboxrule"
+    },
+    {
+      "index": 20,
+      "from": "Emma Davis@",
+      "to": "Legal Dept@",
+      "subject": "Mail DFIR Test Event evt-2326634",
+      "date": "2026-10-26T06:28:52+00:00",
+      "message_id": "<151964@.>",
+      "source": "google-workspace"
+    },
+    {
+      "index": 21,
+      "from": "Alice Williams",
+      "to": "Carol Smith",
+      "subject": "Mail DFIR Test Event evt-7623071",
+      "date": "2026-11-25T16:42:26+00:00",
+      "message_id": "<4455-8260@e>",
+      "source": "msexchange-send as"
+    },
+    {
+      "index": 22,
+      "from": "sender",
+      "to": "recipient",
+      "subject": "Mail DFIR Test Event evt-6288180",
+      "date": "2026-11-06T13:54:29+00:00",
+      "message_id": "<updaterule-7118@m>",
+      "source": "exchange-online-audit"
+    },
+    {
+      "index": 23,
+      "from": "sender",
+      "to": "recipient",
+      "subject": "Mail DFIR Test Event evt-5507789",
+      "date": "2026-11-15T21:50:11+00:00",
+      "message_id": "<conditional_access-2423@m>",
+      "source": "entra-id"
+    },
+    {
+      "index": 24,
+      "from": "sender",
+      "to": "recipient",
+      "subject": "Mail DFIR Test Event evt-2358129",
+      "date": "2026-11-17T17:22:17+00:00",
+      "message_id": "<pop-2799@l>",
+      "source": "entra-id"
+    },
+    {
+      "index": 25,
+      "from": "",
+      "to": "",
+      "subject": "Mail DFIR Test Event evt-7820186",
+      "date": "2026-11-08T22:10:08+00:00",
+      "message_id": "<766511@r>",
+      "source": "exim"
+    },
+    {
+      "index": 26,
+      "from": "Carol Smith",
+      "to": "Legal Dept",
+      "subject": "Mail DFIR Test Event evt-4077319",
+      "date": "2026-11-23T11:42:45+00:00",
+      "message_id": "<9847-8940@a>",
+      "source": "msexchange-mailbox login"
+    },
+    {
+      "index": 27,
+      "from": "sender",
+      "to": "recipient",
+      "subject": "Mail DFIR Test Event evt-6751711",
+      "date": "2026-11-10T07:50:32+00:00",
+      "message_id": "<markasread-6537@m>",
+      "source": "exchange-online-audit"
+    },
+    {
+      "index": 28,
+      "from": "David Brown",
+      "to": "Benefits",
+      "subject": "Mail DFIR Test Event evt-8329860",
+      "date": "2026-11-07T22:06:55+00:00",
+      "message_id": "<5067-4822@e>",
+      "source": "msexchange-deliver"
+    },
+    {
+      "index": 29,
+      "from": "Carol Smith",
+      "to": "Bob Johnson",
+      "subject": "Mail DFIR Test Event evt-1778313",
+      "date": "2026-11-08T03:52:44+00:00",
+      "message_id": "<2252-9626@p>",
+      "source": "msexchange-send on behalf"
+    },
+    {
+      "index": 30,
+      "from": "sender",
+      "to": "recipient",
+      "subject": "Mail DFIR Test Event evt-7568444",
+      "date": "2026-10-26T18:45:43+00:00",
+      "message_id": "<updaterule-1264@x>",
+      "source": "exchange-online-audit"
+    },
+    {
+      "index": 31,
+      "from": "sender",
+      "to": "recipient",
+      "subject": "Mail DFIR Test Event evt-8112060",
+      "date": "2026-11-06T18:45:41+00:00",
+      "message_id": "<428345@p>",
+      "source": "dovecot"
+    },
+    {
+      "index": 32,
+      "from": "Henry Taylor",
+      "to": "Finance Dept",
+      "subject": "Mail DFIR Test Event evt-8506310",
+      "date": "2026-11-20T14:14:30+00:00",
+      "message_id": "<7894-2273@x>",
+      "source": "msexchange-failed login"
+    },
+    {
+      "index": 33,
+      "from": "Grace Wilson",
+      "to": "Frank Miller",
+      "subject": "Mail DFIR Test Event evt-8513116",
+      "date": "2026-11-19T16:16:42+00:00",
+      "message_id": "<6846-7611@m>",
+      "source": "msexchange-send"
+    },
+    {
+      "index": 34,
+      "from": "Carol Smith",
+      "to": "HR Dept",
+      "subject": "Mail DFIR Test Event evt-3337057",
+      "date": "2026-11-02T00:14:12+00:00",
+      "message_id": "<6536-5769@a>",
+      "source": "msexchange-new-inboxrule"
+    },
+    {
+      "index": 35,
+      "from": "sender",
+      "to": "recipient",
+      "subject": "Mail DFIR Test Event evt-4710731",
+      "date": "2026-11-22T23:22:57+00:00",
+      "message_id": "<permanentdelete-1503@x>",
+      "source": "exchange-online-audit"
+    },
+    {
+      "index": 36,
+      "from": "sender",
+      "to": "recipient",
+      "subject": "Mail DFIR Test Event evt-6642939",
+      "date": "2026-10-30T21:05:26+00:00",
+      "message_id": "<imap-3330@e>",
+      "source": "entra-id"
+    },
+    {
+      "index": 37,
+      "from": "",
+      "to": "",
+      "subject": "Mail DFIR Test Event evt-1016102",
+      "date": "2026-11-09T15:44:35+00:00",
+      "message_id": "<838521@l>",
+      "source": "postfix"
+    },
+    {
+      "index": 38,
+      "from": "Irene Anderson",
+      "to": "Legal Dept",
+      "subject": "Mail DFIR Test Event evt-5242695",
+      "date": "2026-11-01T13:14:17+00:00",
+      "message_id": "<4324-9788@t>",
+      "source": "msexchange-failed login"
+    },
+    {
+      "index": 39,
+      "from": "Emma Davis@",
+      "to": "Bob Johnson@",
+      "subject": "Mail DFIR Test Event evt-1032549",
+      "date": "2026-11-25T18:59:30+00:00",
+      "message_id": "<374508@.>",
+      "source": "google-workspace"
+    },
+    {
+      "index": 40,
+      "from": "sender",
+      "to": "recipient",
+      "subject": "Mail DFIR Test Event evt-4606761",
+      "date": "2026-11-21T05:43:03+00:00",
+      "message_id": "<mfa-5299@l>",
+      "source": "entra-id"
+    },
+    {
+      "index": 41,
+      "from": "David Brown",
+      "to": "Benefits",
+      "subject": "Mail DFIR Test Event evt-6576634",
+      "date": "2026-10-31T07:34:51+00:00",
+      "message_id": "<6392-3151@e>",
+      "source": "msexchange-send on behalf"
+    },
+    {
+      "index": 42,
+      "from": "",
+      "to": "",
+      "subject": "Mail DFIR Test Event evt-1976688",
+      "date": "2026-11-12T19:36:29+00:00",
+      "message_id": "<208486@a>",
+      "source": "smtp-generic"
+    },
+    {
+      "index": 43,
+      "from": "sender",
+      "to": "recipient",
+      "subject": "Mail DFIR Test Event evt-9528030",
+      "date": "2026-10-30T06:12:04+00:00",
+      "message_id": "<x-4916@e>",
+      "source": "exchange-online-audit"
+    },
+    {
+      "index": 44,
+      "from": "sender",
+      "to": "recipient",
+      "subject": "Mail DFIR Test Event evt-1538873",
+      "date": "2026-11-06T07:50:48+00:00",
+      "message_id": "<537089@l>",
+      "source": "dovecot"
+    },
+    {
+      "index": 45,
+      "from": "",
+      "to": "",
+      "subject": "Mail DFIR Test Event evt-9365828",
+      "date": "2026-11-03T18:31:34+00:00",
+      "message_id": "<902575@e>",
+      "source": "postfix"
+    },
+    {
+      "index": 46,
+      "from": "Emma Davis",
+      "to": "Benefits",
+      "subject": "Mail DFIR Test Event evt-2084304",
+      "date": "2026-11-18T05:08:31+00:00",
+      "message_id": "<9122-8651@t>",
+      "source": "msexchange-send on behalf"
+    },
+    {
+      "index": 47,
+      "from": "Henry Taylor@",
+      "to": "Finance Dept@",
+      "subject": "Mail DFIR Test Event evt-9673493",
+      "date": "2026-11-16T01:02:24+00:00",
+      "message_id": "<431174@c>",
+      "source": "google-workspace"
+    },
+    {
+      "index": 48,
+      "from": "sender",
+      "to": "recipient",
+      "subject": "Mail DFIR Test Event evt-7588178",
+      "date": "2026-11-25T17:35:04+00:00",
+      "message_id": "<copytofolder-6970@l>",
+      "source": "exchange-online-audit"
+    },
+    {
+      "index": 49,
+      "from": "Emma Davis",
+      "to": "Grace Wilson",
+      "subject": "Mail DFIR Test Event evt-2831708",
+      "date": "2026-10-26T20:15:17+00:00",
+      "message_id": "<7284-7754@e>",
+      "source": "msexchange-receive"
+    }
+  ]
+}

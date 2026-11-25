@@ -1,0 +1,13 @@
+title: Mailbox forwarding configuration activity
+id: 985bdbb2-754a-4b09-bb39-8f1775df7d21
+status: experimental
+logsource:
+  category: email
+  product: mail-dfir
+detection:
+  selection:
+    action|contains:
+      - New-InboxRule
+      - Set-InboxRule
+  condition: selection
+level: medium

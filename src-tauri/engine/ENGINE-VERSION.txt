@@ -1,0 +1,36 @@
+Engine:        llama.cpp llama-server
+Build:         b11934
+Package:       llama-b11934-bin-win-cpu-x64.zip
+Upstream:      https://github.com/ggml-org/llama.cpp/releases/tag/b11934
+Archive SHA-256: A66878DDF32A2D9349BB66D3FB8A1D6D2A8187C249900276693EE105B66B2DC1
+Platform:      Windows x64, CPU build (runtime CPU dispatch through ggml-cpu-*.dll)
+
+Included files
+  llama-server.exe          launcher
+  llama-server-impl.dll     HTTP server implementation
+  llama-common.dll          shared CLI/server helpers
+  llama.dll                 llama library
+  mtmd.dll                  multimodal helper linked by the server
+  ggml.dll, ggml-base.dll   ggml core
+  ggml-rpc.dll              RPC backend referenced by the build
+  ggml-cpu-*.dll            per-microarchitecture CPU kernels
+  libomp.dll                LLVM OpenMP runtime
+  LICENSE-llama.cpp         MIT license of llama.cpp
+  LICENSE-LLVM-OpenMP       license of the OpenMP runtime
+
+Provenance
+  The archive was supplied from the local OSINT-Book build cache. Its bytes are
+  the upstream release asset named above; the SHA-256 was computed from that
+  archive at packaging time. It was not re-downloaded from GitHub during this
+  session, so the hash should be compared with the upstream release notes
+  before redistributing the installer.
+
+  Only the files required by llama-server are bundled. Other tools from the
+  same archive (llama-cli, llama-bench, quantize, RPC server, ...) are omitted.
+
+Security
+  The application never downloads or executes an inference binary at runtime.
+  It only runs this bundled executable (or a binary explicitly placed by the
+  operator under the app-data engine/ directory, or named by the
+  MAILDFIR_LLAMA_SERVER environment variable). It binds to 127.0.0.1 and is
+  started with a per-run random API key.
