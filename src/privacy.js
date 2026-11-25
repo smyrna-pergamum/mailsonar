@@ -1,3 +1,4 @@
+import {localizedQuestion} from './i18n.js';
 import {minimized} from './investigation.js';
 // One session map for all requests in an investigation. Raw content is never sent.
 export function privateGateway(invoke, config){
@@ -5,7 +6,7 @@ export function privateGateway(invoke, config){
  return async (question,events)=>{
   if(typeof question!=='string'||question.length>16000)throw Error('Question must be at most 16000 characters');
   if(!Array.isArray(events)||events.length<1||events.length>25)throw Error('Expected 1–25 events');
-  return invoke('ask_ai',{...config,question,events:events.map(e=>minimized(e,aliases))});
+  return invoke('ask_ai',{...config,question:localizedQuestion(question),events:events.map(e=>minimized(e,aliases))});
  };
 }
 export function graphNeighborhood(g,id){

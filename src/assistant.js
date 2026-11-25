@@ -1,3 +1,4 @@
+import {localizedQuestion} from './i18n.js';
 import {invoke} from '@tauri-apps/api/core';
 import {open,save} from '@tauri-apps/plugin-dialog';
 import {listen} from '@tauri-apps/api/event';
@@ -74,6 +75,7 @@ export function mountCopilot(host) {
 
   const hasTauri = Boolean(window.__TAURI_INTERNALS__);
   const call = async (name, args) => {
+    if(name==='agent_run')args={...args,request:{...args.request,task:localizedQuestion(args.request.task+(host.feedbackContext?.()??''))}};
     if (window.__TAURI_INTERNALS__) return invoke(name, args);
     if (import.meta.env.DEV && typeof window.__maildfirMock === 'function') {
       return window.__maildfirMock(name, args);
@@ -425,6 +427,7 @@ export function mountCopilot(host) {
         }
       });
       state.trace = outcome.trace ?? [];
+      host.onAssessment?.(outcome);
       state.messages.push({
         role: 'assistant',
         text: outcome.answer?.trim() || `Agent status: ${outcome.status}${outcome.error ? ` - ${outcome.error}` : ''}`

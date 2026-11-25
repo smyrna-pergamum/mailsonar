@@ -1,3 +1,4 @@
+import {t} from './i18n.js';
 // NIGHTWIRE rendering layer: local-only charts, graph and panels.
 // Cytoscape.js handles the interactive entity graph; Apache ECharts handles
 // dashboard, timeline and threat-intelligence charts. No external requests.
@@ -175,7 +176,7 @@ export function renderDashboard(panel, { events = [], findings = [] } = {}) {
     }
     const total = activity.reduce((sum, [, count]) => sum + count, 0);
     if (activityMeta) {
-      activityMeta.textContent = `${activity[0][0]} to ${activity.at(-1)[0]} - ${total} dated events in the latest ${activity.length} populated hourly buckets.`;
+      activityMeta.textContent = t('{start} – {end}: {count} dated events in {hours} hourly buckets.',{start:activity[0][0],end:activity.at(-1)[0],count:total,hours:activity.length});
     }
   }
 
@@ -209,7 +210,7 @@ export function renderDashboard(panel, { events = [], findings = [] } = {}) {
           },
           yAxis: {
             type: 'category',
-            data: severities.map((row) => row.severity.toUpperCase()),
+            data: severities.map((row) => t(row.severity.toUpperCase())),
             axisLine: { lineStyle: { color: tokens.line } },
             axisLabel: { color: tokens.ink, fontSize: 9, fontFamily: 'monospace' },
             axisTick: { show: false }
@@ -236,7 +237,7 @@ export function renderDashboard(panel, { events = [], findings = [] } = {}) {
       instance.resize();
     }
     if (severityMeta) {
-      severityMeta.textContent = `${findings.length} findings - ${severities.map((row) => `${row.severity}: ${row.count}`).join(', ')}. Indicators are not confirmed incidents.`;
+      severityMeta.textContent = t('{count} findings · {summary}. Indicators are not confirmed incidents.',{count:findings.length,summary:severities.map(row=>`${t(row.severity)}: ${row.count}`).join(', ')});
     }
   }
 }
@@ -316,7 +317,7 @@ export function renderTimeline(host, events, onSelect) {
   instance.resize();
   instance.on('click', (params) => onSelect?.(params.name));
   if (meta) {
-    meta.textContent = `${events.length} records - ${dated} dated - ${series.length} hourly buckets. Click a point to filter the log explorer by that hour.`;
+    meta.textContent = t('{count} records · {dated} dated · {hours} hourly buckets. Select an hour to filter.',{count:events.length,dated,hours:series.length});
   }
 }
 

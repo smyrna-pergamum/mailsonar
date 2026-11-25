@@ -1,3 +1,4 @@
+import {eventTime} from './event-time.js';
 // Pure, dependency-free data helpers for the NIGHTWIRE visual system.
 // Everything here is derived from workspace data; no dashboard statistic is hardcoded.
 
@@ -65,7 +66,7 @@ export function median(values) {
 export function hourlyBuckets(events, limit = 24) {
   const buckets = new Map();
   for (const event of Array.isArray(events) ? events : []) {
-    const timestamp = Date.parse(event?.timestamp);
+    const timestamp = eventTime(event?.timestamp);
     if (!Number.isFinite(timestamp)) continue;
     const date = new Date(timestamp);
     date.setUTCMinutes(0, 0, 0);

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MailSonar browser regression check</title><div id="app"></div>
+<pre id="smoke-result" hidden></pre>
+<script type="module">
+const result=document.getElementById('smoke-result');
+try {
+ localStorage.setItem('mailsonar.locale','en');
+ await import('/src/main.js');
+ window.__maildfirDev.loadSample();
+ const settle=()=>new Promise(resolve=>setTimeout(resolve,50));
+ const check=(condition,message)=>{if(!condition)throw Error(message);};
+ await settle();
+ const original=document.getElementById('rows').textContent;
+ for(const [language,label] of [['tr','Genel bakış'],['de','Übersicht'],['en','Overview']]) {
+  const select=document.getElementById('language');select.value=language;select.dispatchEvent(new Event('change'));
+  await settle();
+  check(document.documentElement.lang===language,'document language');
+  check(document.querySelector('[data-tab="dashboard"]').textContent===label,'navigation translation '+language);
+  check(document.getElementById('rows').textContent===original,'raw evidence changed '+language);
+ }
+ document.querySelector('[data-tab="findings"]').click();
+ const filter=document.getElementById('severityFilter');filter.value='high';filter.dispatchEvent(new Event('change'));
+ check([...document.querySelectorAll('#findinglist .severity')].every(n=>n.classList.contains('high')),'severity filter');
+ document.querySelector('[data-tab="dashboard"]').click();
+ document.querySelector('[data-tab="rules"]').click();
+ document.getElementById('loadRuleTemplate').click();document.getElementById('previewRuleTemplate').click();
+ check(document.getElementById('rulePreviewOutput').textContent.includes('matches'),'rule preview');
+ document.getElementById('prepareSmartAnalysis').click();
+ check(document.getElementById('cpTask').value.includes('evidence_inspect'),'smart task');
+ check(!document.getElementById('cpConsent').checked,'smart task must not grant consent');
+ document.querySelector('[data-tab="findings"]').click();
+ document.querySelectorAll('#findinglist .finding button')[1].click();
+ document.getElementById('reviewNote').value='Synthetic browser check: source evidence reviewed by analyst.';
+ document.getElementById('reviewVerdict').value='supported';document.getElementById('saveAnalystReview').click();
+ document.querySelector('[data-tab="settings"]').click();
+ const toggle=document.getElementById('trainingEnabled');toggle.checked=true;toggle.dispatchEvent(new Event('change'));
+ document.getElementById('prepareTraining').click();
+ check(document.getElementById('trainingPreview').textContent.includes('messages'),'reviewed training dataset');
+ check(document.getElementById('saveTrainingDataset').disabled,'export needs dataset review');
+ const off=document.getElementById('trainingEnabled');off.checked=false;off.dispatchEvent(new Event('change'));
+ check(document.getElementById('prepareTraining').disabled,'training toggle');
+ document.querySelector('[data-tab="dashboard"]').click();
+ const select=document.getElementById('language');select.value='tr';select.dispatchEvent(new Event('change'));await settle();
+ result.textContent='PASS: languages, evidence preservation, priorities, rule templates, smart task consent, analyst review, training eligibility and opt-in';
+ document.body.dataset.smoke='pass';
+} catch(error) {result.hidden=false;result.textContent=error.stack;document.body.dataset.smoke='fail';}
+</script></html>
