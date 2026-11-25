@@ -6,9 +6,9 @@ Measured on Windows x64 in this working tree. Commands were run from the reposit
 
 | Suite | Command | Result |
 |-------|---------|--------|
-| Node frontend | `npm test` | **61 passed, 0 failed** |
+| Node frontend | `npm test` | **78 passed, 0 failed** |
 | Rust | `cargo test` (in `src-tauri`) | **35 passed, 0 failed, 2 ignored** |
-| Python integrations | `python -m unittest discover -s tests -p "test_*.py" -v` | **12 passed, 0 failed** |
+| Python integrations | `python -m unittest discover -s tests -p "test_*.py" -v` | **13 passed, 0 failed** |
 | Rust formatting | `cargo fmt --all --check` | pass |
 | Rust lint | `cargo clippy --all-targets` | pass, no warnings |
 | Rust advisories | `cargo audit` | 0 vulnerabilities, 3 documented warnings |
@@ -16,21 +16,30 @@ Measured on Windows x64 in this working tree. Commands were run from the reposit
 | Frontend build | `npm run build` | pass, 608 modules transformed |
 | Desktop build | `npm run tauri build` | pass, exit 0, MSI + NSIS produced |
 
+## V1.1 additions — status
+
+- Analyst feedback memory, review panel, case-state validation, smart HELM task builder and local JSONL fine-tuning export added in `src/feedback.js`, `src/review-panel.js`, `src/case-state.js`, `src/rules-workbench.js` and `src/training.js`; new tests in `tests/learning.test.js`, `tests/workspace.test.js` and `tests/browser-smoke.html`.
+- Time handling helpers in `src/event-time.js` reject timezone-less timestamps.
+- PDF report generator (`src-tauri/src/pdf_report.py`) gained case analysis, severity bars, hourly timeline bars and relationship charts; canonical writer shared through `integrations/pdf_report.py`.
+- PDF verification generated reports for English, German and Turkish: 5 pages each, all sections and charts present, MAILSONAR header present; no console errors.
+
 ## Node tests
 
 `npm test` runs `node --test tests/*.test.js`.
 
 ```
-tests 61
+tests 78
 suites 0
-pass 61
+pass 78
 fail 0
 cancelled 0
 skipped 0
 todo 0
 ```
 
-Files: `advanced.test.js`, `analysis.test.js`, `assistant.test.js`, `beacon.test.js`, `investigation.test.js`, `nightwire.test.js`, `privacy.test.js`.
+Files: `advanced.test.js`, `analysis.test.js`, `assistant.test.js`, `beacon.test.js`, `investigation.test.js`, `learning.test.js`, `nightwire.test.js`, `privacy.test.js`, `workspace.test.js`.
+
+Python: `test_pdf_report.py`, `test_logai_features.py`, `test_sigma_execute.py`, `test_threat_fetch.py`.
 
 BEACON coverage (16 tests) includes:
 

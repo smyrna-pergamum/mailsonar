@@ -45,6 +45,29 @@ All notable changes are recorded here. This project does not use semantic-versio
 - `pip-audit` reports two `diskcache 5.6.3` advisories in `integrations/requirements.txt`.
 - Multi-role autonomous investigation, vector search, live threat-intelligence enrichment and a typed-port workflow editor remain unimplemented.
 
+## V1.1 — Analyst workflow additions
+
+### Added
+
+- Analyst feedback memory (`src/feedback.js`) with verdicts `supported`, `false_positive` and `insufficient`.
+- Analyst review panel (`src/review-panel.js`) bound to findings; reviews are persisted in the case state and never feed training automatically.
+- Case state validation (`src/case-state.js`) shared by JSON export/import and SQLite load.
+- Time handling helpers that require explicit timezone offsets (`src/event-time.js`).
+- Smart investigation task builder for HELM profiles (general, takeover, delivery).
+- Local fine-tuning JSONL export from analyst-reviewed feedback; no upload, training job or automatic model activation.
+- Severity filter on the findings list.
+- Application operation log and workflow navigation steps on the dashboard.
+
+### Changed
+
+- PDF report generator (`src-tauri/src/pdf_report.py`) extended with case analysis, severity bars, hourly timeline bars and relationship charts; canonical writer is now shared through the `integrations/pdf_report.py` CLI.
+- AI questions are annotated with aggregate analyst feedback context where available.
+
+### Verified
+
+- New Node tests: learning, workspace, review, rules, i18n and report analysis coverage pass.
+- Frontend production build passes; PDF reports generate in English, German and Turkish with charts on all tested samples.
+
 ## RC4
 
 - calamine 0.26 to 0.38 XLSX parsing compatibility.
