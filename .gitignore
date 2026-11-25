@@ -19,6 +19,10 @@ npm-debug.log*
 yarn-error.log*
 *.tmp
 
+# Generated verification artefacts and sample reports
+tmp/
+output/
+
 # Backups and local secrets
 *.bak
 *.bak-*
