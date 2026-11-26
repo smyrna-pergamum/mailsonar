@@ -14,16 +14,16 @@ MailSonar is a local-first e-mail forensics and incident-response workbench (Rus
 
 ## Download
 
-Latest release: **[v1.2.0](https://github.com/smyrna-pergamum/mailsonar/releases/latest)** (all releases: [Releases](https://github.com/smyrna-pergamum/mailsonar/releases)).
+Latest release: **[v1.3.0](https://github.com/smyrna-pergamum/mailsonar/releases/latest)** (all releases: [Releases](https://github.com/smyrna-pergamum/mailsonar/releases)).
 
 | System | Download |
 |---|---|
-| Windows 10/11 x64 | [Installer (.exe)](https://github.com/smyrna-pergamum/mailsonar/releases/download/v1.2.0/MailSonar_1.2.0_x64-setup.exe) · [MSI](https://github.com/smyrna-pergamum/mailsonar/releases/download/v1.2.0/MailSonar_1.2.0_x64_en-US.msi) |
-| Linux x64 | [AppImage](https://github.com/smyrna-pergamum/mailsonar/releases/download/v1.2.0/MailSonar_1.2.0_amd64.AppImage) · [.deb](https://github.com/smyrna-pergamum/mailsonar/releases/download/v1.2.0/MailSonar_1.2.0_amd64.deb) · [.rpm](https://github.com/smyrna-pergamum/mailsonar/releases/download/v1.2.0/MailSonar-1.2.0-1.x86_64.rpm) |
-| macOS Apple Silicon | [.dmg](https://github.com/smyrna-pergamum/mailsonar/releases/download/v1.2.0/MailSonar_1.2.0_aarch64.dmg) |
-| macOS Intel | [.dmg](https://github.com/smyrna-pergamum/mailsonar/releases/download/v1.2.0/MailSonar_1.2.0_x64.dmg) |
+| Windows 10/11 x64 | [Installer (.exe)](https://github.com/smyrna-pergamum/mailsonar/releases/download/v1.3.0/MailSonar_1.3.0_x64-setup.exe) · [MSI](https://github.com/smyrna-pergamum/mailsonar/releases/download/v1.3.0/MailSonar_1.3.0_x64_en-US.msi) |
+| Linux x64 | [AppImage](https://github.com/smyrna-pergamum/mailsonar/releases/download/v1.3.0/MailSonar_1.3.0_amd64.AppImage) · [.deb](https://github.com/smyrna-pergamum/mailsonar/releases/download/v1.3.0/MailSonar_1.3.0_amd64.deb) · [.rpm](https://github.com/smyrna-pergamum/mailsonar/releases/download/v1.3.0/MailSonar-1.3.0-1.x86_64.rpm) |
+| macOS Apple Silicon | [.dmg](https://github.com/smyrna-pergamum/mailsonar/releases/download/v1.3.0/MailSonar_1.3.0_aarch64.dmg) |
+| macOS Intel | [.dmg](https://github.com/smyrna-pergamum/mailsonar/releases/download/v1.3.0/MailSonar_1.3.0_x64.dmg) |
 
-V1.3 features below (large investigations, graph filters, VirusTotal links, deep analysis redesign) ship with the next release; build from source to use them today.
+All features below, including large investigations, graph filters, VirusTotal links and the deep analysis redesign, are in this release.
 
 Builds are not code-signed. macOS: `xattr -dr com.apple.quarantine /Applications/MailSonar.app` once. Windows SmartScreen: *More info → Run anyway*. Every build bundles the CPU build of the llama.cpp engine; AI models are downloaded inside the app.
 
@@ -157,7 +157,7 @@ cargo test --manifest-path src-tauri/Cargo.toml demo_helm_with_real_model -- --i
 
 ## Releases (GitHub Actions)
 
-`.github/workflows/release.yml` builds Windows x64, Linux x64, macOS arm64 and macOS x64 with `tauri-apps/tauri-action`, bundles the matching llama.cpp engine and uploads the installers to a **draft** release. Trigger it by pushing a tag (`git tag v1.2.0 && git push origin v1.2.0`) or from *Actions → Release → Run workflow*. `.github/workflows/ci.yml` runs tests, clippy and a Windows build on every push.
+`.github/workflows/release.yml` builds Windows x64, Linux x64, macOS arm64 and macOS x64 with `tauri-apps/tauri-action`, bundles the matching llama.cpp engine and uploads the installers to a **draft** release. Trigger it by pushing a tag (`git tag v1.4.0 && git push origin v1.4.0`) or from *Actions → Release → Run workflow*. `.github/workflows/ci.yml` runs tests, clippy and a Windows build on every push.
 
 ## Project layout
 
