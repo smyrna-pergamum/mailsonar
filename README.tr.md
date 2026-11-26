@@ -14,18 +14,18 @@ MailSonar, e-posta adli bilişimi ve olay müdahalesi için yerel öncelikli bir
 
 ## İndirme
 
-Son sürüm: **[v1.2.0](https://github.com/smyrna-pergamum/mailsonar/releases/latest)** (tüm sürümler: [Releases](https://github.com/smyrna-pergamum/mailsonar/releases)).
+Son sürüm: **[v1.3.0](https://github.com/smyrna-pergamum/mailsonar/releases/latest)** (tüm sürümler: [Releases](https://github.com/smyrna-pergamum/mailsonar/releases)).
 
 | Sistem | İndir |
 |---|---|
-| Windows 10/11 x64 | [Kurulum (.exe)](https://github.com/smyrna-pergamum/mailsonar/releases/download/v1.2.0/MailSonar_1.2.0_x64-setup.exe) · [MSI](https://github.com/smyrna-pergamum/mailsonar/releases/download/v1.2.0/MailSonar_1.2.0_x64_en-US.msi) |
-| Linux x64 | [AppImage](https://github.com/smyrna-pergamum/mailsonar/releases/download/v1.2.0/MailSonar_1.2.0_amd64.AppImage) · [.deb](https://github.com/smyrna-pergamum/mailsonar/releases/download/v1.2.0/MailSonar_1.2.0_amd64.deb) · [.rpm](https://github.com/smyrna-pergamum/mailsonar/releases/download/v1.2.0/MailSonar-1.2.0-1.x86_64.rpm) |
-| macOS Apple Silicon | [.dmg](https://github.com/smyrna-pergamum/mailsonar/releases/download/v1.2.0/MailSonar_1.2.0_aarch64.dmg) |
-| macOS Intel | [.dmg](https://github.com/smyrna-pergamum/mailsonar/releases/download/v1.2.0/MailSonar_1.2.0_x64.dmg) |
+| Windows 10/11 x64 | [Kurulum (.exe)](https://github.com/smyrna-pergamum/mailsonar/releases/download/v1.3.0/MailSonar_1.3.0_x64-setup.exe) · [MSI](https://github.com/smyrna-pergamum/mailsonar/releases/download/v1.3.0/MailSonar_1.3.0_x64_en-US.msi) |
+| Linux x64 | [AppImage](https://github.com/smyrna-pergamum/mailsonar/releases/download/v1.3.0/MailSonar_1.3.0_amd64.AppImage) · [.deb](https://github.com/smyrna-pergamum/mailsonar/releases/download/v1.3.0/MailSonar_1.3.0_amd64.deb) · [.rpm](https://github.com/smyrna-pergamum/mailsonar/releases/download/v1.3.0/MailSonar-1.3.0-1.x86_64.rpm) |
+| macOS Apple Silicon | [.dmg](https://github.com/smyrna-pergamum/mailsonar/releases/download/v1.3.0/MailSonar_1.3.0_aarch64.dmg) |
+| macOS Intel | [.dmg](https://github.com/smyrna-pergamum/mailsonar/releases/download/v1.3.0/MailSonar_1.3.0_x64.dmg) |
 
 - Kurulum dosyaları kod imzasız. macOS'ta ilk açılışta bir kez şu komut gerekir: `xattr -dr com.apple.quarantine /Applications/MailSonar.app`. Windows SmartScreen'de *Ek bilgi → Yine de çalıştır* seçilmelidir.
 - Her paket, llama.cpp motorunun CPU sürümünü içerir. AI modelleri uygulama içinden indirilir.
-- Aşağıdaki V1.3 özellikleri (büyük vakalar, grafik filtreleri, VirusTotal bağlantıları, yeni derin analiz) bir sonraki sürümle gelecek. Şimdiden kullanmak için kaynaktan derleyebilirsiniz.
+- Aşağıdaki tüm özellikler (büyük vakalar, grafik filtreleri, VirusTotal bağlantıları, yeni derin analiz dahil) bu sürümde mevcuttur.
 
 ## Hızlı başlangıç
 
