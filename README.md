@@ -1,131 +1,162 @@
-# MailSonar — V1.0
+# MailSonar — V1.2
 
 **Detect threats beneath the surface.**
 
-MailSonar is a local-first email forensics and incident-response workbench built with Rust, Tauri 2 and a local web UI. Deterministic parsing, detection and correlation work without any AI provider. AI analysis is optional, opt-in, and always routed through one backend privacy gateway.
+MailSonar is a local-first e-mail forensics and incident-response workbench (Rust + Tauri 2, vanilla JS UI). It investigates phishing, business e-mail compromise (BEC), account takeover, malicious attachments and data exfiltration from mail-gateway, identity, mailbox-audit, MTA and message evidence. Deterministic parsing, detection and correlation work without AI; the **HELM** agent adds evidence-cited AI analysis with local Hugging Face models or any OpenAI-compatible provider.
 
-The interface uses the **NIGHTWIRE** theme. The floating investigation assistant is **BEACON**, the bounded DFIR agent is **HELM**, and the workflow studio is **WAYPOINT**.
+> **Status:** source builds and all tests pass on Windows; Windows, Linux and macOS installers are built by GitHub Actions. Not independently validated as a forensic product. See `TEST-RESULTS.md`, `SECURITY-AUDIT.md` and `AI-EVALUATION.md`.
 
-**Status: source builds and tests pass on Windows; the Windows installer builds locally. Not independently validated as a forensic product.** See `TEST-RESULTS.md`, `AUDIT.md`, `SECURITY-AUDIT.md` and `AI-EVALUATION.md` for measured results and open gaps.
+## Download
 
-## Rebranding and data migration
+Get the installer for your system from [Releases](https://github.com/smyrna-pergamum/mailsonar/releases):
 
-This release renames the visible product from Mail DFIR to MailSonar. The following identifiers are intentionally unchanged so existing installations keep working:
+| System | File |
+|---|---|
+| Windows 10/11 x64 | `MailSonar_<version>_x64-setup.exe` or `.msi` |
+| Linux x64 | `.AppImage`, `.deb` or `.rpm` |
+| macOS Apple Silicon | `MailSonar_<version>_aarch64.dmg` |
+| macOS Intel | `MailSonar_<version>_x64.dmg` |
 
-- Tauri identifier: `org.maildfir.desktop`
-- Application-data directory and model, workflow, session and vault paths
-- Local-storage keys such as `maildfir.theme` and `maildfir.copilot.provider`
-- Case-file schema IDs (`mail-dfir/1.0`), parser manifest schema (`mail-dfir.parser/1`) and the Cargo/binary name `mail-dfir`
-- Evidence file names, hashes and case exports
+Builds are not code-signed. macOS: `xattr -dr com.apple.quarantine /Applications/MailSonar.app` once. Windows SmartScreen: *More info → Run anyway*. Every build bundles the CPU build of the llama.cpp engine; AI models are downloaded inside the app.
 
-Only product strings, window titles, installer display names and icons changed. No evidence, model, workflow, session or vault data is moved or rewritten. An older installation can therefore be upgraded in place.
+## Quick start
 
-## Build from source
+1. **Start** → *Load sample BEC case* (synthetic) or *Import files*.
+2. **AI model** (optional) → use a model *Found on this PC* (running Ollama, LM Studio, llama.cpp, vLLM, Jan… or a GGUF file on disk) or *Download & start* a recommended Hugging Face model. *Test connection* measures chat, speed and tool calling.
+3. **AI analysis** → one-click questions or your own saved queries. **E-mail analysis** → headers, Received chain, SPF/DKIM/DMARC, URLs, attachments. **Detection rules** → describe a rule in plain language.
+4. **Training mode** → guided lessons with answer checking on bundled datasets.
 
-Prerequisites: Rust stable (tested with 1.99.1), Node.js 22+ (tested with 24.20.0), and the Tauri 2 platform prerequisites — on Windows: Visual Studio C++ Build Tools and WebView2.
+### Hızlı başlangıç (Türkçe)
 
-```sh
-npm install
-npm test                                              # 61 Node tests
-cargo test --manifest-path src-tauri/Cargo.toml        # 35 pass, 2 ignored
-cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets
-cargo fmt --manifest-path src-tauri/Cargo.toml --all --check
-npm run tauri build                                   # release binary + MSI/NSIS installers
+1. **Başla** → *Örnek BEC vakasını yükle* veya *Dosya içe aktar*.
+2. **AI modeli** (isteğe bağlı) → *Bu bilgisayarda bulunanlar* listesinden bir model seçin ya da önerilen bir Hugging Face modelini *İndir ve başlat*. *Bağlantıyı test et* sohbet, hız ve araç çağırmayı ölçer.
+3. **AI analizi** → tek tıkla sorular veya kaydettiğiniz kendi sorgularınız. **E-posta analizi** → başlıklar, Received zinciri, SPF/DKIM/DMARC, URL'ler ve ekler. **Tespit kuralları** → kuralı doğal dille tarif edin.
+4. **Eğitim modu** → örnek veri setleri üzerinde cevap kontrollü, adım adım dersler.
+
+The UI is available in English, German and Turkish.
+
+## Screens
+
+| View | What it does |
+|---|---|
+| **Start** | Three steps (evidence → AI model → investigate), log sources and mail providers, attack chains |
+| **Training mode** | 9 lessons, 20 questions on the synthetic BEC case and the repository dataset; hints, "show me", explanations, progress |
+| **Overview / Findings / Log explorer** | Dashboards, rule findings with analyst review, paged record browser |
+| **E-mail analysis** | Messages sorted by risk with header, authentication, Received-chain, URL, attachment and platform analysis |
+| **AI analysis** | Nine one-click investigation profiles (each a HELM skill), free questions and **saved analyst queries** |
+| **HELM agent** | Agent console with live plan and tool trace, skill library, WAYPOINT workflows, sessions |
+| **Detection rules** | AI rule writer (tests each rule against the case), quick rule form, JSON/Sigma/mapping editors |
+| **Case & report** | Save/open cases, HTML/PDF/JSON/OCSF export |
+| **AI model** | Local discovery and self-test, Hugging Face hub, installed models, other providers |
+| **Expert tools** | Timeline, relationship graph, MITRE ATT&CK, threat intelligence, evidence vault, AI evaluation |
+
+## E-mail forensics
+
+- **Import:** EML, MBOX, MSG, CSV, JSON, JSONL, XML, TXT, LOG, EVTX, XLSX, ZIP, GZIP.
+- **Message analysis (static, nothing executed, rendered or fetched):** Received chain bottom-up with origin IP, unknown relays and time-order anomalies; SPF/DKIM/DMARC; From vs Return-Path vs Reply-To vs display name; look-alike domains (homoglyphs, typosquatting, brand keywords); URLs (visible text vs target, punycode, shorteners, IP literals, open redirects); attachments (SHA-256, magic-byte type, double extension, RTL override, macros, encrypted ZIP).
+- **Log source and mail-provider identification:** every file is fingerprinted from field names, product names, line formats and headers — Microsoft 365 unified audit log, Exchange Online message trace, Entra ID sign-ins, Exchange Server message tracking, Google Workspace, Postfix, Exim, Sendmail, Dovecot, Rspamd, Amavis, Proofpoint, Mimecast, Cisco Secure Email, Barracuda, Zimbra, Amazon SES. Messages show sending, relay, gateway and receiving platforms (Microsoft 365, Gmail, SES, SendGrid, Mailgun, Proofpoint, Mimecast, GMX/WEB.DE, IONOS…). Each attribution carries a confidence and the reason.
+- **Detection:** 30 built-in rules (MAIL-001…030), custom rules, Sigma subset, IOC matching, anomaly rule.
+- **Correlation:** COR-001 authentication-failure window, COR-002 outbound spike, COR-003 message trace, **COR-004 kill chain** per account (phishing received → suspicious sign-in → mailbox manipulation → fraud/exfiltration within 24 h).
+- **Evidence handling:** SHA-256 verified, SQLite vault, hash-chained journal. Not encrypted, not externally anchored.
+
+## HELM agent and skills
+
+HELM plans with `update_plan`, investigates with read-only tools, loads skills and cites evidence IDs. Tools: list/filter/search/aggregate events, trace e-mail, timeline, network graph, findings, severity and MITRE summaries, IOC matches, evidence inspection, **log sources**, **test_rule**, case summary, report draft (approval required), **list_skills / load_skill**.
+
+**Skills** are Markdown playbooks in the style of Claude Code, Codex and OpenCode skills:
+
+```markdown
+---
+name: phishing-triage
+description: When HELM should use this skill
+triggers: phishing, oltalama, spoof
+preload:
+  - findings {"severity": "high", "limit": 25}
+---
+# Playbook: steps and answer format
 ```
 
-Artifacts (product name MailSonar, binary name from the Cargo package):
+- 10 built-in skills: triage, phishing-triage, email-header-forensics, malware-delivery, account-takeover, mailbox-rule-abuse, bec-fraud, data-exfiltration, detection-engineering, incident-report.
+- Add your own in the **Skills** tab: write one, duplicate and edit a built-in, or **import `.md` files**. They are stored in `<app data>/skills/` and override built-ins of the same name.
+- Start a message with `/skill-name` to force a skill; otherwise HELM routes by triggers and can load skills itself. Preload tools run in the backend before the first model turn, so small local models start grounded.
+- Works with native function calling or a text tool protocol (`<tool_call>{…}</tool_call>`) for models without it; follow-up questions keep bounded history (local providers only); steps stream live.
+- Skills cannot add tools, widen permissions or bypass minimization.
 
-- `src-tauri/target/release/mail-dfir.exe`
-- `src-tauri/target/release/bundle/msi/MailSonar_*.msi`
-- `src-tauri/target/release/bundle/nsis/MailSonar_*-setup.exe`
+## Local AI
 
-## What works
-
-- **Import:** CSV, JSON, JSONL, XML, TXT, LOG, EML, MSG, EVTX, ZIP, GZIP, XLSX. Size limits: 32 MiB per file, 20,000 records, 64 KiB per MSG property, archive nesting depth 3, 128 archive members, 96 MiB expanded-data budget.
-- **Evidence handling:** original bytes re-read, SHA-256 verified, stored in SQLite, local hash-chained journal, integrity re-verification from the UI. The vault is **not encrypted** and the chain is **not externally anchored**.
-- **Detection:** 20 built-in keyword rules (MAIL-001 to MAIL-020), custom rules, Sigma subset (fail-closed), IOC matching, anomaly rule ANOM-001.
-- **Correlation:** COR-001 authentication-failure window, COR-002 outbound-volume spike, COR-003 message trace, relationship graph (2,000-event cap).
-- **OCSF 1.3.0 draft export:** classes 4009, 4010, 4012, 4013, 4014, 4015, 4016 with class/category/activity/type IDs. Draft only — not schema-validated against the official JSON schema.
-- **AI:** OpenAI-compatible chat-completions endpoint (llama.cpp, Ollama, LM Studio, vLLM, OpenAI, OpenRouter, private gateways). Backend enforces HTTPS (loopback HTTP allowed), no URL credentials, no redirects, 120 s timeout, 2 MiB response cap, 100 KB context cap, 1–25 minimized records, bounded retries on 429/5xx with `Retry-After`.
-- **Bundled local engine:** llama.cpp b11934 CPU `llama-server` (Windows x64) in `src-tauri/engine`, bundled as a Tauri resource. The app starts it on loopback with a per-run random API key. Model files are not bundled; import a GGUF into the app-data model directory.
-- **HELM agent:** 15 read-only case tools in the Rust backend, 12 iterations, 24 tool calls, 6 calls per turn, 12k characters per tool result, 2 MiB response cap. The model proposes calls; Rust validates names and arguments and executes them. No shell, SQL, filesystem or production-email capability is exposed. Sensitive tools require an explicit approval list.
-- **WAYPOINT workflows:** validated DAG execution with 9 node kinds (tool, filter, aggregate, detect, evidence check, visualize, branch, agent, approval, report), version history, run traces and cancellation. Limits: 32 nodes, 512 KiB workflow, 80 trace steps.
-- **Reports:** HTML (escaped), JSON, CSV, OCSF draft, PDF through a fixed embedded ReportLab script run locally by Python 3 (no bundled runtime).
-
-## BEACON, HELM and WAYPOINT
-
-**BEACON** is the only floating assistant. It has three modes:
-
-1. **Offline product guide** — deterministic keyword help. No network request, no model, no LLM. It answers product questions and links to the relevant workspace tab.
-2. **Selected evidence AI** — sends only the 1–25 records selected in Log Explorer through the existing `ask_ai` gateway. A consent dialog names the destination, model, record count and the question exactly as entered. Denial makes no request. The frontend clones the selection before approval, minimizes it, and the Rust gateway re-validates every field.
-3. **HELM agent** — sends a task to the bounded read-only agent. Requires imported evidence and explicit consent. BEACON itself never executes tools and never changes evidence; the Rust backend authorizes and runs every tool.
-
-**HELM** is the full agent workspace tab: agent console, model center, WAYPOINT, tool registry, sessions and execution monitor. **WAYPOINT** is the workflow studio inside that tab.
+- **Found on this PC:** probes loopback ports of Ollama, LM Studio, llama.cpp, vLLM, KoboldCpp, text-generation-webui, Jan, GPT4All and LocalAI; scans LM Studio, Hugging Face cache, Jan, GPT4All, `~/models` and Downloads for GGUF files.
+- **Self-test:** synthetic prompts only; reports chat, latency, tokens/s, native or text tool calling and HELM readiness.
+- **Hugging Face:** recommended models with one-click *Download & start* (single-file Q4_K_M chosen from the listing, SHA-256 verified when published), search or paste a repository link.
+- **Bundled engine:** llama.cpp `llama-server` CPU build started on loopback with a per-run key and `--jinja`. Measured on an 8-core laptop CPU with Qwen3-4B Q4_K_M: ~3.5 tokens/s, 1–9 minutes per agent turn. Use a GPU build, a smaller model or an external server for interactive speed.
 
 ## AI privacy model
 
-All AI workflows call `ask_ai`; there is no second AI command. Before transfer, the frontend replaces sender, recipient, IP and message ID with stable `entity-N` aliases, drops source names and raw records, and keeps only an allow-listed action label and an RFC 3339 timestamp. The Rust gateway re-checks every field and rejects anything that is not minimized.
+- One AI connection is shared by all features. Loopback providers keep everything on the device and need no per-run checkbox; remote providers require a per-run confirmation naming the host.
+- For remote providers the backend replaces sender, recipient, IP and message ID with `entity-N` aliases, removes raw record data and source names, withholds IOC values and finding details, and does not forward conversation history.
+- This is pseudonymization, not anonymization. Questions and notes are sent as typed. API keys stay in memory only.
 
-This is **minimization and pseudonymization, not anonymization**. Timestamps, action labels, hash-derived evidence IDs and the analyst's own question or knowledge notes can still identify a person or incident. Do not send confidential questions or notes to a third-party service; prefer a local or private endpoint.
+## Limits
 
-`agent_run` additionally withholds IOC values and minimizes findings when the provider is not loopback. API keys are held in memory for the session only and are never persisted or placed in a URL. Remote AI is off by default; consent resets when settings change.
+- In-memory workspace: 20,000 records per session and per file (large-investigation mode is in development; see `ROADMAP.md`).
+- MSG: selected MAPI properties only. Attachments are hashed and inspected statically; there is no sandbox, AV or reputation lookup.
+- Provider identification is heuristic; renamed or re-exported logs can look like another product.
+- HELM is a bounded single-agent loop; AI output is unverified and requires analyst review.
+- Linux and macOS builds come from CI and have not been manually tested.
 
-## Limits and non-goals
+## Build from source
 
-- Session and per-file record cap is 20,000; the 1,000,000-event benchmark is therefore **not supported** in one import (see `PERFORMANCE-BENCHMARKS.md`).
-- EML: headers only. MSG: selected MAPI properties only. Attachments are never executed or scanned.
-- No vendor-specific parsers or collectors yet; no automatic vendor detection.
-- RAG is TF-IDF only; no embeddings or vector database.
-- HELM is a bounded single-agent loop, not a multi-role autonomous investigation system. All AI output is unverified and requires analyst review.
-- No live MISP/TAXII/AI provider tests were run; mock-server tests only.
-- Windows installers were built; Linux and macOS were not built or tested here.
-- Real inference was verified only with the bundled Windows CPU engine and a small local test GGUF. No model-quality claims are made.
+Prerequisites: Rust stable, Node.js 22+, Tauri 2 platform prerequisites (Windows: VS C++ Build Tools + WebView2; Linux: `libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf`).
+
+```sh
+npm install
+npm test
+cargo test --manifest-path src-tauri/Cargo.toml
+npm run tauri dev      # development
+npm run tauri build    # installers in src-tauri/target/release/bundle
+```
+
+The browser preview (`npm run dev`) serves the real parser output of the sample datasets from `tests/fixtures` (regenerate with `cargo test --manifest-path src-tauri/Cargo.toml demo_write_preview_fixture -- --ignored`). It performs no inference.
+
+End-to-end test with a real model:
+
+```powershell
+$env:MAILDFIR_TEST_GGUF = "C:\path\to\model.gguf"
+cargo test --manifest-path src-tauri/Cargo.toml demo_helm_with_real_model -- --ignored --nocapture
+```
+
+## Releases (GitHub Actions)
+
+`.github/workflows/release.yml` builds Windows x64, Linux x64, macOS arm64 and macOS x64 with `tauri-apps/tauri-action`, bundles the matching llama.cpp engine and uploads the installers to a **draft** release. Trigger it by pushing a tag (`git tag v1.2.0 && git push origin v1.2.0`) or from *Actions → Release → Run workflow*. `.github/workflows/ci.yml` runs tests, clippy and a Windows build on every push.
+
+## Project layout
+
+```
+src/                    UI (vanilla JS): main.js, ui/ (start, training, e-mail view, AI, rules, model hub, skills)
+src-tauri/src/          Rust backend: parsing, email.rs, sources.rs, agent.rs (HELM), skills.rs,
+                        local_ai.rs, embedded_ai.rs, samples.rs, queries.rs, workflow.rs, vault.rs
+src-tauri/skills/       Built-in HELM skills (Markdown)
+samples/demo/           Synthetic BEC case (dataset/generators/demo_scenario.py)
+dataset/                Labelled multi-source dataset, generators and ground truth
+tests/                  Node and Python tests, preview fixtures
+```
 
 ## Documentation
 
-- `AUDIT.md` — issue log and current status
-- `SECURITY-AUDIT.md` — threat model, controls and findings
-- `TEST-RESULTS.md` — measured test and build results
-- `AI-EVALUATION.md` — what was and was not evaluated
-- `AI-QUALITY-GATES.md` — release gates for AI features
-- `MODEL-BENCHMARKS.md` — engine/model measurements
-- `DATASET-MANIFEST.md` — test data provenance
-- `PERFORMANCE-BENCHMARKS.md` — limits and measured timings
-- `TRACEABILITY.md` — requirement-to-implementation map
-- `ROADMAP.md` — milestone status
-- `CHANGELOG.md` — release history
-- `THIRD-PARTY-NOTICES.md` — licenses and bundled engine provenance
+`CHANGELOG.md` · `ROADMAP.md` · `TEST-RESULTS.md` · `SECURITY-AUDIT.md` · `AUDIT.md` · `AI-EVALUATION.md` · `AI-QUALITY-GATES.md` · `MODEL-BENCHMARKS.md` · `PERFORMANCE-BENCHMARKS.md` · `DATASET-MANIFEST.md` · `TRACEABILITY.md` · `THIRD-PARTY-NOTICES.md`
+
+The application identifier `org.maildfir.desktop`, storage paths and case schema IDs keep their historical names so existing installations upgrade in place.
 
 ## Optional integrations
-
-Separate virtual environments are recommended. Never run untrusted rule or plugin code.
 
 ```sh
 python -m venv .venv
 pip install -r integrations/requirements.txt
-python integrations/worker.py drain case.json
 python integrations/worker.py sigma rule.yml
 python integrations/worker.py pdf case.json --output report.pdf
 ```
 
-`integrations/sigma_execute.py` uses pySigma + a read-only SQLite backend (separate requirements file, Python 3.11+). `integrations/logai_anomaly.py` prepares features for LogAI. `integrations/threat_fetch.py` fetches MISP/TAXII over HTTPS with no redirects and writes indicator JSON for import into Developer Rules. Mock pagination tests pass; no live server was contacted.
-
-## Tests
-
-```sh
-npm test
-cargo test --manifest-path src-tauri/Cargo.toml
-python -m unittest discover -s tests -p "test_*.py" -v
-cargo test --manifest-path src-tauri/Cargo.toml --release -- --ignored --nocapture   # benchmark
-```
-
-The real-inference test is ignored by default. Supply a GGUF path:
-
-```powershell
-$env:MAILDFIR_TEST_GGUF = "C:\path\to\model.gguf"
-cargo test --manifest-path src-tauri/Cargo.toml bundled_engine_serves_a_real_completion -- --ignored --nocapture
-```
+`integrations/` contains pySigma execution, LogAI feature preparation and MISP/TAXII fetching (mock-tested only).
 
 ## License
 
-See `LICENSE` and `THIRD-PARTY-NOTICES.md`. Review upstream licenses before redistribution.
+See `LICENSE` and `THIRD-PARTY-NOTICES.md`.

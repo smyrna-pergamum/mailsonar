@@ -31,3 +31,7 @@ output/
 
 # Models and local inference binaries (never commit user models)
 *.gguf
+
+# Local scratch
+src-tauri/target-alt/
+*.wip

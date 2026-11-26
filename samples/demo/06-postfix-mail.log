@@ -1,0 +1,8 @@
+Nov 25 09:30:04 mx1 postfix/submission/smtpd[4121]: 7F3A21C0: client=unknown[203.0.113.66], sasl_method=LOGIN, sasl_username=elif.kaya
+Nov 25 09:30:05 mx1 postfix/cleanup[4130]: 7F3A21C0: message-id=<bec-1@northwind.test>
+Nov 25 09:30:05 mx1 postfix/qmgr[880]: 7F3A21C0: from=<elif.kaya@northwind.test>, size=4210, nrcpt=1 (queue active)
+Nov 25 09:30:06 mx1 postfix/lmtp[4133]: 7F3A21C0: to=<finans@northwind.test>, relay=inbox.northwind.test, status=sent (250 2.0.0 Ok)
+Nov 25 09:41:10 mx1 postfix/smtpd[4201]: NOQUEUE: reject: RCPT from unknown[198.51.100.23]: 554 5.7.1 Relay access denied; from=<spray@example.org> to=<ext@example.org> unauthorized relay attempt
+Nov 25 10:02:00 mx1 postfix/smtpd[4300]: 1B2C3D4E: client=mail.tedarikci.test[192.0.2.80]
+Nov 25 10:02:01 mx1 postfix/qmgr[880]: 1B2C3D4E: from=<orders@tedarikci.test>, size=2100, nrcpt=1 (queue active)
+Nov 25 10:02:02 mx1 postfix/lmtp[4302]: 1B2C3D4E: to=<can.ozturk@northwind.test>, status=sent (250 2.0.0 Ok)

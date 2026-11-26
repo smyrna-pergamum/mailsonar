@@ -3,6 +3,9 @@ import {invoke} from '@tauri-apps/api/core';
 import {open,save} from '@tauri-apps/plugin-dialog';
 import {listen} from '@tauri-apps/api/event';
 import './assistant.css';
+import {mountSkills} from './ui/helm-skills.js';
+import {confirmTransfer} from './ui/helm-run.js';
+import {createAgentPanel} from './ui/agent-view.js';
 import {
   NODE_PALETTE,
   PROVIDER_PRESETS,
@@ -110,6 +113,7 @@ export function mountCopilot(host) {
     </div>
     <div class="copilot-tabs" role="tablist">
       <button data-cp-tab="assistant" class="active">Agent console</button>
+      <button data-cp-tab="skills">Skills</button>
       <button data-cp-tab="model">Model center</button>
       <button data-cp-tab="workflow">WAYPOINT</button>
       <button data-cp-tab="tools">Tool registry</button>
@@ -121,6 +125,9 @@ export function mountCopilot(host) {
       <div class="cp-grid">
         <article class="cp-card">
           <h3>Provider</h3>
+          <p class="cp-muted">Managed on the AI model page and shared by every AI feature.</p>
+          <div class="cp-actions"><button class="cp-ghost" id="cpGoModel" type="button">Open AI model page</button></div>
+          <details class="cp-provider-details"><summary>Connection details</summary>
           <div class="cp-row">
             <label>Preset
               <select id="cpPreset">${PROVIDER_PRESETS.map((p) => `<option value="${esc(p.id)}">${esc(p.label)}</option>`).join('')}</select>
@@ -142,6 +149,7 @@ export function mountCopilot(host) {
             <button class="cp-ghost" id="cpDiscover">Discover models</button>
           </div>
           <p class="cp-muted" id="cpProviderResult">No connection test yet.</p>
+          </details>
           <label class="cp-consent">
             <input type="checkbox" id="cpConsent">
             <span id="cpConsentText">I authorize this provider to receive my investigation task and the tool outputs needed to answer it.</span>
@@ -156,11 +164,13 @@ export function mountCopilot(host) {
         <article class="cp-card">
           <h3>Investigation chat</h3>
           <div class="agent-chat" id="cpChat" aria-live="polite"></div>
+          <div class="cp-skill-chips" id="cpSkillChips"></div>
+          <div id="cpLive"></div>
           <div class="agent-compose">
-            <textarea id="cpTask" placeholder="Example: Triage this case. Identify the strongest evidence, the accounts and IPs involved, and what cannot be concluded from the current snapshot."></textarea>
+            <textarea id="cpTask" placeholder="Ask anything about the case, or start with /skill-name. Example: /bec-fraud Was a payment change requested?"></textarea>
             <div class="cp-row" style="margin-top:8px">
-              <label>Max iterations <input id="cpIterations" type="number" min="1" max="12" value="8"></label>
-              <label>Token budget <input id="cpBudget" type="number" min="1000" max="32000" step="1000" value="12000"></label>
+              <label>Max iterations <input id="cpIterations" type="number" min="1" max="12" value="10"></label>
+              <label>Token budget <input id="cpBudget" type="number" min="1000" max="32000" step="1000" value="24000"></label>
             </div>
             <div class="cp-actions">
               <button class="cp-primary" id="cpRun">Run agent</button>
@@ -189,6 +199,7 @@ export function mountCopilot(host) {
       </div>
     </div>
 
+    <div class="copilot-panel" data-cp-panel="skills" hidden></div>
     <div class="copilot-panel" data-cp-panel="model" hidden></div>
     <div class="copilot-panel" data-cp-panel="workflow" hidden></div>
     <div class="copilot-panel" data-cp-panel="tools" hidden></div>
@@ -204,7 +215,7 @@ export function mountCopilot(host) {
     messages: [
       {
         role: 'assistant',
-        text: 'HELM ready. Import evidence, choose a provider, authorize the request, then ask a focused investigation question. I can inspect records, findings, timelines, graphs and local indicators with read-only tools.'
+        text: 'HELM ready. Ask a question about the case. I plan, pick a skill (or use /skill-name), inspect the evidence with read-only tools and cite evidence IDs. Follow-up questions keep the conversation context.'
       }
     ],
     trace: [],
@@ -382,7 +393,7 @@ export function mountCopilot(host) {
   async function runAgent() {
     if (state.busy) return;
     const task = section.querySelector('#cpTask').value.trim();
-    if (!state.consent) {
+    if (!isLoopback(state.provider.endpoint) && !state.consent && !confirmTransfer(state.provider)) {
       hostStatus(host, 'Authorize the provider before running the agent.');
       return;
     }
@@ -404,7 +415,19 @@ export function mountCopilot(host) {
     section.querySelector('#cpConsent').checked = false;
     section.querySelector('#cpRun').disabled = true;
     state.currentSession = `ses-ui-${Date.now().toString(36)}`;
+    const history = state.messages
+      .slice(1)
+      .filter((m) => m.role === 'user' || m.role === 'assistant')
+      .map((m) => ({role: m.role, content: m.text}));
     state.messages.push({role: 'user', text: task});
+    live.start(task.slice(0, 80));
+    let unlisten = () => {};
+    if (window.__TAURI_INTERNALS__) {
+      const session = state.currentSession;
+      unlisten = await listen('helm://step', (event) => {
+        if (event.payload?.session_id === session) live.step(event.payload.step);
+      });
+    }
     renderChat();
     hostStatus(host, 'Agent is running. Tool results are bounded and case-scoped.');
     try {
@@ -423,9 +446,11 @@ export function mountCopilot(host) {
           allowed_tools: [],
           approvals: state.approveReport ? ['draft_report'] : [],
           max_iterations: clamp(section.querySelector('#cpIterations').value, 1, 12),
-          token_budget: clamp(section.querySelector('#cpBudget').value, 1000, 32000)
+          token_budget: clamp(section.querySelector('#cpBudget').value, 1000, 32000),
+          history
         }
       });
+      live.finish(outcome);
       state.trace = outcome.trace ?? [];
       host.onAssessment?.(outcome);
       state.messages.push({
@@ -451,11 +476,13 @@ export function mountCopilot(host) {
       hostStatus(host, `Agent ${outcome.status}. Analyst verification required.`);
       await refreshSessions();
     } catch (error) {
+      live.fail(error);
       state.messages.push({role: 'system', text: `Agent error: ${String(error)}`});
       renderChat();
       addRun({type: 'agent', status: 'error', error: String(error), trace: []});
       hostStatus(host, String(error));
     } finally {
+      unlisten();
       state.busy = false;
       section.querySelector('#cpRun').disabled = false;
       refreshCase();
@@ -477,7 +504,7 @@ export function mountCopilot(host) {
     state.messages = [
       {
         role: 'assistant',
-        text: 'New conversation. The case snapshot is unchanged; the backend does not carry prior tool results into this chat automatically.'
+        text: 'New conversation. Earlier questions and answers are no longer sent as context.'
       }
     ];
     state.trace = [];
@@ -502,6 +529,7 @@ export function mountCopilot(host) {
       renderTrace();
     }
     if (sub === 'model') loadModelCenter();
+    if (sub === 'skills') skillLib.load();
     if (sub === 'workflow') renderWorkflow();
     if (sub === 'tools') renderTools();
     if (sub === 'sessions') renderSessions();
@@ -558,6 +586,36 @@ export function mountCopilot(host) {
   section.querySelector('#cpRun').onclick = runAgent;
   section.querySelector('#cpCancel').onclick = cancelAgent;
   section.querySelector('#cpClear').onclick = clearConversation;
+  section.querySelector('#cpGoModel').onclick = () => host.tab('settings');
+  section.querySelector('#cpTask').addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' && (event.ctrlKey || event.metaKey)) runAgent();
+  });
+  const live = createAgentPanel({onEvidence: (id) => host.inspect?.(id)});
+  section.querySelector('#cpLive').append(live.el);
+  const useSkill = (name) => {
+    cpShow('assistant');
+    const box = section.querySelector('#cpTask');
+    box.value = `/${name} ${box.value.replace(/^\/[a-z0-9-]+\s*/, '')}`;
+    box.focus();
+  };
+  const skillLib = mountSkills({
+    panel: section.querySelector('[data-cp-panel="skills"]'),
+    backend: call,
+    status: (m) => hostStatus(host, m),
+    onUse: useSkill,
+    onLoaded: (skills) => {
+      const chips = section.querySelector('#cpSkillChips');
+      chips.replaceChildren();
+      for (const skill of skills) {
+        const chip = el('button', `/${skill.name}`, 'ms-chip');
+        chip.type = 'button';
+        chip.title = skill.description;
+        chip.onclick = () => useSkill(skill.name);
+        chips.append(chip);
+      }
+    }
+  });
+  setTimeout(() => skillLib.load(), 0);
 
   // ---------------------------------------------------------------------
   // Model center

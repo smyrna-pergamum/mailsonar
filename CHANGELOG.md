@@ -2,6 +2,59 @@
 
 All notable changes are recorded here. This project does not use semantic-version tags beyond the release labels in `ROADMAP.md`.
 
+## V1.2 — Simplified workbench, e-mail forensics, skill-driven HELM
+
+### Training, saved queries, provider identification, releases
+
+- **Training mode**: 9 lessons / 20 questions on the synthetic BEC case and the labelled repository dataset (`dataset/formats`, now bundled as the *github-baseline* sample). Answers are computed from the parsed data; hints, "show me" navigation, explanations, HELM help and progress tracking.
+- **Saved analyst queries**: add, edit and delete one-click AI questions (optional skill); stored in `<app data>/analysis-queries.json`.
+- **Skill import**: add `.md` skill files from disk in the HELM Skills tab (`skill_import` / file picker).
+- **Log-source and mail-provider identification** (`sources.rs`): per-file fingerprint with breakdown, confidence and reason; per-message sending/relay/gateway/receiving platforms; HELM tool `log_sources`.
+- **Release workflow** (`.github/workflows/release.yml`): Windows, Linux and macOS (arm64 + x64) installers with the matching llama.cpp engine, uploaded to a draft GitHub release.
+- Review fixes: conversation history is never sent to remote providers; every native tool call gets a reply when the tool budget ends; context-window overflow on local engines triggers a trimmed final answer; tool results are capped relative to the token budget; text-protocol fallback only on 400/422/500; capped response bodies and proxy-aware self-test; reserved Windows names rejected for skills; regexes compiled once.
+
+
+### Simpler to use
+
+- New **Start** page: three steps (load evidence → connect an AI model → investigate) and an attack-chain panel.
+- Sidebar reduced to ten views in investigation order; specialist views moved to a collapsible **Expert tools** group.
+- **One AI connection** for every AI feature (AI analysis, HELM, rule writing, BEACON). Legacy endpoint fields stay in sync.
+- Consent: loopback (on-device) providers no longer need a checkbox per run; remote providers get a per-run confirmation naming the host.
+- **Sample case**: a synthetic BEC kill chain (gateway CSV, Entra ID JSONL, mailbox audit JSON, EML, MBOX, Postfix log, IOCs) is compiled into the app and loads with one click (`dataset/generators/demo_scenario.py`).
+- Turkish and German translations for all new UI.
+
+### Local AI models
+
+- **AI model** page: recommended Hugging Face GGUF models with one-click *Download & start* (single-file Q4_K_M picked from the repository listing, SHA-256 verified when published), Hugging Face search or pasted repository link, installed models, engine settings and other providers.
+- **Automatic discovery** (`discover_local_ai`): probes loopback ports of Ollama, LM Studio, llama.cpp, vLLM, KoboldCpp, text-generation-webui, Jan, GPT4All and LocalAI, and scans known model folders (LM Studio, Hugging Face cache, Jan, GPT4All, `~/models`, Downloads) for GGUF files (signature checked, split shards and projectors skipped).
+- **Self-test** (`ai_selftest`): synthetic prompts only; reports chat, latency, tokens/s, native or text tool calling and whether the model is ready for HELM.
+- Bundled engine starts with `--jinja`; default context 8–16k tokens; the UI reconnects to a running engine after a reload (`embedded_connection`).
+- Local reasoning models get `chat_template_kwargs.enable_thinking=false` (loopback only) and a 15-minute timeout.
+
+### HELM: agentic, skill-driven
+
+- **Markdown skills** (`src-tauri/skills/*.md`, front matter: name, description, triggers, preload, always), in the style of Claude Code / Codex / OpenCode skills. Ten built-in skills: triage, phishing-triage, email-header-forensics, malware-delivery, account-takeover, mailbox-rule-abuse, bec-fraud, data-exfiltration, detection-engineering, incident-report.
+- User skills in `<app data>/skills/*.md` override built-ins; Skills tab to view, duplicate, edit, create and delete.
+- Skill activation by `/skill-name`, explicit request field or deterministic trigger routing; preload tools run in the backend before the first model turn so small models start grounded.
+- New tools: `list_skills`, `load_skill`, `update_plan` (live plan shown to the analyst), `test_rule` (dry-run a detection rule).
+- Follow-up questions carry bounded conversation history; trace steps stream live (`helm://step`).
+- Text tool-call protocol (`<tool_call>{...}</tool_call>`, fenced or bare JSON) for models without native function calling, with automatic fallback when a server rejects `tools`.
+- When iterations, tool calls or the token budget run out, HELM asks once for a final answer from the evidence gathered.
+- Loopback providers now see a short `summary` of each record and the full record in `evidence_inspect`; cloud providers still get minimized aliases only.
+
+### AI analysis and rule writing
+
+- **One-click AI analysis**: nine investigation profiles, each a HELM skill, plus a free question box; cited answers with clickable evidence IDs.
+- **Write detection rules with AI**: describe the behaviour; HELM tests candidates with `test_rule` and returns JSON; proposals show live match counts and are added only on request. A no-AI quick-rule form is included.
+
+### E-mail forensics
+
+- EML parsing now covers bodies and attachments statically: Received chain (origin IP, time-order and unknown-relay anomalies), SPF/DKIM/DMARC, From vs Return-Path vs Reply-To vs display name, look-alike sender domains, URLs (anchor-text mismatch, punycode, homoglyphs, typosquatting, shorteners, IP literals, open redirects) and attachments (SHA-256, magic-byte type, double extension, RTL override, macros, encrypted ZIP). Nothing is executed, rendered or fetched.
+- **MBOX** import.
+- New rules MAIL-021 … MAIL-030 (Reply-To redirection, risky attachment, look-alike domain, Received anomaly, payment-change request, mailbox delegation, deletion, mass access, new device/MFA change, mail flood) with ATT&CK mapping.
+- **COR-004 kill-chain correlation** per account: phishing received → suspicious sign-in → mailbox manipulation → fraud/exfiltration, ordered within 24 h.
+- E-mail analysis view sorted by risk.
+
 ## V1.0 — MailSonar / BEACON release (unreleased)
 
 ### Rebranding

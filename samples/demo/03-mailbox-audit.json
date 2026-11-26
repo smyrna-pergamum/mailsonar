@@ -1,0 +1,56 @@
+[
+ {
+  "CreationTime": "2026-11-25T09:06:10Z",
+  "UserId": "elif.kaya@northwind.test",
+  "ClientIP": "203.0.113.66",
+  "Operation": "New-InboxRule",
+  "Parameters": "Name=.; SubjectOrBodyContainsWords=güvenlik,security,phishing,ödeme,payment; MoveToFolder=RSS Subscriptions; MarkAsRead=True",
+  "ResultStatus": "Succeeded",
+  "Workload": "Exchange"
+ },
+ {
+  "CreationTime": "2026-11-25T09:08:40Z",
+  "UserId": "elif.kaya@northwind.test",
+  "ClientIP": "203.0.113.66",
+  "Operation": "Set-Mailbox",
+  "Parameters": "ForwardingSmtpAddress=smtp:elif.kaya.backup@mailbox.example.net; DeliverToMailboxAndForward=True",
+  "ResultStatus": "Succeeded",
+  "Workload": "Exchange"
+ },
+ {
+  "CreationTime": "2026-11-25T09:12:00Z",
+  "UserId": "elif.kaya@northwind.test",
+  "ClientIP": "203.0.113.66",
+  "Operation": "MailItemsAccessed",
+  "Parameters": "Folder=Inbox/Finans; ItemCount=214; mass download via sync",
+  "ResultStatus": "Succeeded",
+  "Workload": "Exchange"
+ },
+ {
+  "CreationTime": "2026-11-25T09:50:30Z",
+  "UserId": "elif.kaya@northwind.test",
+  "ClientIP": "203.0.113.66",
+  "Operation": "SoftDelete",
+  "Parameters": "Folder=Sent Items; ItemCount=3; sent items deletion",
+  "ResultStatus": "Succeeded",
+  "Workload": "Exchange"
+ },
+ {
+  "CreationTime": "2026-11-25T11:05:00Z",
+  "UserId": "it.destek@northwind.test",
+  "ClientIP": "192.0.2.20",
+  "Operation": "Add-MailboxPermission",
+  "Parameters": "Identity=finans; User=selin.aydin; AccessRights=FullAccess (ticket IT-4821)",
+  "ResultStatus": "Succeeded",
+  "Workload": "Exchange"
+ },
+ {
+  "CreationTime": "2026-11-25T08:30:00Z",
+  "UserId": "mehmet.demir@northwind.test",
+  "ClientIP": "192.0.2.150",
+  "Operation": "MoveToDeletedItems",
+  "Parameters": "Folder=Inbox; ItemCount=1",
+  "ResultStatus": "Succeeded",
+  "Workload": "Exchange"
+ }
+]
