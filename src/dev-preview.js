@@ -21,6 +21,9 @@ export function extendMock(base) {
   const skills = Object.values(skillFiles).map(parseSkill).sort((a, b) => a.name.localeCompare(b.name));
   let savedQueries = [];
   return async (name, args = {}) => {
+    if (name === 'open_lookup') return `https://www.virustotal.com/gui/(preview)/${args.value}`;
+    if (name === 'inv_list' || name === 'inv_running') return [];
+    if (name.startsWith('inv_')) throw Error('Large investigations need the desktop backend (not available in the browser preview).');
     if (name === 'queries_list') return savedQueries;
     if (name === 'queries_save') {
       savedQueries = structuredClone(args.items);

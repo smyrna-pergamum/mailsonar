@@ -188,7 +188,7 @@ export function mountCopilot(host) {
         </article>
         <article class="cp-card">
           <h3>Agent policy</h3>
-          <p class="cp-muted">Tools are read-only and limited to the current case snapshot (maximum 20,000 records). The agent cannot modify evidence, write files, run commands or reach production systems.</p>
+          <p class="cp-muted">Tools are read-only and limited to the current case snapshot (maximum 100,000 records; larger cases run against a Large investigation store). The agent cannot modify evidence, write files, run commands or reach production systems.</p>
           <ul class="cp-muted">
             <li>Maximum 8 iterations by default, 24 tool calls, 12,000 estimated tokens.</li>
             <li>Sensitive tools are denied unless approved above.</li>

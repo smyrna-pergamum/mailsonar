@@ -125,3 +125,43 @@
 .ms-ok { color: var(--accent); font-weight: 600; }
 .ms-explain { border-left: 3px solid var(--accent); padding-left: 10px; color: var(--ink); }
 @media (max-width: 900px) { .ms-academy { grid-template-columns: 1fr; } }
+
+/* VirusTotal links */
+.ms-vt { font: 10px monospace; padding: 0 5px; margin-left: 4px; border: 1px solid var(--violet); color: var(--violet); background: transparent; border-radius: 4px; cursor: pointer; vertical-align: middle; }
+.ms-vt:hover { background: var(--violet); color: var(--bg); }
+/* Deep analysis */
+.ms-tabs { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px; margin: 10px 0; }
+.ms-tab { text-align: left; display: flex; flex-direction: column; gap: 2px; padding: 10px 12px; }
+.ms-tab small { color: var(--muted); font-size: 11px; }
+.ms-tab.active { border-color: var(--accent); box-shadow: inset 0 -2px 0 var(--accent); }
+.ms-step-box { border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; margin: 8px 0; }
+.ms-step-box h4 { margin: 0 0 6px; }
+.ms-deep-q, .ms-notes { width: 100%; }
+.ms-result-block { border: 1px solid var(--line); border-radius: 6px; padding: 6px 10px; margin: 6px 0; }
+.ms-result-block > summary { cursor: pointer; }
+/* Graph filters */
+.ms-filter-bar { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: flex-end; }
+.ms-filter-bar label { display: flex; flex-direction: column; font-size: 12px; gap: 3px; }
+.ms-filter-bar .ms-grow { flex: 1; min-width: 180px; }
+.ms-types { border: 1px solid var(--line); border-radius: 6px; padding: 4px 8px; display: flex; gap: 10px; }
+.ms-types label { flex-direction: row; align-items: center; gap: 4px; }
+.ms-graph-canvas { height: 520px; border: 1px solid var(--line); border-radius: 8px; margin-top: 8px; }
+.ms-node-records { max-height: 260px; overflow: auto; font-size: 12px; }
+
+/* Large investigations */
+.ms-large { display: grid; grid-template-columns: minmax(240px, 320px) minmax(0, 1fr); gap: 14px; }
+.ms-inv-items { display: flex; flex-direction: column; gap: 4px; margin-top: 8px; }
+.ms-inv { text-align: left; display: flex; flex-direction: column; padding: 8px; }
+.ms-inv small { color: var(--muted); font-size: 11px; }
+.ms-inv.active { border-color: var(--accent); }
+.ms-inv-head { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+.ms-ingest { border: 1px solid var(--accent); border-radius: 8px; padding: 10px 12px; margin: 10px 0; }
+.ms-ingest-head { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.ms-spark { display: flex; align-items: flex-end; gap: 1px; height: 64px; margin: 8px 0; overflow: hidden; }
+.ms-spark span { flex: 1; min-width: 1px; background: var(--accent); opacity: .8; }
+.ms-top-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
+.ms-top { font-size: 12px; padding-left: 18px; }
+.ms-pager { margin-left: auto; display: inline-flex; gap: 6px; align-items: center; }
+.ms-record { max-height: 360px; overflow: auto; }
+.ms-howto li { margin: 6px 0; }
+@media (max-width: 900px) { .ms-large { grid-template-columns: 1fr; } }

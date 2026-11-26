@@ -11,6 +11,7 @@ const PRIMARY = [
   ['copilot', 'HELM agent'],
   ['rules', 'Detection rules'],
   ['case', 'Case & report'],
+  ['investigations', 'Large investigations'],
   ['settings', 'AI model']
 ];
 const EXPERT = [

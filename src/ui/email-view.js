@@ -18,6 +18,11 @@ function badge(name, value) {
   return `<span class="ms-badge ${cls}">${esc(name)}=${esc(v)}</span>`;
 }
 
+export function vt(kind, value) {
+  if (!value) return '';
+  return `<button type="button" class="ms-vt" data-vt="${esc(kind)}" data-v="${esc(value)}" title="${esc(t('Check manually on VirusTotal (opens your browser)'))}">VT ↗</button>`;
+}
+
 function riskClass(score) {
   return score >= 50 ? 'bad' : score >= 20 ? 'warn' : 'ok';
 }
@@ -26,17 +31,17 @@ function detail(row) {
   const {event, a, indicators} = row;
   const h = a.header ?? {};
   const hops = (a.received_chain ?? []).map((hop, i) => `<tr><td>${i + 1}</td><td>${esc(hop.from)}</td><td>${esc(hop.ip)}</td><td>${esc(hop.by)}</td><td>${esc(hop.with)}</td><td>${esc(hop.date)}</td></tr>`).join('');
-  const urls = (a.urls ?? []).map(u => `<tr class="${u.suspicious ? 'row-bad' : ''}"><td><code>${esc(u.url)}</code></td><td>${esc(u.host)}</td><td>${esc((u.flags ?? []).join('; ') || '—')}</td></tr>`).join('');
-  const files = (a.attachments ?? []).map(f => `<tr class="${f.suspicious ? 'row-bad' : ''}"><td>${esc(f.filename)}</td><td>${esc(f.mime)} / ${esc(f.detected_type)}</td><td>${esc(f.size)}</td><td><code>${esc(f.sha256)}</code></td><td>${esc((f.flags ?? []).join('; ') || '—')}</td></tr>`).join('');
+  const urls = (a.urls ?? []).map(u => `<tr class="${u.suspicious ? 'row-bad' : ''}"><td><code>${esc(u.url)}</code> ${vt('url', u.url)}</td><td>${esc(u.host)} ${vt('domain', u.host)}</td><td>${esc((u.flags ?? []).join('; ') || '—')}</td></tr>`).join('');
+  const files = (a.attachments ?? []).map(f => `<tr class="${f.suspicious ? 'row-bad' : ''}"><td>${esc(f.filename)}</td><td>${esc(f.mime)} / ${esc(f.detected_type)}</td><td>${esc(f.size)}</td><td><code>${esc(f.sha256)}</code> ${vt('hash', f.sha256)}</td><td>${esc((f.flags ?? []).join('; ') || '—')}</td></tr>`).join('');
   return `<div class="ms-mail-detail" data-no-translate>
     <div class="ms-mail-top"><h3>${esc(h.subject || '(no subject)')}</h3><span class="ms-badge ${riskClass(a.risk_score)}">${esc(t('Risk'))} ${esc(a.risk_score ?? 0)}/100</span></div>
     <p>${badge('SPF', a.authentication?.spf)} ${badge('DKIM', a.authentication?.dkim)} ${badge('DMARC', a.authentication?.dmarc)}</p>
     <p class="ms-muted">${esc(a.authentication?.note ?? '')}</p>
     <table class="ms-kv"><tbody>
-      <tr><th>From</th><td>${esc(h.from)}</td></tr><tr><th>Return-Path</th><td>${esc(h.return_path || '—')}</td></tr>
+      <tr><th>From</th><td>${esc(h.from)} ${vt('domain', (event.sender.split('@')[1] ?? ''))}</td></tr><tr><th>Return-Path</th><td>${esc(h.return_path || '—')}</td></tr>
       <tr><th>Reply-To</th><td>${esc(h.reply_to || '—')}</td></tr><tr><th>To / Cc</th><td>${esc(h.to)} ${esc(h.cc)}</td></tr>
       <tr><th>Date</th><td>${esc(h.date)}</td></tr><tr><th>Message-ID</th><td>${esc(event.message_id)}</td></tr>
-      <tr><th>Origin IP</th><td>${esc(a.origin_ip || '—')}</td></tr><tr><th>X-Mailer</th><td>${esc(h.x_mailer || '—')}</td></tr>
+      <tr><th>Origin IP</th><td>${esc(a.origin_ip || '—')} ${vt('ip', a.origin_ip)}</td></tr><tr><th>X-Mailer</th><td>${esc(h.x_mailer || '—')}</td></tr>
     </tbody></table>
     ${platformsHtml(a.platforms)}
     ${(a.mismatches ?? []).length || (a.chain_flags ?? []).length ? `<h4>${esc(t('Anomalies'))}</h4><ul>${[...(a.mismatches ?? []), ...(a.chain_flags ?? [])].map(m => `<li>${esc(m)}</li>`).join('')}</ul>` : ''}
@@ -58,6 +63,19 @@ export function mountEmailView({section, api}) {
   const list = section.querySelector('.ms-mail-list');
   const pane = section.querySelector('.ms-mail-pane');
   section.querySelector('.ms-mail-ai').onclick = () => api.quickRun('email-header-forensics');
+  let vtConfirmed = false;
+  section.addEventListener('click', async event => {
+    const b = event.target.closest('[data-vt]');
+    if (!b) return;
+    if (!vtConfirmed && !confirm(t('VirusTotal is a third-party service: the indicator you open becomes visible to VirusTotal and its customers. Continue?'))) return;
+    vtConfirmed = true;
+    try {
+      await api.lookup(b.dataset.vt, b.dataset.v);
+      api.status('Opened on VirusTotal: {value}', {value: b.dataset.v.slice(0, 80)});
+    } catch (error) {
+      api.status(String(error?.message ?? error));
+    }
+  });
   let selected = null;
   function render() {
     const rows = emailRows(api.getCase().events);

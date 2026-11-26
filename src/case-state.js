@@ -12,7 +12,7 @@ export function validateCase(c) {
     for (const e of f.events) {
       if (!e || ['id','timestamp','sender','recipient','ip','message_id','action'].some(k => typeof e[k] !== 'string') || !e.id || ids.has(e.id)) throw Error('Invalid or duplicate evidence ID');
       ids.add(e.id);
-      if (++count > 20000) throw Error('Case exceeds 20000 records');
+      if (++count > 100000) throw Error('Case exceeds 100000 records; use Large investigations');
     }
   }
   validateRules(c.rules ?? []);
