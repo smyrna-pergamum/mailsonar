@@ -16,7 +16,7 @@ test('case rejects duplicate IDs and malformed state before restoration',()=>{
  const c=saved();c.evidence[0].events.push(event('one'));assert.throws(()=>validateCase(c),/duplicate/);
  for(const patch of [{schema:'other'},{iocs:[null]},{sigmaRules:[{}]},{mapping:{fields:{id:'raw'}}},{journal:{}}])assert.throws(()=>validateCase({...saved(),...patch}));
 });
-test('case rejects record overflow',()=>{const c=saved();c.evidence[0].events=Array.from({length:20001},(_,i)=>event(String(i)));assert.throws(()=>validateCase(c),/20000/);});
+test('case rejects record overflow',()=>{const c=saved();c.evidence[0].events=Array.from({length:100001},(_,i)=>event(String(i)));assert.throws(()=>validateCase(c),/100000/);});
 test('timezone-free timestamps cannot silently use the workstation timezone',()=>{
  assert.ok(Number.isNaN(eventTime('2026-11-25T10:00:00')));
  assert.equal(eventTime('2026-11-25T11:00:00+01:00'),eventTime('2026-11-25T10:00:00Z'));

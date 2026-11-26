@@ -22,7 +22,7 @@ use super::{err, Event, Finding};
 
 type Res<T> = Result<T, String>;
 
-const MAX_EVENTS: usize = 20_000;
+const MAX_EVENTS: usize = 100_000;
 const MAX_FINDINGS: usize = 50_000;
 const MAX_TASK: usize = 8_000;
 const MAX_ITERATIONS: u32 = 12;
@@ -122,6 +122,9 @@ pub struct AgentRequest {
     /// Prior conversation turns for follow-up questions (bounded).
     #[serde(default)]
     pub history: Vec<HistoryTurn>,
+    /// Run against a large investigation store instead of `events`.
+    #[serde(default)]
+    pub investigation: Option<String>,
 }
 
 #[derive(Deserialize, Clone)]
@@ -220,6 +223,8 @@ pub(crate) struct ToolContext<'a> {
     pub iocs: &'a [Value],
     pub raw_ok: bool,
     pub skills: &'a [Skill],
+    /// Large investigation store; when set, case tools query SQLite instead of `events`.
+    pub store: Option<&'a super::inv_tools::InvCtx>,
 }
 
 #[derive(Clone)]
@@ -410,6 +415,19 @@ const SUMMARY_SKIP: &[&str] = &[
 
 /// Short, single-line digest of the raw record so the model can reason about
 /// subjects, results and indicators without reading every field.
+pub(crate) fn data_summary_pub(data: &Value) -> String {
+    data_summary(data)
+}
+
+/// ATT&CK techniques mapped to a rule id (heuristic).
+pub(crate) fn attack_tags(rule: &str) -> Vec<&'static str> {
+    ATTACK_BY_RULE
+        .iter()
+        .find(|(r, _)| *r == rule)
+        .map(|(_, tags)| tags.to_vec())
+        .unwrap_or_default()
+}
+
 fn data_summary(data: &Value) -> String {
     let Some(object) = data.as_object() else {
         return String::new();
@@ -1472,7 +1490,13 @@ fn run_tool(
             "approval_required".into(),
         );
     }
-    match execute_tool(name, arguments, ctx) {
+    let executed = match ctx.store {
+        Some(store) if super::inv_tools::TOOLS.contains(&name) => {
+            super::inv_tools::execute(name, arguments, store)
+        }
+        _ => execute_tool(name, arguments, ctx),
+    };
+    match executed {
         Ok(value) => {
             if name == "update_plan" {
                 if let Some(steps) = arguments.get("steps").and_then(Value::as_array) {
@@ -1540,11 +1564,20 @@ async fn run_loop(
 
     // Skill activation: the playbook plus deterministic preloaded tool results go
     // into the first user turn, so even models with weak tool calling start grounded.
+    let (record_count, finding_count) = match ctx.store {
+        Some(store) => super::inv_tools::counts(store),
+        None => (ctx.events.len(), ctx.findings.len()),
+    };
+    let large_note = if ctx.store.is_some() {
+        " This is a large investigation stored on disk: use filters, aggregates and searches instead of listing records."
+    } else {
+        ""
+    };
     let mut user = format!(
         "Investigation task: {task}\n\nCase snapshot: {} records, {} findings, {} indicators. \
-         Use tools to inspect it. Do not assume the snapshot is complete.",
-        ctx.events.len(),
-        ctx.findings.len(),
+         Use tools to inspect it. Do not assume the snapshot is complete.{large_note}",
+        record_count,
+        finding_count,
         ctx.iocs.len()
     );
     if let Some(skill) = extras.skill {
@@ -1865,7 +1898,9 @@ fn validate_request(request: &AgentRequest) -> Res<(RunConfig, bool)> {
         return Err("Task must be between 3 and 8000 characters".into());
     }
     if request.events.len() > MAX_EVENTS {
-        return Err("Case exceeds the 20,000 record agent limit".into());
+        return Err(
+            "Case exceeds the 100,000 record workspace limit; use a large investigation".into(),
+        );
     }
     if request.findings.len() > MAX_FINDINGS {
         return Err("Finding set is too large".into());
@@ -1983,6 +2018,7 @@ pub(crate) async fn run_for_test(request: AgentRequest) -> AgentOutcome {
         iocs: &request.iocs,
         raw_ok: loopback,
         skills: &skill_set,
+        store: None,
     };
     let on_step = |s: &TraceStep| {
         eprintln!(
@@ -2059,12 +2095,23 @@ pub async fn agent_run(
     let active = chosen
         .as_ref()
         .and_then(|name| skill_set.iter().find(|s| &s.name == name));
+    let store = match request.investigation.as_deref() {
+        Some(id) if !id.is_empty() => {
+            let path = super::inv_store::db_path(&super::inv_store::dir(&app)?, id)?;
+            if !path.exists() {
+                return Err("Investigation not found".into());
+            }
+            Some(super::inv_tools::InvCtx::open(&path, loopback)?)
+        }
+        _ => None,
+    };
     let ctx = ToolContext {
         events: &events,
         findings: &findings,
         iocs: &request.iocs,
         raw_ok: loopback,
         skills: &skill_set,
+        store: store.as_ref(),
     };
     let cancel = Arc::new(AtomicBool::new(false));
     {
@@ -2204,6 +2251,7 @@ mod tests {
             iocs: &[],
             raw_ok: true,
             skills: &[],
+            store: None,
         }
     }
 

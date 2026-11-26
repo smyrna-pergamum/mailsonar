@@ -26,11 +26,11 @@ export function newSessionId(prefix = 'ui') {
  * Run the agent. `onStep` receives live trace steps. Returns the AgentOutcome.
  * Throws with a readable message when no provider or no evidence is available.
  */
-export async function runHelm({backend, getCase, task, skill = null, history = [], sessionId = newSessionId(), onStep, maxIterations = 10, tokenBudget, feedback = ''}) {
+export async function runHelm({backend, getCase, task, skill = null, history = [], sessionId = newSessionId(), onStep, maxIterations = 10, tokenBudget, feedback = '', investigation = null}) {
   const provider = getProvider();
   if (!providerReady(provider)) throw Error(t('Connect an AI model first (AI model page).'));
   const current = getCase();
-  if (!current.events?.length) throw Error(t('Import evidence or load the sample case first.'));
+  if (!investigation && !current.events?.length) throw Error(t('Import evidence or load the sample case first.'));
   if (!confirmTransfer(provider)) throw Error(t('Cancelled: nothing was sent.'));
   const unlisten = onStep ? await listenSteps(payload => {
     if (payload?.session_id === sessionId) onStep(payload.step);
@@ -41,9 +41,10 @@ export async function runHelm({backend, getCase, task, skill = null, history = [
         session_id: sessionId,
         task: localizedQuestion(task + feedback),
         provider: {endpoint: provider.endpoint, model: provider.model, key: provider.key},
-        events: current.events,
-        findings: current.findings ?? [],
+        events: investigation ? [] : current.events,
+        findings: investigation ? [] : current.findings ?? [],
         iocs: current.iocs ?? [],
+        investigation,
         allowed_tools: [],
         approvals: [],
         max_iterations: maxIterations,

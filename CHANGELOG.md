@@ -2,6 +2,18 @@
 
 All notable changes are recorded here. This project does not use semantic-version tags beyond the release labels in `ROADMAP.md`.
 
+## V1.3 — Large investigations
+
+- **Large investigations**: per-case SQLite stores for millions of events; streaming parsers (CSV, JSONL, LOG/TXT, MBOX, inside GZIP/ZIP), adaptive batches of 2,000–20,000 records, parallel workers with bounded queues, ordered writer with per-batch checkpoint and resume, content-hash de-duplication, failures table, per-file source profiles.
+- **Global correlation** across batches and files (COR-001/002/003, COR-004 kill chain).
+- **HELM on large investigations**: SQL-backed tools with the same names and schemas; cloud providers receive per-run aliases and aliases are mapped back locally.
+- **UI**: Large investigations view with live import progress (bytes, records, EPS, duplicates, failures), overview, paged findings and records, log sources, HELM and copy-to-workspace.
+- In-memory workspace limit raised from 20,000 to **100,000** records and 64 MiB per file.
+- **Benchmark** `bench_ingest_scales` (1k … 1M, optional 5M) with integrity and crash-recovery checks.
+- **Relationship graph filters**: scope (findings, attack chains, high priority, all), entity types, time range, minimum connections, node cap and entity search; node detail with records.
+- **VirusTotal links** for URLs, domains, origin IPs and attachment hashes (manual, opens the system browser, validated `virustotal.com` addresses only).
+- **Deep analysis redesign**: the old "selected records / batch / two-stage" section is now three guided methods with selection helpers (high-priority evidence, attack-chain evidence), question templates and a readable result view with evidence validation counts; exports moved to Case & report.
+
 ## V1.2 — Simplified workbench, e-mail forensics, skill-driven HELM
 
 ### Training, saved queries, provider identification, releases

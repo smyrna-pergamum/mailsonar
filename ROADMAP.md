@@ -124,6 +124,23 @@ Status reflects this working tree. A checked item is implemented and covered by 
 - [ ] Independent forensic review
 - [ ] Live provider and cross-platform validation
 
+## V1.2 — Simplified workbench and skill-driven HELM (released)
+
+Start page, training mode, e-mail forensics, provider identification, HELM skills, local model discovery, cross-platform releases.
+
+## V1.3 — Large investigations
+
+| Phase | Scope | Status |
+|---|---|---|
+| 1 · Chunked import | Streaming parsers, 20,000-record batch guard, investigation and batch ids, checkpoint and resume, import progress | Done |
+| 2 · Parallel processing | Worker pool (1–4), bounded queues / backpressure, ordered writer, failures table, adaptive batch size | Done |
+| 3 · Global correlation | Cross-batch COR-001/002/003, COR-004 kill chain, content-hash de-duplication, HELM SQL tools | Done |
+| 4 · Performance | 1k–1M benchmark with integrity and recovery; 5M optional | Measured, see PERFORMANCE-BENCHMARKS.md |
+
+## Later — server edition (not started)
+
+A multi-user server would split the roles the desktop app keeps in one process: PostgreSQL (investigations, jobs, users), ClickHouse (event analytics), S3/MinIO (original evidence), Redis (job queue) and horizontally scaled Rust workers. The desktop store and ingest pipeline are designed so these can replace SQLite and threads without changing the batch / checkpoint model.
+
 ## Explicit non-goals for V1.0
 
 - 1,000,000-event single-import benchmarking.

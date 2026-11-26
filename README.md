@@ -1,4 +1,4 @@
-# MailSonar — V1.2
+# MailSonar — V1.3
 
 **Detect threats beneath the surface.**
 
@@ -43,21 +43,34 @@ The UI is available in English, German and Turkish.
 | **Training mode** | 9 lessons, 20 questions on the synthetic BEC case and the repository dataset; hints, "show me", explanations, progress |
 | **Overview / Findings / Log explorer** | Dashboards, rule findings with analyst review, paged record browser |
 | **E-mail analysis** | Messages sorted by risk with header, authentication, Received-chain, URL, attachment and platform analysis |
-| **AI analysis** | Nine one-click investigation profiles (each a HELM skill), free questions and **saved analyst queries** |
+| **AI analysis** | Nine one-click investigation profiles (each a HELM skill), free questions, **saved analyst queries** and a guided *deep analysis* of chosen records (selected, batched, two-stage) |
 | **HELM agent** | Agent console with live plan and tool trace, skill library, WAYPOINT workflows, sessions |
 | **Detection rules** | AI rule writer (tests each rule against the case), quick rule form, JSON/Sigma/mapping editors |
-| **Case & report** | Save/open cases, HTML/PDF/JSON/OCSF export |
+| **Case & report** | Save/open cases, HTML/PDF/JSON/OCSF and relationship-graph export |
+| **Large investigations** | Streamed multi-million-event cases with checkpoints, cross-batch correlation and HELM |
 | **AI model** | Local discovery and self-test, Hugging Face hub, installed models, other providers |
-| **Expert tools** | Timeline, relationship graph, MITRE ATT&CK, threat intelligence, evidence vault, AI evaluation |
+| **Expert tools** | Timeline, relationship graph with filters (scope, entity types, time range, min. connections, search), MITRE ATT&CK, threat intelligence, evidence vault, AI evaluation |
 
 ## E-mail forensics
 
 - **Import:** EML, MBOX, MSG, CSV, JSON, JSONL, XML, TXT, LOG, EVTX, XLSX, ZIP, GZIP.
 - **Message analysis (static, nothing executed, rendered or fetched):** Received chain bottom-up with origin IP, unknown relays and time-order anomalies; SPF/DKIM/DMARC; From vs Return-Path vs Reply-To vs display name; look-alike domains (homoglyphs, typosquatting, brand keywords); URLs (visible text vs target, punycode, shorteners, IP literals, open redirects); attachments (SHA-256, magic-byte type, double extension, RTL override, macros, encrypted ZIP).
 - **Log source and mail-provider identification:** every file is fingerprinted from field names, product names, line formats and headers — Microsoft 365 unified audit log, Exchange Online message trace, Entra ID sign-ins, Exchange Server message tracking, Google Workspace, Postfix, Exim, Sendmail, Dovecot, Rspamd, Amavis, Proofpoint, Mimecast, Cisco Secure Email, Barracuda, Zimbra, Amazon SES. Messages show sending, relay, gateway and receiving platforms (Microsoft 365, Gmail, SES, SendGrid, Mailgun, Proofpoint, Mimecast, GMX/WEB.DE, IONOS…). Each attribution carries a confidence and the reason.
+- **Manual reputation check:** every URL, domain, origin IP and attachment hash has a *VT ↗* link that opens VirusTotal in your browser (nothing is queried automatically; a one-time notice explains that VirusTotal is a third party).
 - **Detection:** 30 built-in rules (MAIL-001…030), custom rules, Sigma subset, IOC matching, anomaly rule.
 - **Correlation:** COR-001 authentication-failure window, COR-002 outbound spike, COR-003 message trace, **COR-004 kill chain** per account (phishing received → suspicious sign-in → mailbox manipulation → fraud/exfiltration within 24 h).
 - **Evidence handling:** SHA-256 verified, SQLite vault, hash-chained journal. Not encrypted, not externally anchored.
+
+## Large investigations (millions of events)
+
+The in-memory workspace holds up to **100,000 records**. Larger evidence goes to a **Large investigation**: a per-case SQLite store on disk.
+
+- **Streaming ingest:** CSV, JSONL/NDJSON, LOG/TXT and MBOX are read line by line, also inside GZIP and ZIP; EML, JSON arrays, EVTX, XLSX and XML are parsed in memory up to 256 MiB each.
+- **Chunked processing:** adaptive batches of 2,000–20,000 records (by free RAM), 1–4 parallel workers with bounded queues (backpressure), an ordered writer and a per-batch checkpoint. The 20,000 guard limits a batch, not the investigation.
+- **Fault tolerance:** a stopped or crashed import resumes from the checkpoint when the same file (same SHA-256) is added again; identical events are stored once (content hash); malformed records are kept in a failures table with their record number.
+- **Global correlation:** after import, COR-001/002/003 and the COR-004 kill chain run across all batches and files, so a phishing mail in batch 1 and a forwarding rule in batch 40 still connect.
+- **Analysis:** overview (severities, top entities, hourly activity), paged findings and records with field or full-text search, log-source profiles per file, **HELM on the whole store** (SQL-backed tools, minimized for cloud providers) and *copy results to workspace* for the in-memory tools.
+- **Benchmark:** `cargo test --release --manifest-path src-tauri/Cargo.toml bench_ingest_scales -- --ignored --nocapture` measures 1k … 1M events (EPS, batch latency P50/P95/P99, peak RAM, duplicates, failures, integrity, crash recovery). Results: `PERFORMANCE-BENCHMARKS.md`.
 
 ## HELM agent and skills
 
@@ -97,7 +110,7 @@ preload:
 
 ## Limits
 
-- In-memory workspace: 20,000 records per session and per file (large-investigation mode is in development; see `ROADMAP.md`).
+- In-memory workspace: 100,000 records and 64 MiB per file; larger evidence uses Large investigations (SQLite on this PC; no distributed cluster).
 - MSG: selected MAPI properties only. Attachments are hashed and inspected statically; there is no sandbox, AV or reputation lookup.
 - Provider identification is heuristic; renamed or re-exported logs can look like another product.
 - HELM is a bounded single-agent loop; AI output is unverified and requires analyst review.

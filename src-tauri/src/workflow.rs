@@ -550,6 +550,7 @@ async fn execute_workflow(
         iocs: &request.iocs,
         raw_ok: true,
         skills: &[],
+        store: None,
     };
     for id in order {
         if cancel.load(Ordering::SeqCst) {

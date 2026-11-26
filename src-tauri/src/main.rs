@@ -3,7 +3,14 @@
 mod agent;
 mod email;
 mod embedded_ai;
+mod inv_bench;
+mod inv_correlate;
+mod inv_ingest;
+mod inv_store;
+mod inv_tools;
+mod investigations;
 mod local_ai;
+mod lookup;
 mod pdf;
 mod queries;
 mod samples;
@@ -20,8 +27,9 @@ use std::io::{Cursor, Read};
 use std::path::Path;
 use std::time::Duration;
 
-const MAX_BYTES: usize = 32 * 1024 * 1024;
-const MAX_ROWS: usize = 20_000;
+/// In-memory workspace limits. Larger evidence goes to a streamed investigation store.
+const MAX_BYTES: usize = 64 * 1024 * 1024;
+const MAX_ROWS: usize = 100_000;
 const MAX_RECORD: usize = 65_536;
 
 // AI gateway limits. These are enforced in the backend, not in the UI.
@@ -188,12 +196,35 @@ fn read_limited(r: impl Read, limit: usize) -> Res<Vec<u8>> {
     Ok(b)
 }
 
+/// Parse with the in-memory workspace record limit.
 fn parse(
     name: &str,
     b: &[u8],
     depth: usize,
     budget: &mut usize,
     warnings: &mut Vec<String>,
+) -> Res<Vec<Value>> {
+    parse_limited(name, b, depth, budget, warnings, MAX_ROWS)
+}
+
+/// Parse for the streaming investigation path (no workspace record limit).
+fn parse_unbounded(
+    name: &str,
+    b: &[u8],
+    depth: usize,
+    budget: &mut usize,
+    warnings: &mut Vec<String>,
+) -> Res<Vec<Value>> {
+    parse_limited(name, b, depth, budget, warnings, 50_000_000)
+}
+
+fn parse_limited(
+    name: &str,
+    b: &[u8],
+    depth: usize,
+    budget: &mut usize,
+    warnings: &mut Vec<String>,
+    max_rows: usize,
 ) -> Res<Vec<Value>> {
     if depth > 2 {
         return Err("Archive nesting limit exceeded".into());
@@ -220,11 +251,11 @@ fn parse(
                 let entry_name = f.name().map_err(err)?.into_owned();
                 let n = format!("{}!{}", name, entry_name);
                 let bytes = read_limited(f, (*budget).min(MAX_BYTES))?;
-                match parse(&n, &bytes, depth + 1, budget, warnings) {
+                match parse_limited(&n, &bytes, depth + 1, budget, warnings, max_rows) {
                     Ok(v) => rows.extend(v.iter().cloned()),
                     Err(e) => warnings.push(format!("{n}: {e}")),
                 }
-                if rows.len() > MAX_ROWS {
+                if rows.len() > max_rows {
                     return Err("Record limit exceeded".into());
                 }
             }
@@ -233,13 +264,13 @@ fn parse(
         "gz" | "gzip" => {
             let bytes = read_limited(flate2::read::MultiGzDecoder::new(b), *budget)?;
             let n = name.rsplit_once('.').map(|(s, _)| s).unwrap_or(name);
-            return parse(n, &bytes, depth + 1, budget, warnings);
+            return parse_limited(n, &bytes, depth + 1, budget, warnings, max_rows);
         }
         "csv" => {
             let mut r = csv::ReaderBuilder::new().flexible(false).from_reader(b);
             for v in r
                 .deserialize::<std::collections::BTreeMap<String, String>>()
-                .take(MAX_ROWS + 1)
+                .take(max_rows + 1)
             {
                 rows.push(json!(v.map_err(err)?));
             }
@@ -268,7 +299,7 @@ fn parse(
                     Ok(v) => rows.push(v),
                     Err(e) => warnings.push(format!("JSONL line {}: {}", i + 1, e)),
                 }
-                if rows.len() > MAX_ROWS {
+                if rows.len() > max_rows {
                     break;
                 }
             }
@@ -279,7 +310,7 @@ fn parse(
             let root = doc.root_element();
             let nodes: Vec<_> = root.children().filter(|n| n.is_element()).collect();
             let records = if nodes.is_empty() { vec![root] } else { nodes };
-            for n in records.into_iter().take(MAX_ROWS + 1) {
+            for n in records.into_iter().take(max_rows + 1) {
                 let mut o = serde_json::Map::new();
                 for c in n.descendants().filter(|c| c.is_element()) {
                     if c.children().all(|x| !x.is_element()) {
@@ -306,7 +337,7 @@ fn parse(
                     Ok(v) => rows.push(v),
                     Err(e) => warnings.push(format!("MBOX message {}: {e}", i + 1)),
                 }
-                if rows.len() > MAX_ROWS {
+                if rows.len() > max_rows {
                     break;
                 }
             }
@@ -353,7 +384,7 @@ fn parse(
         }
         "evtx" => {
             let mut p = evtx::EvtxParser::from_buffer(b.to_vec()).map_err(err)?;
-            for r in p.records_json().take(MAX_ROWS + 1) {
+            for r in p.records_json().take(max_rows + 1) {
                 match r {
                     Ok(r) => {
                         let mut v: Value = serde_json::from_str(&r.data).map_err(err)?;
@@ -386,7 +417,7 @@ fn parse(
                         }
                         o.insert("_sheet".into(), json!(sheet));
                         rows.push(Value::Object(o));
-                        if rows.len() > MAX_ROWS {
+                        if rows.len() > max_rows {
                             break;
                         }
                     }
@@ -401,7 +432,7 @@ fn parse(
             for l in s
                 .lines()
                 .filter(|l| !l.trim().is_empty())
-                .take(MAX_ROWS + 1)
+                .take(max_rows + 1)
             {
                 let mut o = serde_json::Map::new();
                 o.insert("raw".into(), json!(l));
@@ -414,7 +445,7 @@ fn parse(
         _ => return Err(format!("Unsupported extension: {ext}")),
     }
 
-    if rows.len() > MAX_ROWS {
+    if rows.len() > max_rows {
         return Err("Record limit exceeded; split the input".into());
     }
     Ok(rows)
@@ -910,6 +941,7 @@ fn main() {
         .manage(embedded_ai::Engine::default())
         .manage(embedded_ai::Downloads::default())
         .manage(agent::Cancellations::default())
+        .manage(investigations::InvJobs::default())
         .manage(agent::Sessions::default())
         .manage(workflow::WorkflowCancels::default())
         .invoke_handler(tauri::generate_handler![
@@ -936,6 +968,18 @@ fn main() {
             embedded_ai::embedded_connection,
             local_ai::discover_local_ai,
             local_ai::ai_selftest,
+            lookup::open_lookup,
+            investigations::inv_list,
+            investigations::inv_create,
+            investigations::inv_delete,
+            investigations::inv_import,
+            investigations::inv_cancel,
+            investigations::inv_running,
+            investigations::inv_overview,
+            investigations::inv_search,
+            investigations::inv_findings,
+            investigations::inv_events,
+            investigations::inv_subset,
             embedded_ai::model_download_start,
             embedded_ai::model_download_control,
             embedded_ai::hf_search,
@@ -1480,7 +1524,7 @@ mod demo_e2e {
                 "task": task,
                 "provider": {"endpoint": endpoint, "model": "local", "key": key},
                 "events": events, "findings": findings,
-                "max_iterations": 8, "token_budget": 32000,
+                "max_iterations": 8, "token_budget": 11000,
                 "skill": std::env::var("MAILDFIR_TEST_SKILL").unwrap_or_else(|_| "bec-fraud".into())
             }))
             .unwrap();
