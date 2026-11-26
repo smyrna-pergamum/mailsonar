@@ -4,6 +4,7 @@
 // gateway, batch loop, two-stage review) are reused unchanged through their
 // hidden controls, so privacy checks and limits stay exactly as before.
 import {t} from '../i18n.js';
+import {tt} from './strings.js';
 import {esc, markdown} from './agent-view.js';
 import {confirmTransfer} from './helm-run.js';
 import {getProvider, isLoopback, providerReady} from './provider.js';
@@ -49,7 +50,7 @@ export function mountAdvancedAi({details, api}) {
   for (const child of [...details.children]) if (child !== summary) legacy.append(child);
   // Exports are case outputs, not AI: move them to Case & report.
   const exports = document.createElement('article');
-  exports.innerHTML = `<h2>${esc(t('Exports'))}</h2>`;
+  exports.innerHTML = `<h2>${tt('Exports')}</h2>`;
   for (const id of ['graphRC3', 'ocsfRC3']) {
     const button = legacy.querySelector(`#${id}`);
     if (button) exports.append(button, ' ');
@@ -72,43 +73,43 @@ export function mountAdvancedAi({details, api}) {
     const batches = Math.ceil(c.events.length / 25);
     const p = getProvider();
     box.innerHTML = `
-      <p class="ms-muted">${esc(t('Use this when you want to decide exactly which records the model sees. For most questions the one-click analysis above (HELM) is easier and usually better: it searches the whole case itself.'))}</p>
-      <p class="ms-muted">${esc(t('Records are always sent pseudonymised (entity aliases, no raw content), also to local models.'))}</p>
+      <p class="ms-muted">${tt('Use this when you want to decide exactly which records the model sees. For most questions the one-click analysis above (HELM) is easier and usually better: it searches the whole case itself.')}</p>
+      <p class="ms-muted">${tt('Records are always sent pseudonymised (entity aliases, no raw content), also to local models.')}</p>
       <div class="ms-tabs" role="tablist">
         ${[['selected', '1 · Selected records', 'Up to 25 records you choose'], ['batch', '2 · Whole case in batches', `${c.events.length} records → ${batches} batches`], ['review', '3 · Two-stage review', 'Triage, then an independent check']]
-          .map(([id, title, hint]) => `<button type="button" role="tab" class="ms-tab ${state.mode === id ? 'active' : ''}" data-mode="${id}"><strong>${esc(t(title))}</strong><small>${esc(id === 'batch' ? t('{count} records → {batches} batches', {count: c.events.length, batches}) : t(hint))}</small></button>`).join('')}
+          .map(([id, title, hint]) => `<button type="button" role="tab" class="ms-tab ${state.mode === id ? 'active' : ''}" data-mode="${id}"><strong>${tt(title)}</strong><small>${esc(id === 'batch' ? t('{count} records → {batches} batches', {count: c.events.length, batches}) : t(hint))}</small></button>`).join('')}
       </div>
       <div class="ms-tab-body">${body(c, batches)}</div>
-      ${providerReady(p) ? '' : `<p class="ms-warn">${esc(t('Connect an AI model first (AI model page).'))}</p>`}
+      ${providerReady(p) ? '' : `<p class="ms-warn">${tt('Connect an AI model first (AI model page).')}</p>`}
       <div class="ms-deep-result" data-no-translate></div>`;
     renderResult();
   }
 
   function body(c, batches) {
-    const question = `<label>${esc(t('Question'))}<select class="ms-template"><option value="">${esc(t('Choose a template…'))}</option>${TEMPLATES.map(([q, label]) => `<option value="${esc(t(q))}">${esc(t(label))}</option>`).join('')}</select></label>
+    const question = `<label>${tt('Question')}<select class="ms-template"><option value="" data-t="${esc('Choose a template…')}">${esc(t('Choose a template…'))}</option>${TEMPLATES.map(([q, label]) => `<option value="${esc(t(q))}" data-t="${esc(label)}">${esc(t(label))}</option>`).join('')}</select></label>
       <textarea class="ms-deep-q" rows="3">${esc($('question').value)}</textarea>`;
     if (state.mode === 'selected') {
-      return `<div class="ms-step-box"><h4>${esc(t('Step 1 · Choose records'))}</h4>
+      return `<div class="ms-step-box"><h4>${tt('Step 1 · Choose records')}</h4>
           <p class="ms-sel-info">${esc(selectionInfo())}</p>
           <div class="ms-actions">
-            <button type="button" data-pick="high">${esc(t('Evidence of high-priority findings'))}</button>
-            <button type="button" data-pick="chain">${esc(t('Attack-chain evidence'))}</button>
-            <button type="button" data-pick="explorer">${esc(t('Pick manually in Log explorer'))}</button>
-            <button type="button" class="ms-link" data-pick="clear">${esc(t('Clear selection'))}</button>
+            <button type="button" data-pick="high">${tt('Evidence of high-priority findings')}</button>
+            <button type="button" data-pick="chain">${tt('Attack-chain evidence')}</button>
+            <button type="button" data-pick="explorer">${tt('Pick manually in Log explorer')}</button>
+            <button type="button" class="ms-link" data-pick="clear">${tt('Clear selection')}</button>
           </div></div>
-        <div class="ms-step-box"><h4>${esc(t('Step 2 · Ask'))}</h4>${question}
-          <div class="ms-actions"><button type="button" class="primary" data-run="ask">${esc(t('Analyse selected records'))}</button></div></div>`;
+        <div class="ms-step-box"><h4>${tt('Step 2 · Ask')}</h4>${question}
+          <div class="ms-actions"><button type="button" class="primary" data-run="ask">${tt('Analyse selected records')}</button></div></div>`;
     }
     if (state.mode === 'batch') {
-      return `<div class="ms-step-box"><p>${esc(t('Sends every record in batches of 25 and collects the answers. Useful for a complete pass; slow with local CPU models (roughly 1–5 minutes per batch).'))}</p>
+      return `<div class="ms-step-box"><p>${tt('Sends every record in batches of 25 and collects the answers. Useful for a complete pass; slow with local CPU models (roughly 1–5 minutes per batch).')}</p>
           <p class="ms-muted">${esc(t('{count} records → {batches} batches', {count: c.events.length, batches}))}</p>${question}
-          <div class="ms-actions"><button type="button" class="primary" data-run="batch" ${c.events.length ? '' : 'disabled'}>${esc(t('Start batch analysis'))}</button><button type="button" data-run="stop">${esc(t('Stop after current batch'))}</button></div></div>`;
+          <div class="ms-actions"><button type="button" class="primary" data-run="batch" ${c.events.length ? '' : 'disabled'}>${tt('Start batch analysis')}</button><button type="button" data-run="stop">${tt('Stop after current batch')}</button></div></div>`;
     }
-    return `<div class="ms-step-box"><p>${esc(t('Stage 1 triages all records; stage 2 independently re-checks every claim against the cited evidence. Claims without valid evidence IDs are rejected.'))}</p>${question}
-        <details><summary>${esc(t('Optional: reference notes (playbooks, known-good senders)'))}</summary>
-          <p class="ms-muted">${esc(t('One note per line. Sent as written: no personal data.'))}</p>
-          <textarea class="ms-notes" rows="4" placeholder="${esc(t('e.g. finans@ and it.destek@ are internal shared mailboxes'))}"></textarea></details>
-        <div class="ms-actions"><button type="button" class="primary" data-run="review" ${c.events.length ? '' : 'disabled'}>${esc(t('Start two-stage review'))}</button><button type="button" data-run="stop">${esc(t('Stop'))}</button></div></div>`;
+    return `<div class="ms-step-box"><p>${tt('Stage 1 triages all records; stage 2 independently re-checks every claim against the cited evidence. Claims without valid evidence IDs are rejected.')}</p>${question}
+        <details><summary>${tt('Optional: reference notes (playbooks, known-good senders)')}</summary>
+          <p class="ms-muted">${tt('One note per line. Sent as written: no personal data.')}</p>
+          <textarea class="ms-notes" rows="4" placeholder="${esc(t('e.g. finans@ and it.destek@ are internal shared mailboxes'))}" data-tp="${esc('e.g. finans@ and it.destek@ are internal shared mailboxes')}"></textarea></details>
+        <div class="ms-actions"><button type="button" class="primary" data-run="review" ${c.events.length ? '' : 'disabled'}>${tt('Start two-stage review')}</button><button type="button" data-run="stop">${tt('Stop')}</button></div></div>`;
   }
 
   function renderResult() {
@@ -120,11 +121,11 @@ export function mountAdvancedAi({details, api}) {
       return;
     }
     const totals = blocks.flatMap(b => b.stages ?? []).reduce((acc, s) => ({ok: acc.ok + s.accepted, bad: acc.bad + s.rejected}), {ok: 0, bad: 0});
-    host.innerHTML = `<h3>${esc(t('Result'))}</h3>
-      <p><span class="ms-badge ok">✓ ${totals.ok} ${esc(t('claims with valid evidence'))}</span> <span class="ms-badge ${totals.bad ? 'bad' : ''}">✗ ${totals.bad} ${esc(t('rejected claims'))}</span></p>
+    host.innerHTML = `<h3>${tt('Result')}</h3>
+      <p><span class="ms-badge ok">✓ ${totals.ok} ${tt('claims with valid evidence')}</span> <span class="ms-badge ${totals.bad ? 'bad' : ''}">✗ ${totals.bad} ${tt('rejected claims')}</span></p>
       ${blocks.map(b => `<details class="ms-result-block" ${blocks.length === 1 ? 'open' : ''}><summary>${esc(b.title || t('Answer'))}${b.error ? ` · <span class="ms-warn">${esc(b.error)}</span>` : ''}</summary>
-        ${b.text ? markdown(b.text) : ''}${(b.stages ?? []).map(s => `${s.name ? `<h4>${esc(t(s.name))}</h4>` : ''}${markdown(s.text)}<p class="ms-muted">✓ ${s.accepted} · ✗ ${s.rejected}</p>`).join('')}</details>`).join('')}
-      <p class="ms-muted">${esc(t('AI output is unverified. Check every claim against the cited evidence.'))}</p>`;
+        ${b.text ? markdown(b.text) : ''}${(b.stages ?? []).map(s => `${s.name ? `<h4>${tt(s.name)}</h4>` : ''}${markdown(s.text)}<p class="ms-muted">✓ ${s.accepted} · ✗ ${s.rejected}</p>`).join('')}</details>`).join('')}
+      <p class="ms-muted">${tt('AI output is unverified. Check every claim against the cited evidence.')}</p>`;
   }
 
   function prepare() {
@@ -178,6 +179,7 @@ export function mountAdvancedAi({details, api}) {
   });
   new MutationObserver(renderResult).observe($('answer'), {childList: true, characterData: true, subtree: true});
   details.addEventListener('toggle', () => details.open && render());
+  api.onLocale?.(render);
   render();
   return {render};
 }

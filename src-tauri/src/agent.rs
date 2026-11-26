@@ -1427,6 +1427,60 @@ fn strip_thinking(text: &str) -> String {
     out.trim().to_string()
 }
 
+/// Rewrite a tool-calling conversation as plain user/assistant text.
+fn flatten_for_final(messages: &[Value]) -> Vec<Value> {
+    let mut out: Vec<Value> = Vec::new();
+    for m in messages {
+        let role = m["role"].as_str().unwrap_or("");
+        let content = m["content"].as_str().unwrap_or("").to_string();
+        let (role, text) = match role {
+            "system" => ("system", content),
+            "tool" => (
+                "user",
+                format!(
+                    "Tool result:\n{}",
+                    content.chars().take(6_000).collect::<String>()
+                ),
+            ),
+            "assistant" => {
+                let calls: Vec<String> = m["tool_calls"]
+                    .as_array()
+                    .map(|c| {
+                        c.iter()
+                            .map(|c| {
+                                format!(
+                                    "{}({})",
+                                    c["function"]["name"].as_str().unwrap_or("?"),
+                                    c["function"]["arguments"].as_str().unwrap_or("")
+                                )
+                            })
+                            .collect()
+                    })
+                    .unwrap_or_default();
+                let text = if calls.is_empty() {
+                    content
+                } else {
+                    format!("{content}\n[called tools: {}]", calls.join(", "))
+                };
+                ("assistant", text)
+            }
+            _ => ("user", content),
+        };
+        if text.trim().is_empty() {
+            continue;
+        }
+        // Merge consecutive turns of the same role (strict templates require alternation).
+        match out.last_mut() {
+            Some(last) if last["role"] == role && role != "system" => {
+                let merged = format!("{}\n\n{}", last["content"].as_str().unwrap_or(""), text);
+                last["content"] = json!(merged);
+            }
+            _ => out.push(json!({"role": role, "content": text})),
+        }
+    }
+    out
+}
+
 fn history_messages(history: &[HistoryTurn]) -> Vec<Value> {
     let mut out: Vec<Value> = Vec::new();
     let start = history.len().saturating_sub(MAX_HISTORY_TURNS);
@@ -1860,30 +1914,57 @@ async fn run_loop(
             index += 1;
         }
         let reason = outcome.status.clone();
-        messages.push(json!({"role":"user","content":"Stop calling tools now. Write the final answer from the evidence already gathered, and list what remains unverified."}));
-        if let Some(index) = messages.iter().position(|m| m["role"] == "system") {
-            messages[index] =
-                json!({"role":"system","content":system_prompt(ctx.raw_ok, ctx.skills, false)});
+        // Plain conversation for the final call: some chat templates reject
+        // tool_calls / tool messages when no tools are offered.
+        let mut flat = flatten_for_final(&messages);
+        if let Some(first) = flat.first_mut() {
+            *first = json!({"role":"system","content":format!(
+                "{}\nYou can no longer call tools. Answer now with the evidence already gathered.",
+                system_prompt(ctx.raw_ok, ctx.skills, true)
+            )});
         }
-        let payload = json!({"model": provider.model, "messages": messages, "temperature": 0.1, "stream": false});
-        if let Ok(response) = post_chat(&provider.endpoint, &provider.key, &payload).await {
-            let content = response
-                .pointer("/choices/0/message/content")
-                .and_then(Value::as_str)
-                .map(strip_thinking)
-                .unwrap_or_default();
-            if !content.is_empty() {
-                final_content = content;
-                outcome.status = "complete".into();
-                outcome.error = Some(format!(
-                    "Answer forced after {reason}; coverage may be incomplete"
-                ));
+        flat.push(json!({"role":"user","content":"Stop calling tools now. Write the final answer from the evidence already gathered (cite evidence IDs), and list what remains unverified."}));
+        let payload =
+            json!({"model": provider.model, "messages": flat, "temperature": 0.1, "stream": false});
+        match post_chat(&provider.endpoint, &provider.key, &payload).await {
+            Ok(response) => {
+                let message = response
+                    .pointer("/choices/0/message")
+                    .cloned()
+                    .unwrap_or_default();
+                let content = message
+                    .get("content")
+                    .and_then(Value::as_str)
+                    .map(strip_thinking)
+                    .filter(|c| !c.is_empty())
+                    .or_else(|| {
+                        message
+                            .get("reasoning_content")
+                            .and_then(Value::as_str)
+                            .map(strip_thinking)
+                    })
+                    .unwrap_or_default();
+                if content.is_empty() {
+                    outcome.error = Some(format!(
+                        "{reason}: the final answer request returned no text"
+                    ));
+                } else {
+                    final_content = content;
+                    outcome.status = "complete".into();
+                    outcome.error = Some(format!(
+                        "Answer forced after {reason}; coverage may be incomplete"
+                    ));
+                }
             }
+            Err(e) => outcome.error = Some(format!("{reason}: final answer request failed: {e}")),
         }
+        messages = flat;
     }
     if outcome.status == "running" {
         outcome.status = "max_iterations".into();
-        outcome.error = Some("Maximum iterations reached without a final answer".into());
+        if outcome.error.is_none() {
+            outcome.error = Some("Maximum iterations reached without a final answer".into());
+        }
     }
     if outcome.answer.is_empty() {
         outcome.answer = final_content;
@@ -2679,5 +2760,50 @@ mod tests {
         assert!(names.contains(&"update_plan".to_string()));
         assert!(outcome.trace.iter().any(|s| s.kind == "preload"));
         assert!(outcome.trace.iter().any(|s| s.kind == "tool (text)"));
+    }
+
+    #[test]
+    fn forced_final_answer_after_iteration_limit() {
+        let call = |id: &str| {
+            json!({"choices":[{"message":{"role":"assistant","content":"","tool_calls":[{"id":id,"type":"function","function":{"name":"event_stats","arguments":"{}"}}]}}]}).to_string()
+        };
+        let answer = json!({"choices":[{"message":{"role":"assistant","content":"Final: two records, see a."}}]}).to_string();
+        let endpoint = mock_chat_server(vec![call("c1"), call("c2"), answer]);
+        let events = vec![event("a", "alice@x.test", "bob@x.test", "1.1.1.1", "m1")];
+        let c = ctx(&events, &[]);
+        let config = RunConfig {
+            max_iterations: 2,
+            token_budget: 30_000,
+            allowed_tools: allowed_tool_names().iter().map(|n| n.to_string()).collect(),
+            approvals: Vec::new(),
+        };
+        let provider = Provider {
+            endpoint,
+            model: "mock".into(),
+            key: String::new(),
+        };
+        let runtime = tokio::runtime::Runtime::new().expect("runtime");
+        let outcome = runtime.block_on(run_loop(
+            &provider,
+            "Triage",
+            &c,
+            &config,
+            Arc::new(AtomicBool::new(false)),
+            "ses-forced",
+            false,
+            &RunExtras::default(),
+        ));
+        assert_eq!(outcome.status, "complete", "{:?}", outcome.error);
+        assert_eq!(outcome.answer, "Final: two records, see a.");
+        let flat = flatten_for_final(&[
+            json!({"role":"system","content":"s"}),
+            json!({"role":"user","content":"u"}),
+            json!({"role":"assistant","content":"","tool_calls":[{"function":{"name":"x","arguments":"{}"}}]}),
+            json!({"role":"tool","tool_call_id":"1","content":"r1"}),
+            json!({"role":"tool","tool_call_id":"2","content":"r2"}),
+        ]);
+        assert_eq!(flat.len(), 4);
+        assert!(flat.iter().all(|m| m.get("tool_calls").is_none()));
+        assert!(flat[3]["content"].as_str().unwrap().contains("r2"));
     }
 }

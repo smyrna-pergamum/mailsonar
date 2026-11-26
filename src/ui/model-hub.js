@@ -5,6 +5,7 @@
 //  3. Installed GGUF models.
 //  4. Other providers (Ollama, LM Studio, OpenAI-compatible, cloud).
 import {t} from '../i18n.js';
+import {tt} from './strings.js';
 import {formatBytes} from '../assistant-data.js';
 import {esc} from './agent-view.js';
 import {describeProvider, getProvider, onProvider, presets, providerReady, rememberModel, setProvider} from './provider.js';
@@ -153,49 +154,49 @@ export function mountModelHub({section, api}) {
     const p = getProvider();
     const ram = Math.round((state.hardware?.total_ram_mb ?? 0) / 1024);
     const running = state.engine?.running;
-    const downloads = [...state.downloads.values()].map(d => `<div class="ms-dl"><span>${esc(d.filename)} · ${esc(d.state)} ${d.total ? `· ${formatBytes(d.downloaded)} / ${formatBytes(d.total)}` : ''}</span><div class="download-bar"><span style="width:${Math.max(0, Math.min(100, d.percent ?? 0))}%"></span></div><button type="button" data-cancel="${esc(d.id)}">${esc(t('Cancel'))}</button></div>`).join('');
+    const downloads = [...state.downloads.values()].map(d => `<div class="ms-dl"><span>${esc(d.filename)} · ${esc(d.state)} ${d.total ? `· ${formatBytes(d.downloaded)} / ${formatBytes(d.total)}` : ''}</span><div class="download-bar"><span style="width:${Math.max(0, Math.min(100, d.percent ?? 0))}%"></span></div><button type="button" data-cancel="${esc(d.id)}">${tt('Cancel')}</button></div>`).join('');
     host.innerHTML = `
-      <article class="ms-status-card"><h2>${esc(t('AI model'))}</h2>
+      <article class="ms-status-card"><h2>${tt('AI model')}</h2>
         <p class="ms-provider-line"><span class="ms-dot ${providerReady(p) ? 'ok' : 'bad'}"></span>${esc(describeProvider(p))}</p>
-        <p class="ms-muted">${esc(t('All AI features (analysis, HELM agent, rule writing, BEACON) use this one connection. AI is optional: detection, correlation and reports work without it.'))}</p>
-        <div class="ms-actions"><button type="button" data-act="test-current" ${providerReady(p) ? '' : 'disabled'}>${esc(t('Test connection'))}</button>${running ? `<button type="button" data-act="stop">${esc(t('Stop local model'))}</button>` : ''}</div>
+        <p class="ms-muted">${tt('All AI features (analysis, HELM agent, rule writing, BEACON) use this one connection. AI is optional: detection, correlation and reports work without it.')}</p>
+        <div class="ms-actions"><button type="button" data-act="test-current" ${providerReady(p) ? '' : 'disabled'}>${tt('Test connection')}</button>${running ? `<button type="button" data-act="stop">${tt('Stop local model')}</button>` : ''}</div>
         ${testHtml('current')}
         ${downloads ? `<div class="ms-dls">${downloads}</div>` : ''}
       </article>
       ${discoveryHtml()}
-      <article><h2>${esc(t('Local models from Hugging Face'))} <small class="ms-muted">${esc(t('runs offline on this PC'))}</small></h2>
+      <article><h2>${tt('Local models from Hugging Face')} <small class="ms-muted">${tt('runs offline on this PC')}</small></h2>
         <p class="ms-muted">${esc(t('This PC: {cores} cores, {ram} GB RAM, {acc}.', {cores: state.hardware?.logical_cores ?? '?', ram: ram || '?', acc: (state.hardware?.accelerators ?? ['CPU']).join(', ')}))}</p>
         <div class="ms-model-grid">${RECOMMENDED.map(entry => {
           const inst = installedFor(entry);
           const fits = !ram || ram >= entry.ram;
           const active = inst && running && p.preset === 'embedded' && p.key;
           const label = state.busy === entry.repo || (inst && state.busy === inst.path) ? t('Working…') : active ? t('Restart') : inst ? t('Start') : t('Download & start');
-          return `<div class="ms-model ${fits ? '' : 'dim'}"><strong>${esc(entry.label)}</strong><small>${esc(entry.size)} · ${esc(t('needs ~{ram} GB RAM', {ram: entry.ram}))} · ${esc(t(entry.speed))}</small><p>${esc(t(entry.note))}</p>
-            <button type="button" class="${fits ? 'primary' : ''}" data-rec="${esc(entry.repo)}" ${state.busy ? 'disabled' : ''}>${esc(label)}</button>${inst ? `<span class="ms-badge ok">${esc(t('installed'))}</span>` : ''}</div>`;
+          return `<div class="ms-model ${fits ? '' : 'dim'}"><strong>${esc(entry.label)}</strong><small>${esc(entry.size)} · ${esc(t('needs ~{ram} GB RAM', {ram: entry.ram}))} · ${tt(entry.speed)}</small><p>${tt(entry.note)}</p>
+            <button type="button" class="${fits ? 'primary' : ''}" data-rec="${esc(entry.repo)}" ${state.busy ? 'disabled' : ''}>${esc(label)}</button>${inst ? `<span class="ms-badge ok">${tt('installed')}</span>` : ''}</div>`;
         }).join('')}</div>
       </article>
-      <article><h2>${esc(t('Search Hugging Face'))}</h2>
-        <div class="ms-ask"><input id="mhQuery" placeholder="${esc(t('Model name or link, e.g. qwen3 gguf or https://huggingface.co/Qwen/Qwen3-4B-GGUF'))}"><button type="button" class="primary" data-act="search">${esc(t('Search'))}</button></div>
+      <article><h2>${tt('Search Hugging Face')}</h2>
+        <div class="ms-ask"><input id="mhQuery" placeholder="${esc(t('Model name or link, e.g. qwen3 gguf or https://huggingface.co/Qwen/Qwen3-4B-GGUF'))}" data-tp="${esc('Model name or link, e.g. qwen3 gguf or https://huggingface.co/Qwen/Qwen3-4B-GGUF')}"><button type="button" class="primary" data-act="search">${tt('Search')}</button></div>
         <div class="ms-search">${state.search.map(r => `<button type="button" class="catalog-item" data-repo="${esc(r.id)}">${esc(r.id)}<small>${esc(r.downloads)} ↓ · ${esc(r.likes)} ♥</small></button>`).join('')}</div>
-        ${state.repo ? `<h3>${esc(state.repo)}</h3><div class="model-list">${state.files.map((f, i) => `<div class="model-row"><div><strong>${esc(f.path)}</strong><small>${formatBytes(f.bytes)} · ${f.sha256 ? 'SHA-256 ✓' : esc(t('no checksum published'))}</small></div><div class="model-actions"><button type="button" class="primary" data-file="${i}">${esc(t('Download & start'))}</button></div></div>`).join('') || `<p class="ms-muted">${esc(t('No GGUF files in this repository.'))}</p>`}</div>` : ''}
+        ${state.repo ? `<h3>${esc(state.repo)}</h3><div class="model-list">${state.files.map((f, i) => `<div class="model-row"><div><strong>${esc(f.path)}</strong><small>${formatBytes(f.bytes)} · ${f.sha256 ? 'SHA-256 ✓' : esc(t('no checksum published'))}</small></div><div class="model-actions"><button type="button" class="primary" data-file="${i}">${tt('Download & start')}</button></div></div>`).join('') || `<p class="ms-muted">${tt('No GGUF files in this repository.')}</p>`}</div>` : ''}
       </article>
-      <article><h2>${esc(t('Installed models'))}</h2>
-        ${state.models.length ? `<div class="model-list">${state.models.map(m => `<div class="model-row"><div><strong>${esc(m.name)}</strong><small>${formatBytes(m.bytes)}</small></div><div class="model-actions"><button type="button" class="primary" data-start="${esc(m.path)}" ${state.busy ? 'disabled' : ''}>${esc(t('Start'))}</button><button type="button" class="cp-danger" data-del="${esc(m.path)}">${esc(t('Delete'))}</button></div></div>`).join('')}</div>` : `<p class="ms-muted">${esc(t('No local models yet. Pick a recommended model above.'))}</p>`}
-        <details><summary>${esc(t('Engine settings'))}</summary><div class="ms-form-row">
-          <label>${esc(t('Context tokens'))}<input id="mhContext" type="number" min="2048" max="32768" step="1024" value="${engineSettings().context}"></label>
-          <label>${esc(t('CPU threads'))}<input id="mhThreads" type="number" min="1" max="64" value="${engineSettings().threads}"></label>
-          <label>${esc(t('GPU layers'))}<input id="mhGpu" type="number" min="0" max="200" value="${engineSettings().gpuLayers}"></label>
-        </div><p class="ms-muted">${esc(t('HELM needs at least 8192 context tokens for tool calling. Bundled engine: llama.cpp CPU build.'))}</p></details>
+      <article><h2>${tt('Installed models')}</h2>
+        ${state.models.length ? `<div class="model-list">${state.models.map(m => `<div class="model-row"><div><strong>${esc(m.name)}</strong><small>${formatBytes(m.bytes)}</small></div><div class="model-actions"><button type="button" class="primary" data-start="${esc(m.path)}" ${state.busy ? 'disabled' : ''}>${tt('Start')}</button><button type="button" class="cp-danger" data-del="${esc(m.path)}">${tt('Delete')}</button></div></div>`).join('')}</div>` : `<p class="ms-muted">${tt('No local models yet. Pick a recommended model above.')}</p>`}
+        <details><summary>${tt('Engine settings')}</summary><div class="ms-form-row">
+          <label>${tt('Context tokens')}<input id="mhContext" type="number" min="2048" max="32768" step="1024" value="${engineSettings().context}"></label>
+          <label>${tt('CPU threads')}<input id="mhThreads" type="number" min="1" max="64" value="${engineSettings().threads}"></label>
+          <label>${tt('GPU layers')}<input id="mhGpu" type="number" min="0" max="200" value="${engineSettings().gpuLayers}"></label>
+        </div><p class="ms-muted">${tt('HELM needs at least 8192 context tokens for tool calling. Bundled engine: llama.cpp CPU build.')}</p></details>
       </article>
-      <article><h2>${esc(t('Other providers'))}</h2>
-        <p class="ms-muted">${esc(t('Ollama, LM Studio, vLLM or an OpenAI-compatible cloud API. Cloud providers only receive minimized aliases.'))}</p>
+      <article><h2>${tt('Other providers')}</h2>
+        <p class="ms-muted">${tt('Ollama, LM Studio, vLLM or an OpenAI-compatible cloud API. Cloud providers only receive minimized aliases.')}</p>
         <div class="ms-form-row">
-          <label>${esc(t('Provider'))}<select id="mhPreset">${presets().filter(x => x.id !== 'embedded').map(x => `<option value="${esc(x.id)}" ${p.preset === x.id ? 'selected' : ''}>${esc(x.label)}</option>`).join('')}</select></label>
-          <label>${esc(t('Model'))}<input id="mhModel" value="${p.preset === 'embedded' ? '' : esc(p.model)}" placeholder="qwen3:8b / gpt-4.1-mini"></label>
+          <label>${tt('Provider')}<select id="mhPreset">${presets().filter(x => x.id !== 'embedded').map(x => `<option value="${esc(x.id)}" ${p.preset === x.id ? 'selected' : ''}>${esc(x.label)}</option>`).join('')}</select></label>
+          <label>${tt('Model')}<input id="mhModel" value="${p.preset === 'embedded' ? '' : esc(p.model)}" placeholder="qwen3:8b / gpt-4.1-mini"></label>
         </div>
         <label>Endpoint<input id="mhEndpoint" value="${p.preset === 'embedded' ? '' : esc(p.endpoint)}" placeholder="http://127.0.0.1:11434/v1/chat/completions"></label>
-        <label>${esc(t('API key (memory only)'))}<input id="mhKey" type="password" autocomplete="off"></label>
-        <div class="ms-actions"><button type="button" class="primary" data-act="connect">${esc(t('Connect & test'))}</button><span class="ms-muted" id="mhTest"></span></div>
+        <label>${tt('API key (memory only)')}<input id="mhKey" type="password" autocomplete="off"></label>
+        <div class="ms-actions"><button type="button" class="primary" data-act="connect">${tt('Connect & test')}</button><span class="ms-muted" id="mhTest"></span></div>
       </article>`;
     const preset = host.querySelector('#mhPreset');
     preset.onchange = () => {
@@ -207,7 +208,7 @@ export function mountModelHub({section, api}) {
   function testHtml(id) {
     const r = state.tests.get(id);
     if (!r) return '';
-    if (r.running) return `<p class="ms-test ms-muted"><span class="ms-spinner"></span> ${esc(t('Testing…'))}</p>`;
+    if (r.running) return `<p class="ms-test ms-muted"><span class="ms-spinner"></span> ${tt('Testing…')}</p>`;
     if (r.error && !r.chat_ok) return `<p class="ms-test ms-warn">${esc(r.error)}</p>`;
     const chip = (ok, label) => `<span class="ms-badge ${ok ? 'ok' : 'bad'}">${ok ? '✓' : '✗'} ${esc(label)}</span>`;
     return `<p class="ms-test">${chip(r.chat_ok, t('Chat'))} ${chip(r.native_tools || r.text_tools, t('Tool calling'))} ${chip(r.helm_ready, 'HELM')}
@@ -218,16 +219,16 @@ export function mountModelHub({section, api}) {
     const found = state.discovery;
     const servers = found?.servers ?? [];
     const files = (found?.files ?? []).filter(f => !f.managed);
-    const serverRows = servers.map((srv, i) => `<div class="model-row ms-found"><div><strong>${esc(srv.name)}</strong> <span class="ms-badge ok">${esc(t('running'))}</span><small>${esc(srv.endpoint)} · ${esc(srv.detail)}</small>
+    const serverRows = servers.map((srv, i) => `<div class="model-row ms-found"><div><strong>${esc(srv.name)}</strong> <span class="ms-badge ok">${tt('running')}</span><small>${esc(srv.endpoint)} · ${esc(srv.detail)}</small>
         ${srv.models.length ? `<select data-model-for="${i}">${srv.models.map(m => `<option>${esc(m)}</option>`).join('')}</select>` : ''}${testHtml(`srv-${i}`)}</div>
-        <div class="model-actions">${srv.managed ? '' : `<button type="button" data-test-srv="${i}" ${srv.models.length ? '' : 'disabled'}>${esc(t('Test'))}</button><button type="button" class="primary" data-use-srv="${i}" ${srv.models.length ? '' : 'disabled'}>${esc(t('Use'))}</button>`}</div></div>`).join('');
+        <div class="model-actions">${srv.managed ? '' : `<button type="button" data-test-srv="${i}" ${srv.models.length ? '' : 'disabled'}>${tt('Test')}</button><button type="button" class="primary" data-use-srv="${i}" ${srv.models.length ? '' : 'disabled'}>${tt('Use')}</button>`}</div></div>`).join('');
     const fileRows = files.map(f => `<div class="model-row"><div><strong>${esc(f.name)}</strong><small>${esc(f.source)} · ${formatBytes(f.bytes)} · ${esc(f.folder)}</small></div>
-        <div class="model-actions"><button type="button" class="primary" data-start="${esc(f.path)}" ${state.busy ? 'disabled' : ''}>${esc(t('Start'))}</button></div></div>`).join('');
-    return `<article><h2>${esc(t('Found on this PC'))} <button type="button" class="ms-link" data-act="discover">${esc(state.scanning ? t('Scanning…') : t('Scan again'))}</button></h2>
-      <p class="ms-muted">${esc(t('Running local AI servers (Ollama, LM Studio, llama.cpp, vLLM, Jan, KoboldCpp…) and GGUF files in known model folders. Nothing is changed.'))}</p>
-      ${found ? '' : `<p class="ms-muted">${esc(t('Scanning…'))}</p>`}
-      ${serverRows ? `<h3>${esc(t('Running servers'))}</h3><div class="model-list">${serverRows}</div>` : found ? `<p class="ms-muted">${esc(t('No running local AI server found.'))}</p>` : ''}
-      ${fileRows ? `<h3>${esc(t('Model files'))}</h3><div class="model-list">${fileRows}</div>` : found ? `<p class="ms-muted">${esc(t('No GGUF files found in {count} folders.', {count: found.scanned_folders.length}))}</p>` : ''}
+        <div class="model-actions"><button type="button" class="primary" data-start="${esc(f.path)}" ${state.busy ? 'disabled' : ''}>${tt('Start')}</button></div></div>`).join('');
+    return `<article><h2>${tt('Found on this PC')} <button type="button" class="ms-link" data-act="discover">${esc(state.scanning ? t('Scanning…') : t('Scan again'))}</button></h2>
+      <p class="ms-muted">${tt('Running local AI servers (Ollama, LM Studio, llama.cpp, vLLM, Jan, KoboldCpp…) and GGUF files in known model folders. Nothing is changed.')}</p>
+      ${found ? '' : `<p class="ms-muted">${tt('Scanning…')}</p>`}
+      ${serverRows ? `<h3>${tt('Running servers')}</h3><div class="model-list">${serverRows}</div>` : found ? `<p class="ms-muted">${tt('No running local AI server found.')}</p>` : ''}
+      ${fileRows ? `<h3>${tt('Model files')}</h3><div class="model-list">${fileRows}</div>` : found ? `<p class="ms-muted">${esc(t('No GGUF files found in {count} folders.', {count: found.scanned_folders.length}))}</p>` : ''}
     </article>`;
   }
 
@@ -359,5 +360,6 @@ export function mountModelHub({section, api}) {
   onProvider(() => {
     if (section.offsetParent) render();
   });
+  api.onLocale?.(render);
   return {refresh, startModel, discover};
 }

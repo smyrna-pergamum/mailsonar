@@ -2,6 +2,7 @@
 // The answer is untrusted model output: it is escaped first, then given minimal
 // Markdown formatting. Evidence IDs become buttons that open the record.
 import {t} from '../i18n.js';
+import {tt} from './strings.js';
 import {stepLabel} from './helm-run.js';
 
 export function esc(value) {
@@ -53,7 +54,7 @@ export function createAgentPanel({onEvidence} = {}) {
   root.className = 'ms-agent';
   root.innerHTML = `<div class="ms-agent-head"><span class="ms-spinner" hidden></span><strong class="ms-agent-title"></strong><span class="ms-agent-meta"></span></div>
     <ol class="ms-plan"></ol>
-    <details class="ms-steps"><summary>${esc(t('Tool steps'))} (<span>0</span>)</summary><ol></ol></details>
+    <details class="ms-steps"><summary>${tt('Tool steps')} (<span>0</span>)</summary><ol></ol></details>
     <div class="ms-answer" data-no-translate></div>`;
   const $ = sel => root.querySelector(sel);
   root.addEventListener('click', event => {
@@ -100,7 +101,7 @@ export function createAgentPanel({onEvidence} = {}) {
       const skills = outcome.skills_loaded?.length ? ` · skill: ${outcome.skills_loaded.join(', ')}` : '';
       $('.ms-agent-meta').textContent = `${outcome.status} · ${outcome.tool_calls} ${t('tool calls')} · ${(outcome.duration_ms / 1000).toFixed(1)} s · ${outcome.model}${skills}${outcome.minimized ? ` · ${t('minimized for cloud')}` : ''}`;
       const note = outcome.error ? `<p class="ms-warn">${esc(outcome.error)}</p>` : '';
-      $('.ms-answer').innerHTML = note + markdown(outcome.answer || t('No answer returned.')) + `<p class="ms-muted">${esc(t('AI output is unverified. Check every claim against the cited evidence.'))}</p>`;
+      $('.ms-answer').innerHTML = note + markdown(outcome.answer || t('No answer returned.')) + `<p class="ms-muted">${tt('AI output is unverified. Check every claim against the cited evidence.')}</p>`;
     },
     fail(error) {
       $('.ms-spinner').hidden = true;

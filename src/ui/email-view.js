@@ -2,6 +2,7 @@
 // header, Received-chain, authentication, URL and attachment analysis.
 // Message content is untrusted: everything is rendered as escaped text.
 import {t} from '../i18n.js';
+import {tt} from './strings.js';
 import {esc} from './agent-view.js';
 import {platformsHtml} from './sources-view.js';
 
@@ -20,7 +21,7 @@ function badge(name, value) {
 
 export function vt(kind, value) {
   if (!value) return '';
-  return `<button type="button" class="ms-vt" data-vt="${esc(kind)}" data-v="${esc(value)}" title="${esc(t('Check manually on VirusTotal (opens your browser)'))}">VT ↗</button>`;
+  return `<button type="button" class="ms-vt" data-vt="${esc(kind)}" data-v="${esc(value)}" title="${esc(t('Check manually on VirusTotal (opens your browser)'))}" data-ttitle="${esc('Check manually on VirusTotal (opens your browser)')}">VT ↗</button>`;
 }
 
 function riskClass(score) {
@@ -34,7 +35,7 @@ function detail(row) {
   const urls = (a.urls ?? []).map(u => `<tr class="${u.suspicious ? 'row-bad' : ''}"><td><code>${esc(u.url)}</code> ${vt('url', u.url)}</td><td>${esc(u.host)} ${vt('domain', u.host)}</td><td>${esc((u.flags ?? []).join('; ') || '—')}</td></tr>`).join('');
   const files = (a.attachments ?? []).map(f => `<tr class="${f.suspicious ? 'row-bad' : ''}"><td>${esc(f.filename)}</td><td>${esc(f.mime)} / ${esc(f.detected_type)}</td><td>${esc(f.size)}</td><td><code>${esc(f.sha256)}</code> ${vt('hash', f.sha256)}</td><td>${esc((f.flags ?? []).join('; ') || '—')}</td></tr>`).join('');
   return `<div class="ms-mail-detail" data-no-translate>
-    <div class="ms-mail-top"><h3>${esc(h.subject || '(no subject)')}</h3><span class="ms-badge ${riskClass(a.risk_score)}">${esc(t('Risk'))} ${esc(a.risk_score ?? 0)}/100</span></div>
+    <div class="ms-mail-top"><h3>${esc(h.subject || '(no subject)')}</h3><span class="ms-badge ${riskClass(a.risk_score)}">${tt('Risk')} ${esc(a.risk_score ?? 0)}/100</span></div>
     <p>${badge('SPF', a.authentication?.spf)} ${badge('DKIM', a.authentication?.dkim)} ${badge('DMARC', a.authentication?.dmarc)}</p>
     <p class="ms-muted">${esc(a.authentication?.note ?? '')}</p>
     <table class="ms-kv"><tbody>
@@ -44,21 +45,21 @@ function detail(row) {
       <tr><th>Origin IP</th><td>${esc(a.origin_ip || '—')} ${vt('ip', a.origin_ip)}</td></tr><tr><th>X-Mailer</th><td>${esc(h.x_mailer || '—')}</td></tr>
     </tbody></table>
     ${platformsHtml(a.platforms)}
-    ${(a.mismatches ?? []).length || (a.chain_flags ?? []).length ? `<h4>${esc(t('Anomalies'))}</h4><ul>${[...(a.mismatches ?? []), ...(a.chain_flags ?? [])].map(m => `<li>${esc(m)}</li>`).join('')}</ul>` : ''}
-    <h4>Received <small class="ms-muted">${esc(t('(newest first; trust only your own hops)'))}</small></h4>
+    ${(a.mismatches ?? []).length || (a.chain_flags ?? []).length ? `<h4>${tt('Anomalies')}</h4><ul>${[...(a.mismatches ?? []), ...(a.chain_flags ?? [])].map(m => `<li>${esc(m)}</li>`).join('')}</ul>` : ''}
+    <h4>Received <small class="ms-muted">${tt('(newest first; trust only your own hops)')}</small></h4>
     <div class="tablewrap"><table><thead><tr><th>#</th><th>from</th><th>IP</th><th>by</th><th>with</th><th>date</th></tr></thead><tbody>${hops || '<tr><td colspan="6">—</td></tr>'}</tbody></table></div>
-    <h4>URLs (${(a.urls ?? []).length}) <small class="ms-muted">${esc(t('never opened'))}</small></h4>
+    <h4>URLs (${(a.urls ?? []).length}) <small class="ms-muted">${tt('never opened')}</small></h4>
     <div class="tablewrap"><table><thead><tr><th>URL</th><th>host</th><th>flags</th></tr></thead><tbody>${urls || '<tr><td colspan="3">—</td></tr>'}</tbody></table></div>
-    <h4>${esc(t('Attachments'))} (${(a.attachments ?? []).length}) <small class="ms-muted">${esc(t('hashed, never executed'))}</small></h4>
+    <h4>${tt('Attachments')} (${(a.attachments ?? []).length}) <small class="ms-muted">${tt('hashed, never executed')}</small></h4>
     <div class="tablewrap"><table><thead><tr><th>file</th><th>type</th><th>bytes</th><th>SHA-256</th><th>flags</th></tr></thead><tbody>${files || '<tr><td colspan="5">—</td></tr>'}</tbody></table></div>
     <p>${indicators.map(i => `<span class="ms-chip static">${esc(i)}</span>`).join(' ')}</p>
   </div>`;
 }
 
 export function mountEmailView({section, api}) {
-  section.innerHTML = `<article><h2>${esc(t('E-mail forensics'))}</h2>
-    <p class="ms-muted">${esc(t('Imported EML and MBOX messages, sorted by risk. Headers, Received chain, SPF/DKIM/DMARC, URLs and attachments are analysed statically; nothing is opened, executed or looked up online.'))}</p>
-    <div class="ms-actions"><button type="button" class="primary ms-mail-ai">${esc(t('Analyse headers with HELM'))}</button></div>
+  section.innerHTML = `<article><h2>${tt('E-mail forensics')}</h2>
+    <p class="ms-muted">${tt('Imported EML and MBOX messages, sorted by risk. Headers, Received chain, SPF/DKIM/DMARC, URLs and attachments are analysed statically; nothing is opened, executed or looked up online.')}</p>
+    <div class="ms-actions"><button type="button" class="primary ms-mail-ai">${tt('Analyse headers with HELM')}</button></div>
     <div class="ms-mail-grid"><div class="ms-mail-list"></div><div class="ms-mail-pane"></div></div></article>`;
   const list = section.querySelector('.ms-mail-list');
   const pane = section.querySelector('.ms-mail-pane');
@@ -81,7 +82,7 @@ export function mountEmailView({section, api}) {
     const rows = emailRows(api.getCase().events);
     list.replaceChildren();
     if (!rows.length) {
-      list.innerHTML = `<p class="empty">${esc(t('No EML or MBOX messages imported yet. Load the sample case or import .eml / .mbox files.'))}</p>`;
+      list.innerHTML = `<p class="empty">${tt('No EML or MBOX messages imported yet. Load the sample case or import .eml / .mbox files.')}</p>`;
       pane.replaceChildren();
       return;
     }

@@ -3,6 +3,7 @@
 // search and a node cap. Entities that appear in the same record are linked; the
 // edge weight is the number of shared records.
 import {t} from '../i18n.js';
+import {tt} from './strings.js';
 import {esc} from './agent-view.js';
 import {renderGraph} from '../nightwire.js';
 import {eventTime} from '../event-time.js';
@@ -69,18 +70,18 @@ export function mountGraphFilters({section, api}) {
   card.className = 'ms-graph-filters';
   section.prepend(card);
   const state = {scope: 'findings', types: ['sender', 'ip'], minDegree: 1, query: '', from: '', to: '', maxNodes: 200, selected: ''};
-  card.innerHTML = `<h2>${esc(t('Relationship overview'))}</h2>
-    <p class="ms-muted">${esc(t('Accounts, IPs and message IDs that appear in the same records are linked. Narrow the view with the filters; click a node to list its records.'))}</p>
+  card.innerHTML = `<h2>${tt('Relationship overview')}</h2>
+    <p class="ms-muted">${tt('Accounts, IPs and message IDs that appear in the same records are linked. Narrow the view with the filters; click a node to list its records.')}</p>
     <div class="ms-filter-bar">
-      <label>${esc(t('Scope'))}<select data-f="scope">
-        <option value="findings">${esc(t('Evidence of findings'))}</option><option value="chain">${esc(t('Attack chains'))}</option>
-        <option value="high">${esc(t('High-priority findings'))}</option><option value="all">${esc(t('All records'))}</option></select></label>
-      <fieldset class="ms-types"><legend>${esc(t('Show'))}</legend>${TYPES.map(([type, label]) => `<label><input type="checkbox" data-type="${type}" ${state.types.includes(type) ? 'checked' : ''}> ${esc(t(label))}</label>`).join('')}</fieldset>
-      <label>${esc(t('Min. connections'))} <output data-o="deg">1</output><input type="range" min="1" max="10" value="1" data-f="minDegree"></label>
-      <label>${esc(t('Max. nodes'))}<select data-f="maxNodes"><option>100</option><option selected>200</option><option>300</option><option>500</option></select></label>
-      <label>${esc(t('From'))}<input type="datetime-local" data-f="from"></label>
-      <label>${esc(t('To'))}<input type="datetime-local" data-f="to"></label>
-      <label class="ms-grow">${esc(t('Search entity'))}<input data-f="query" placeholder="elif.kaya / 203.0.113.66"></label>
+      <label>${tt('Scope')}<select data-f="scope">
+        <option value="findings" data-t="${esc('Evidence of findings')}">${esc(t('Evidence of findings'))}</option><option value="chain" data-t="${esc('Attack chains')}">${esc(t('Attack chains'))}</option>
+        <option value="high" data-t="${esc('High-priority findings')}">${esc(t('High-priority findings'))}</option><option value="all" data-t="${esc('All records')}">${esc(t('All records'))}</option></select></label>
+      <fieldset class="ms-types"><legend>${tt('Show')}</legend>${TYPES.map(([type, label]) => `<label><input type="checkbox" data-type="${type}" ${state.types.includes(type) ? 'checked' : ''}> ${tt(label)}</label>`).join('')}</fieldset>
+      <label>${tt('Min. connections')} <output data-o="deg">1</output><input type="range" min="1" max="10" value="1" data-f="minDegree"></label>
+      <label>${tt('Max. nodes')}<select data-f="maxNodes"><option>100</option><option selected>200</option><option>300</option><option>500</option></select></label>
+      <label>${tt('From')}<input type="datetime-local" data-f="from"></label>
+      <label>${tt('To')}<input type="datetime-local" data-f="to"></label>
+      <label class="ms-grow">${tt('Search entity')}<input data-f="query" placeholder="elif.kaya / 203.0.113.66"></label>
     </div>
     <p class="ms-graph-meta ms-muted"></p>
     <div class="ms-graph-canvas" role="img" aria-label="Filtered relationship graph"></div>
@@ -120,8 +121,8 @@ export function mountGraphFilters({section, api}) {
     const node = last?.nodes.find(n => n.id === id);
     if (!node) return;
     const records = api.getCase().events.filter(e => node.events.includes(e.id)).slice(0, 50);
-    detail.innerHTML = `<h3>${esc(node.label)} <span class="ms-badge">${esc(node.type)}</span> <small class="ms-muted">${node.records} ${esc(t('records'))} · ${node.degree} ${esc(t('links'))}</small></h3>
-      <div class="ms-actions"><button type="button" data-search="${esc(node.label)}">${esc(t('Show in Log explorer'))}</button><button type="button" data-focus="${esc(node.label)}">${esc(t('Focus graph on this entity'))}</button></div>
+    detail.innerHTML = `<h3>${esc(node.label)} <span class="ms-badge">${esc(node.type)}</span> <small class="ms-muted">${node.records} ${tt('records')} · ${node.degree} ${tt('links')}</small></h3>
+      <div class="ms-actions"><button type="button" data-search="${esc(node.label)}">${tt('Show in Log explorer')}</button><button type="button" data-focus="${esc(node.label)}">${tt('Focus graph on this entity')}</button></div>
       <ul class="ms-node-records">${records.map(e => `<li><button type="button" class="ms-link" data-ev="${esc(e.id)}">${esc(e.timestamp || '—')} · ${esc(e.action)} · ${esc(e.sender)} → ${esc(e.recipient)}</button></li>`).join('')}</ul>`;
   }
 
@@ -145,5 +146,6 @@ export function mountGraphFilters({section, api}) {
     }
   });
   section.addEventListener('ms:shown', draw);
+  api.onLocale?.(draw);
   return {draw};
 }
