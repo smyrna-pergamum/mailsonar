@@ -161,7 +161,46 @@ fn engine_binary(app: &AppHandle) -> Option<PathBuf> {
             candidates.push(PathBuf::from(explicit));
         }
     }
-    candidates.into_iter().find(|p| p.is_file())
+    let found = candidates.into_iter().find(|p| p.is_file())?;
+    Some(ensure_executable(app, found))
+}
+
+/// Linux/macOS bundles can drop the executable bit of resource files, and an
+/// AppImage mounts read-only. Copy the engine folder into app data and mark the
+/// binary executable when needed. No-op on Windows.
+#[cfg(unix)]
+fn ensure_executable(app: &AppHandle, binary: PathBuf) -> PathBuf {
+    use std::os::unix::fs::PermissionsExt;
+    let executable = std::fs::metadata(&binary)
+        .map(|m| m.permissions().mode() & 0o111 != 0)
+        .unwrap_or(false);
+    if executable {
+        return binary;
+    }
+    let (Some(src), Ok(data)) = (binary.parent(), app.path().app_data_dir()) else {
+        return binary;
+    };
+    let dest = data.join("engine-runtime");
+    if std::fs::create_dir_all(&dest).is_err() {
+        return binary;
+    }
+    if let Ok(entries) = std::fs::read_dir(src) {
+        for entry in entries.flatten() {
+            let _ = std::fs::copy(entry.path(), dest.join(entry.file_name()));
+        }
+    }
+    let copied = dest.join(binary.file_name().unwrap_or_default());
+    let _ = std::fs::set_permissions(&copied, std::fs::Permissions::from_mode(0o755));
+    if copied.is_file() {
+        copied
+    } else {
+        binary
+    }
+}
+
+#[cfg(not(unix))]
+fn ensure_executable(_app: &AppHandle, binary: PathBuf) -> PathBuf {
+    binary
 }
 
 fn valid_port(port: u16) -> bool {
@@ -392,7 +431,7 @@ pub fn embedded_delete_model(app: AppHandle, path: String) -> Res<()> {
 /// Starts the managed llama.cpp server with the fixed argument set used by the
 /// application. Kept separate from `embedded_start` so the real engine can be
 /// exercised by a test without a Tauri `AppHandle`.
-fn spawn_engine(
+pub(crate) fn spawn_engine(
     exe: &Path,
     model: &Path,
     key: &str,
@@ -416,6 +455,7 @@ fn spawn_engine(
         .arg(context.to_string())
         .arg("--threads")
         .arg(threads.to_string())
+        .arg("--jinja")
         .arg("--n-gpu-layers")
         .arg(gpu_layers.to_string())
         .stdin(Stdio::null())
@@ -517,7 +557,7 @@ pub fn embedded_start(
     })
 }
 
-async fn probe_engine(endpoint: &str, key: &str) -> (bool, String) {
+pub(crate) async fn probe_engine(endpoint: &str, key: &str) -> (bool, String) {
     let base = endpoint
         .trim_end_matches("/v1/chat/completions")
         .trim_end_matches('/');
@@ -671,6 +711,30 @@ pub async fn embedded_wait_ready(
         }
         tokio::time::sleep(Duration::from_millis(500)).await;
     }
+}
+
+/// Connection details of the running managed engine, so the UI can reconnect
+/// after a reload. The key is a per-run loopback secret, never persisted.
+#[tauri::command]
+pub fn embedded_connection(engine: State<'_, Engine>) -> Res<Option<EngineStart>> {
+    let mut slot = engine.0.lock().map_err(|_| "Engine lock failed")?;
+    let alive = match slot.child.as_mut() {
+        Some(child) => child.try_wait().map_err(err)?.is_none(),
+        None => false,
+    };
+    if !alive {
+        return Ok(None);
+    }
+    Ok(match (&slot.endpoint, &slot.key, &slot.model, slot.port) {
+        (Some(endpoint), Some(key), Some(model), Some(port)) => Some(EngineStart {
+            endpoint: endpoint.clone(),
+            key: key.clone(),
+            model: model.clone(),
+            port,
+            ready: true,
+        }),
+        _ => None,
+    })
 }
 
 #[tauri::command]

@@ -1,13 +1,18 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 mod agent;
+mod email;
 mod embedded_ai;
+mod local_ai;
 mod pdf;
+mod queries;
+mod samples;
+mod skills;
+mod sources;
 mod vault;
 mod workflow;
 
 use calamine::Reader;
-use mailparse::MailHeaderMap;
 use serde::{Deserialize, Serialize};
 use serde_json::{json, Value};
 use sha2::{Digest, Sha256};
@@ -83,6 +88,9 @@ struct Evidence {
     bytes: usize,
     events: Vec<Event>,
     warnings: Vec<String>,
+    /// Which product / mail provider produced this file (heuristic fingerprint).
+    #[serde(default)]
+    profile: Value,
 }
 
 fn field(v: &Value, names: &[&str]) -> String {
@@ -286,28 +294,26 @@ fn parse(
             }
         }
         "eml" => {
-            let m = mailparse::parse_mail(b).map_err(err)?;
-            let mut o = serde_json::Map::new();
-            for h in &m.headers {
-                let k = h.get_key();
-                let val = h.get_value();
-                if let Some(old) = o.get_mut(&k) {
-                    let mut joined = old.as_str().unwrap_or("").to_string();
-                    joined.push(newline());
-                    joined.push_str(&val);
-                    *old = json!(joined);
-                } else {
-                    o.insert(k, json!(val));
+            rows.push(email::analyze_message(b, warnings)?);
+            warnings.push(
+                "EML: headers, Received chain, URLs and attachments analysed statically; nothing was executed or fetched".into(),
+            );
+        }
+        "mbox" | "mbx" => {
+            let messages = email::split_mbox(b);
+            for (i, msg) in messages.iter().enumerate() {
+                match email::analyze_message(msg, warnings) {
+                    Ok(v) => rows.push(v),
+                    Err(e) => warnings.push(format!("MBOX message {}: {e}", i + 1)),
+                }
+                if rows.len() > MAX_ROWS {
+                    break;
                 }
             }
-            o.insert(
-                "message_id".into(),
-                json!(m.headers.get_first_value("Message-ID").unwrap_or_default()),
-            );
-            o.insert("mime_parts".into(), json!(m.subparts.len()));
-            rows.push(Value::Object(o));
-            warnings
-                .push("EML: headers only; body and attachments not executed or analyzed".into());
+            warnings.push(format!(
+                "MBOX: {} messages analysed statically; attachments hashed, never executed",
+                rows.len()
+            ));
         }
         "msg" => {
             let mut f = cfb::CompoundFile::open(Cursor::new(b)).map_err(err)?;
@@ -427,6 +433,7 @@ async fn import_file(path: String) -> Res<Evidence> {
         let digest = hash(&b);
         let mut warnings = Vec::new();
         let rows = parse(&name, &b, 0, &mut (MAX_BYTES * 3), &mut warnings)?;
+        let profile = sources::profile(&name, &rows);
         let events = rows
             .into_iter()
             .enumerate()
@@ -438,6 +445,7 @@ async fn import_file(path: String) -> Res<Evidence> {
             bytes: b.len(),
             events,
             warnings,
+            profile,
         })
     })
     .await
@@ -602,6 +610,70 @@ const RULES: &[(&str, &str, &[&str], &str)] = &[
         "medium",
         &["suspicious ip", "malicious ip", "threat ip"],
         "Suspicious source IP address; check threat intelligence",
+    ),
+    (
+        "MAIL-021",
+        "high",
+        &["reply-to mismatch", "reply-to redirect"],
+        "Reply-To points away from the sender domain; typical BEC reply redirection",
+    ),
+    (
+        "MAIL-022",
+        "high",
+        &["malicious attachment", "macro-enabled", "double extension"],
+        "Risky attachment (executable, script, macro or disguised type); hash and analyse in a sandbox",
+    ),
+    (
+        "MAIL-023",
+        "high",
+        &["lookalike sender domain", "deceptive link text", "typosquat", "homoglyph"],
+        "Look-alike domain or deceptive link; verify the real destination",
+    ),
+    (
+        "MAIL-024",
+        "low",
+        &["received chain anomaly"],
+        "Received header chain inconsistency; check trusted hops only",
+    ),
+    (
+        "MAIL-025",
+        "high",
+        &[
+            "payment request with sender mismatch",
+            "bank details change",
+            "payment change request",
+        ],
+        "Payment or bank-detail change request with sender anomaly; verify out of band",
+    ),
+    (
+        "MAIL-026",
+        "high",
+        &["add-mailboxpermission", "delegate permission", "add-recipientpermission", "sendas"],
+        "Mailbox delegation or permission change; verify authorization",
+    ),
+    (
+        "MAIL-027",
+        "medium",
+        &["softdelete", "harddelete", "sent items deletion", "purge sent"],
+        "Mail deletion that may hide attacker activity",
+    ),
+    (
+        "MAIL-028",
+        "medium",
+        &["mailitemsaccessed", "mass download", "bulk download", "sync all items"],
+        "Mass mailbox access or download",
+    ),
+    (
+        "MAIL-029",
+        "medium",
+        &["new device", "mfa method changed", "security info registered", "mfa disabled"],
+        "New device or MFA change; verify with the user",
+    ),
+    (
+        "MAIL-030",
+        "medium",
+        &["email bombing", "subscription bomb", "mail flood"],
+        "Inbound mail flood; may cover a parallel attack",
     ),
 ];
 
@@ -861,12 +933,25 @@ fn main() {
             embedded_ai::embedded_status,
             embedded_ai::embedded_wait_ready,
             embedded_ai::embedded_stop,
+            embedded_ai::embedded_connection,
+            local_ai::discover_local_ai,
+            local_ai::ai_selftest,
             embedded_ai::model_download_start,
             embedded_ai::model_download_control,
             embedded_ai::hf_search,
             embedded_ai::hf_files,
             embedded_ai::provider_test,
             agent::agent_tools,
+            skills::skill_list,
+            skills::skill_dir,
+            skills::skill_save,
+            skills::skill_delete,
+            skills::skill_source,
+            skills::skill_import,
+            queries::queries_list,
+            queries::queries_save,
+            samples::sample_list,
+            samples::sample_materialize,
             agent::agent_run,
             agent::agent_cancel,
             agent::agent_sessions,
@@ -1007,6 +1092,16 @@ a@example.test,New-InboxRule
             ("MAIL-018", "spam report"),
             ("MAIL-019", "phishing attempt"),
             ("MAIL-020", "malicious ip"),
+            ("MAIL-021", "reply-to mismatch"),
+            ("MAIL-022", "malicious attachment"),
+            ("MAIL-023", "lookalike sender domain"),
+            ("MAIL-024", "received chain anomaly"),
+            ("MAIL-025", "payment request with sender mismatch"),
+            ("MAIL-026", "add-mailboxpermission"),
+            ("MAIL-027", "softdelete"),
+            ("MAIL-028", "mailitemsaccessed"),
+            ("MAIL-029", "new device"),
+            ("MAIL-030", "email bombing"),
         ];
         for (rule, sample) in samples {
             let e = Event {
@@ -1150,6 +1245,16 @@ a@example.test,New-InboxRule
             ("MAIL-018", "spam report"),
             ("MAIL-019", "phishing attempt"),
             ("MAIL-020", "malicious ip"),
+            ("MAIL-021", "reply-to mismatch"),
+            ("MAIL-022", "malicious attachment"),
+            ("MAIL-023", "lookalike sender domain"),
+            ("MAIL-024", "received chain anomaly"),
+            ("MAIL-025", "payment request with sender mismatch"),
+            ("MAIL-026", "add-mailboxpermission"),
+            ("MAIL-027", "softdelete"),
+            ("MAIL-028", "mailitemsaccessed"),
+            ("MAIL-029", "new device"),
+            ("MAIL-030", "email bombing"),
         ];
         let negatives = [
             "message delivered",
@@ -1252,5 +1357,142 @@ a@example.test,New-InboxRule
                 ),
             }
         }
+    }
+}
+
+/// End-to-end runs over the bundled synthetic BEC case. Ignored by default:
+///   cargo test demo_ -- --ignored --nocapture
+#[cfg(test)]
+mod demo_e2e {
+    use super::*;
+    use serde_json::json;
+    use std::time::{Duration, Instant};
+
+    fn demo_evidence() -> Vec<Evidence> {
+        evidence_of(samples::DEMO)
+    }
+
+    fn evidence_of(files: &[(&str, &[u8])]) -> Vec<Evidence> {
+        files
+            .iter()
+            .map(|(name, bytes)| {
+                let mut warnings = Vec::new();
+                let mut budget = 96 * 1024 * 1024;
+                let rows = parse(name, bytes, 0, &mut budget, &mut warnings).expect("parse");
+                let rows_for_profile = rows.clone();
+                let digest = hash(bytes);
+                let events = rows
+                    .into_iter()
+                    .enumerate()
+                    .map(|(i, v)| event(name, &digest, i + 1, v))
+                    .collect();
+                Evidence {
+                    source: name.to_string(),
+                    sha256: digest,
+                    bytes: bytes.len(),
+                    events,
+                    warnings,
+                    profile: sources::profile(name, &rows_for_profile),
+                }
+            })
+            .collect()
+    }
+
+    /// Writes the real parser output for the browser preview (DEV only).
+    #[test]
+    #[ignore = "writes tests/fixtures/demo-evidence.json"]
+    fn demo_write_preview_fixture() {
+        let evidence = demo_evidence();
+        let out = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../tests/fixtures");
+        std::fs::create_dir_all(&out).unwrap();
+        std::fs::write(
+            out.join("demo-evidence.json"),
+            serde_json::to_vec(&evidence).unwrap(),
+        )
+        .unwrap();
+        let all: Vec<Event> = evidence.into_iter().flat_map(|e| e.events).collect();
+        std::fs::write(
+            out.join("demo-findings.json"),
+            serde_json::to_vec(&detect(&all)).unwrap(),
+        )
+        .unwrap();
+        let baseline = evidence_of(samples::BASELINE);
+        std::fs::write(
+            out.join("baseline-evidence.json"),
+            serde_json::to_vec(&baseline).unwrap(),
+        )
+        .unwrap();
+        let all: Vec<Event> = baseline.into_iter().flat_map(|e| e.events).collect();
+        std::fs::write(
+            out.join("baseline-findings.json"),
+            serde_json::to_vec(&detect(&all)).unwrap(),
+        )
+        .unwrap();
+    }
+
+    struct Guard(std::process::Child);
+    impl Drop for Guard {
+        fn drop(&mut self) {
+            let _ = self.0.kill();
+            let _ = self.0.wait();
+        }
+    }
+
+    #[test]
+    #[ignore = "needs MAILDFIR_TEST_GGUF and the bundled llama.cpp engine"]
+    fn demo_helm_with_real_model() {
+        let model = std::env::var("MAILDFIR_TEST_GGUF").expect("MAILDFIR_TEST_GGUF");
+        let exe = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("engine/llama-server.exe");
+        let port = 18129u16;
+        let key = "demoenginekey00000000000000000000001";
+        let threads = std::thread::available_parallelism()
+            .map(|n| n.get() as u32)
+            .unwrap_or(4)
+            .clamp(1, 16);
+        let child = embedded_ai::spawn_engine(
+            &exe,
+            std::path::Path::new(&model),
+            key,
+            port,
+            16384,
+            threads,
+            0,
+        )
+        .expect("start");
+        let mut guard = Guard(child);
+        let endpoint = format!("http://127.0.0.1:{port}/v1/chat/completions");
+        let runtime = tokio::runtime::Runtime::new().unwrap();
+        runtime.block_on(async {
+            let started = Instant::now();
+            while !embedded_ai::probe_engine(&endpoint, key).await.0 {
+                assert!(guard.0.try_wait().unwrap().is_none(), "engine exited");
+                assert!(started.elapsed() < Duration::from_secs(240), "engine not ready");
+                tokio::time::sleep(Duration::from_millis(500)).await;
+            }
+            eprintln!("engine ready in {} ms", started.elapsed().as_millis());
+            let test = local_ai::ai_selftest(endpoint.clone(), "local".into(), key.into()).await.unwrap();
+            eprintln!("SELFTEST {test}");
+
+            let events: Vec<Event> = demo_evidence().into_iter().flat_map(|e| e.events).collect();
+            let findings = detect(&events);
+            let task = std::env::var("MAILDFIR_TEST_TASK").unwrap_or_else(|_| "Bu vakada ne oldu? Ele geçirilen hesabı, saldırı zincirini ve kanıtları açıkla. Türkçe yanıt ver.".into());
+            let request: agent::AgentRequest = serde_json::from_value(json!({
+                "task": task,
+                "provider": {"endpoint": endpoint, "model": "local", "key": key},
+                "events": events, "findings": findings,
+                "max_iterations": 8, "token_budget": 32000,
+                "skill": std::env::var("MAILDFIR_TEST_SKILL").unwrap_or_else(|_| "bec-fraud".into())
+            }))
+            .unwrap();
+            let outcome = agent::run_for_test(request).await;
+            let out = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("target/helm-demo-outcome.json");
+            std::fs::write(&out, serde_json::to_vec_pretty(&outcome).unwrap()).unwrap();
+            eprintln!(
+                "status={} iterations={} tools={} ms={} skills={:?}\nPLAN {:?}\n---\n{}",
+                outcome.status, outcome.iterations, outcome.tool_calls, outcome.duration_ms,
+                outcome.skills_loaded, outcome.plan, outcome.answer
+            );
+            assert!(!outcome.answer.is_empty(), "{:?}", outcome.error);
+        });
     }
 }

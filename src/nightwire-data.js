@@ -40,7 +40,13 @@ export const MITRE_TECHNIQUES = [
   { id: 'T1078', name: 'Valid Accounts', tactic: 'Defense Evasion' },
   { id: 'T1048', name: 'Exfiltration Over Alternative Protocol', tactic: 'Exfiltration' },
   { id: 'T1071', name: 'Application Layer Protocol', tactic: 'Command and Control' },
-  { id: 'T1485', name: 'Data Destruction', tactic: 'Impact' }
+  { id: 'T1485', name: 'Data Destruction', tactic: 'Impact' },
+  { id: 'T1583', name: 'Acquire Infrastructure', tactic: 'Resource Development' },
+  { id: 'T1534', name: 'Internal Spearphishing', tactic: 'Lateral Movement' },
+  { id: 'T1204', name: 'User Execution', tactic: 'Execution' },
+  { id: 'T1098', name: 'Account Manipulation', tactic: 'Persistence' },
+  { id: 'T1070', name: 'Indicator Removal', tactic: 'Defense Evasion' },
+  { id: 'T1499', name: 'Endpoint Denial of Service', tactic: 'Impact' }
 ];
 
 export function severityKey(value) {

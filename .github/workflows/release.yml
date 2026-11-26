@@ -1,0 +1,112 @@
+name: Release
+
+# Builds MailSonar for Windows, Linux and macOS (Apple Silicon + Intel) and
+# attaches the installers to a GitHub release.
+# - Push a tag like v1.2.0            -> draft release for that tag
+# - Run manually (workflow_dispatch)  -> draft release for the given tag name
+# Releases are created as drafts: review the notes and artefacts, then publish.
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Release tag (e.g. v1.2.0)
+        required: true
+        default: v1.2.0
+
+permissions:
+  contents: write
+
+env:
+  LLAMA_BUILD: b11934
+
+jobs:
+  build:
+    name: ${{ matrix.name }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: Windows x64
+            os: windows-latest
+            args: ''
+            llama: ''            # the Windows engine is committed in src-tauri/engine
+          - name: Linux x64
+            os: ubuntu-22.04
+            args: ''
+            llama: ubuntu-x64
+          - name: macOS Apple Silicon
+            os: macos-latest
+            args: --target aarch64-apple-darwin
+            llama: macos-arm64
+          - name: macOS Intel
+            os: macos-latest
+            args: --target x86_64-apple-darwin
+            llama: macos-x64
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Linux build dependencies
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf libssl-dev
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ runner.os == 'macOS' && 'aarch64-apple-darwin,x86_64-apple-darwin' || '' }}
+
+      - uses: swatinem/rust-cache@v2
+        with:
+          workspaces: src-tauri -> target
+
+      - name: Bundle the llama.cpp engine for this platform
+        if: matrix.llama != ''
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          asset="llama-${LLAMA_BUILD}-bin-${{ matrix.llama }}.tar.gz"
+          gh release download "$LLAMA_BUILD" -R ggml-org/llama.cpp -p "$asset" -D "$RUNNER_TEMP"
+          mkdir -p "$RUNNER_TEMP/llama" && tar xzf "$RUNNER_TEMP/$asset" -C "$RUNNER_TEMP/llama"
+          src=$(dirname "$(find "$RUNNER_TEMP/llama" -name llama-server -type f | head -1)")
+          # Replace the committed Windows engine with the native one.
+          find src-tauri/engine -type f ! -name 'LICENSE*' ! -name 'ENGINE-VERSION.txt' -delete
+          cp -L "$src/llama-server" src-tauri/engine/
+          find "$src" -maxdepth 1 \( -name 'lib*.so*' -o -name 'lib*.dylib' \) -exec cp -L {} src-tauri/engine/ \;
+          chmod +x src-tauri/engine/llama-server
+          printf 'Engine: llama.cpp %s (%s), bundled by release workflow from %s\n' "$LLAMA_BUILD" "${{ matrix.llama }}" "$asset" > src-tauri/engine/ENGINE-VERSION.txt
+          ls -la src-tauri/engine
+
+      - run: npm ci
+      - run: npm test
+
+      - name: Build and upload
+        uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tagName: ${{ github.event.inputs.tag || github.ref_name }}
+          releaseName: MailSonar ${{ github.event.inputs.tag || github.ref_name }}
+          releaseBody: |
+            See CHANGELOG.md for the full list of changes.
+
+            **Downloads**
+            - Windows: `MailSonar_*_x64-setup.exe` (NSIS) or `.msi`
+            - Linux: `.AppImage`, `.deb` or `.rpm`
+            - macOS: `MailSonar_*_aarch64.dmg` (Apple Silicon) or `_x64.dmg` (Intel)
+
+            Builds are not code-signed. On macOS run `xattr -dr com.apple.quarantine /Applications/MailSonar.app` once; on Windows choose "More info → Run anyway" in SmartScreen.
+            Each build bundles the CPU llama.cpp engine (build ${{ env.LLAMA_BUILD }}); models are downloaded from Hugging Face inside the app.
+          releaseDraft: true
+          prerelease: false
+          args: ${{ matrix.args }}

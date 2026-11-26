@@ -1,0 +1,327 @@
+timestamp,sender,recipient,ip,message_id,action,subject,details
+2026-11-25T07:30:15Z,orders@tedarikci.test,emre.koc@northwind.test,192.0.2.80,<gw-00202@northwind.test>,deliver,Q4 bütçe taslağı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T07:33:51Z,elif.kaya@northwind.test,orders@tedarikci.test,192.0.2.10,<gw-00244@northwind.test>,send,Haftalık toplantı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T07:35:51Z,emre.koc@northwind.test,it.destek@northwind.test,192.0.2.10,<gw-00090@northwind.test>,send,Yemek menüsü,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T07:36:12Z,finans@northwind.test,burak.celik@northwind.test,192.0.2.10,<gw-00201@northwind.test>,send,Q4 bütçe taslağı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T07:36:49Z,merve.polat@northwind.test,ayse.yilmaz@northwind.test,192.0.2.10,<gw-00189@northwind.test>,send,Haftalık toplantı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T07:37:21Z,merve.polat@northwind.test,emre.koc@northwind.test,192.0.2.10,<gw-00231@northwind.test>,send,Yemek menüsü,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T07:38:04Z,zeynep.arslan@northwind.test,orders@tedarikci.test,192.0.2.10,<gw-00232@northwind.test>,send,Re: Teklif,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T07:40:23Z,deniz.sahin@northwind.test,orders@tedarikci.test,192.0.2.10,<gw-00001@northwind.test>,send,Re: Teklif,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T07:40:46Z,emre.koc@northwind.test,finans@northwind.test,192.0.2.10,<gw-00136@northwind.test>,send,Kargo bilgisi,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T07:41:58Z,mehmet.demir@northwind.test,info@lojistik.test,192.0.2.10,<gw-00055@northwind.test>,send,Toplantı notları,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T07:43:46Z,orders@tedarikci.test,selin.aydin@northwind.test,192.0.2.80,<gw-00251@northwind.test>,deliver,Proje durumu,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T07:44:13Z,sales@yazilim-partner.test,emre.koc@northwind.test,192.0.2.80,<gw-00193@northwind.test>,deliver,Haftalık toplantı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T07:45:23Z,it.destek@northwind.test,info@lojistik.test,192.0.2.10,<gw-00194@northwind.test>,send,Q4 bütçe taslağı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T07:48:11Z,elif.kaya@northwind.test,emre.koc@northwind.test,192.0.2.10,<gw-00211@northwind.test>,send,Toplantı notları,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T07:52:08Z,it.destek@northwind.test,info@lojistik.test,192.0.2.10,<gw-00083@northwind.test>,send,Haftalık toplantı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T07:52:28Z,zeynep.arslan@northwind.test,elif.kaya@northwind.test,192.0.2.10,<gw-00237@northwind.test>,send,Toplantı notları,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T07:56:35Z,emre.koc@northwind.test,emre.koc@northwind.test,192.0.2.10,<gw-00019@northwind.test>,send,Haftalık toplantı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T07:57:32Z,sales@yazilim-partner.test,finans@northwind.test,192.0.2.80,<gw-00004@northwind.test>,deliver,Re: Teklif,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T08:01:06Z,sales@yazilim-partner.test,deniz.sahin@northwind.test,192.0.2.80,<gw-00079@northwind.test>,deliver,Kargo bilgisi,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T08:02:38Z,deniz.sahin@northwind.test,merve.polat@northwind.test,192.0.2.10,<gw-00122@northwind.test>,send,Re: Teklif,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T08:04:17Z,orders@tedarikci.test,zeynep.arslan@northwind.test,192.0.2.80,<gw-00020@northwind.test>,deliver,Q4 bütçe taslağı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T08:07:37Z,can.ozturk@northwind.test,emre.koc@northwind.test,192.0.2.10,<gw-00151@northwind.test>,send,Kargo bilgisi,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T08:08:09Z,selin.aydin@northwind.test,emre.koc@northwind.test,192.0.2.10,<gw-00225@northwind.test>,send,Re: Teklif,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T08:14:23Z,sales@yazilim-partner.test,ayse.yilmaz@northwind.test,192.0.2.80,<gw-00135@northwind.test>,deliver,Haftalık toplantı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T08:19:55Z,ayse.yilmaz@northwind.test,merve.polat@northwind.test,192.0.2.10,<gw-00190@northwind.test>,send,Sipariş onayı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T08:20:17Z,sales@yazilim-partner.test,deniz.sahin@northwind.test,192.0.2.80,<gw-00112@northwind.test>,deliver,Q4 bütçe taslağı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T08:29:02Z,sales@yazilim-partner.test,zeynep.arslan@northwind.test,192.0.2.80,<gw-00003@northwind.test>,deliver,Haftalık toplantı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T08:29:06Z,finans@northwind.test,merve.polat@northwind.test,192.0.2.10,<gw-00128@northwind.test>,send,Re: Teklif,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T08:32:55Z,sales@yazilim-partner.test,selin.aydin@northwind.test,192.0.2.80,<gw-00028@northwind.test>,deliver,Sipariş onayı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T08:36:34Z,merve.polat@northwind.test,finans@northwind.test,192.0.2.10,<gw-00046@northwind.test>,send,Haftalık toplantı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T08:37:09Z,elif.kaya@northwind.test,finans@northwind.test,192.0.2.10,<gw-00066@northwind.test>,send,Yemek menüsü,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T08:37:32Z,orders@tedarikci.test,burak.celik@northwind.test,192.0.2.80,<gw-00073@northwind.test>,deliver,Kargo bilgisi,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T08:39:27Z,it.destek@northwind.test,info@lojistik.test,192.0.2.10,<gw-00217@northwind.test>,send,Proje durumu,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T08:39:58Z,sales@yazilim-partner.test,zeynep.arslan@northwind.test,192.0.2.80,<gw-00150@northwind.test>,deliver,Toplantı notları,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T08:40:56Z,info@lojistik.test,elif.kaya@northwind.test,192.0.2.80,<gw-00076@northwind.test>,deliver,Kargo bilgisi,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T08:41:41Z,orders@tedarikci.test,burak.celik@northwind.test,192.0.2.80,<gw-00143@northwind.test>,deliver,Q4 bütçe taslağı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T08:42:07Z,it.destek@northwind.test,merve.polat@northwind.test,192.0.2.10,<gw-00200@northwind.test>,send,Haftalık toplantı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T08:43:58Z,it.destek@northwind.test,sales@yazilim-partner.test,192.0.2.10,<gw-00106@northwind.test>,send,Kargo bilgisi,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T08:44:55Z,info@lojistik.test,zeynep.arslan@northwind.test,192.0.2.80,<gw-00060@northwind.test>,deliver,Kargo bilgisi,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T08:45:00Z,no-reply@micr0soft-365.example.net,elif.kaya@northwind.test,198.51.100.20,<phish-1@micr0soft-365.example.net>,deliver,Microsoft 365: Parolanızın süresi doluyor,spf=fail dkim=none dmarc=fail; phishing link https://micr0soft-365.example.net/auth/login; lookalike sender domain
+2026-11-25T08:45:07Z,no-reply@micr0soft-365.example.net,mehmet.demir@northwind.test,198.51.100.20,<phish-2@micr0soft-365.example.net>,deliver,Microsoft 365: Parolanızın süresi doluyor,spf=fail dkim=none dmarc=fail; phishing link https://micr0soft-365.example.net/auth/login; lookalike sender domain
+2026-11-25T08:45:14Z,no-reply@micr0soft-365.example.net,ayse.yilmaz@northwind.test,198.51.100.20,<phish-3@micr0soft-365.example.net>,deliver,Microsoft 365: Parolanızın süresi doluyor,spf=fail dkim=none dmarc=fail; phishing link https://micr0soft-365.example.net/auth/login; lookalike sender domain
+2026-11-25T08:45:21Z,no-reply@micr0soft-365.example.net,can.ozturk@northwind.test,198.51.100.20,<phish-4@micr0soft-365.example.net>,deliver,Microsoft 365: Parolanızın süresi doluyor,spf=fail dkim=none dmarc=fail; phishing link https://micr0soft-365.example.net/auth/login; lookalike sender domain
+2026-11-25T08:45:28Z,no-reply@micr0soft-365.example.net,zeynep.arslan@northwind.test,198.51.100.20,<phish-5@micr0soft-365.example.net>,deliver,Microsoft 365: Parolanızın süresi doluyor,spf=fail dkim=none dmarc=fail; phishing link https://micr0soft-365.example.net/auth/login; lookalike sender domain
+2026-11-25T08:45:35Z,no-reply@micr0soft-365.example.net,burak.celik@northwind.test,198.51.100.20,<phish-6@micr0soft-365.example.net>,deliver,Microsoft 365: Parolanızın süresi doluyor,spf=fail dkim=none dmarc=fail; phishing link https://micr0soft-365.example.net/auth/login; lookalike sender domain
+2026-11-25T08:45:38Z,deniz.sahin@northwind.test,it.destek@northwind.test,192.0.2.10,<gw-00178@northwind.test>,send,Kargo bilgisi,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T08:49:52Z,sales@yazilim-partner.test,can.ozturk@northwind.test,192.0.2.80,<gw-00124@northwind.test>,deliver,Toplantı notları,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T08:49:57Z,orders@tedarikci.test,can.ozturk@northwind.test,192.0.2.80,<gw-00038@northwind.test>,deliver,Sipariş onayı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T08:50:37Z,orders@tedarikci.test,zeynep.arslan@northwind.test,192.0.2.80,<gw-00013@northwind.test>,deliver,Q4 bütçe taslağı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T08:51:12Z,no-reply@micr0soft-365.example.net,elif.kaya@northwind.test,192.0.2.150,<phish-1@micr0soft-365.example.net>,click,Microsoft 365: Parolanızın süresi doluyor,url click allowed: https://micr0soft-365.example.net/auth/login (credential harvest page)
+2026-11-25T08:52:25Z,deniz.sahin@northwind.test,zeynep.arslan@northwind.test,192.0.2.10,<gw-00089@northwind.test>,send,Haftalık toplantı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T09:00:03Z,selin.aydin@northwind.test,finans@northwind.test,192.0.2.10,<gw-00005@northwind.test>,send,Q4 bütçe taslağı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T09:01:00Z,deniz.sahin@northwind.test,ayse.yilmaz@northwind.test,192.0.2.10,<gw-00227@northwind.test>,send,Q4 bütçe taslağı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T09:03:18Z,finans@northwind.test,selin.aydin@northwind.test,192.0.2.10,<gw-00084@northwind.test>,send,Q4 bütçe taslağı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T09:03:50Z,burak.celik@northwind.test,it.destek@northwind.test,192.0.2.10,<gw-00259@northwind.test>,send,Kargo bilgisi,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T09:04:07Z,burak.celik@northwind.test,info@lojistik.test,192.0.2.10,<gw-00042@northwind.test>,send,Re: Teklif,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T09:04:55Z,mehmet.demir@northwind.test,it.destek@northwind.test,192.0.2.10,<gw-00137@northwind.test>,send,Kargo bilgisi,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T09:09:23Z,deniz.sahin@northwind.test,mehmet.demir@northwind.test,192.0.2.10,<gw-00246@northwind.test>,send,Sipariş onayı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T09:14:10Z,ayse.yilmaz@northwind.test,elif.kaya@northwind.test,192.0.2.10,<gw-00103@northwind.test>,send,Proje durumu,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T09:14:37Z,orders@tedarikci.test,mehmet.demir@northwind.test,192.0.2.80,<gw-00243@northwind.test>,deliver,Q4 bütçe taslağı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T09:16:35Z,zeynep.arslan@northwind.test,sales@yazilim-partner.test,192.0.2.10,<gw-00212@northwind.test>,send,Sipariş onayı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T09:24:47Z,elif.kaya@northwind.test,orders@tedarikci.test,192.0.2.10,<gw-00253@northwind.test>,send,Sipariş onayı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T09:28:41Z,info@lojistik.test,burak.celik@northwind.test,192.0.2.80,<gw-00123@northwind.test>,deliver,Yemek menüsü,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T09:30:05Z,elif.kaya@northwind.test,finans@northwind.test,203.0.113.66,<bec-1@northwind.test>,send,RE: Tedarikçi ödemesi - banka hesap değişikliği,reply-to mismatch: replies go to elif.kaya@northwind-finans.example.net; payment change request; bank details change
+2026-11-25T09:34:15Z,emre.koc@northwind.test,info@lojistik.test,192.0.2.10,<gw-00161@northwind.test>,send,Haftalık toplantı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T09:38:18Z,burak.celik@northwind.test,can.ozturk@northwind.test,192.0.2.10,<gw-00185@northwind.test>,send,Sipariş onayı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T09:38:52Z,orders@tedarikci.test,ayse.yilmaz@northwind.test,192.0.2.80,<gw-00152@northwind.test>,deliver,Q4 bütçe taslağı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T09:40:00Z,elif.kaya@northwind.test,elif.kaya.backup@mailbox.example.net,203.0.113.66,<gw-00272@northwind.test>,send,FW: (otomatik iletme),auto forward to external address; external recipient
+2026-11-25T09:40:04Z,elif.kaya@northwind.test,elif.kaya.backup@mailbox.example.net,203.0.113.66,<gw-00273@northwind.test>,send,FW: (otomatik iletme),auto forward to external address; external recipient
+2026-11-25T09:40:08Z,elif.kaya@northwind.test,elif.kaya.backup@mailbox.example.net,203.0.113.66,<gw-00274@northwind.test>,send,FW: (otomatik iletme),auto forward to external address; external recipient
+2026-11-25T09:40:12Z,elif.kaya@northwind.test,elif.kaya.backup@mailbox.example.net,203.0.113.66,<gw-00275@northwind.test>,send,FW: (otomatik iletme),auto forward to external address; external recipient
+2026-11-25T09:40:16Z,elif.kaya@northwind.test,elif.kaya.backup@mailbox.example.net,203.0.113.66,<gw-00276@northwind.test>,send,FW: (otomatik iletme),auto forward to external address; external recipient
+2026-11-25T09:40:20Z,elif.kaya@northwind.test,elif.kaya.backup@mailbox.example.net,203.0.113.66,<gw-00277@northwind.test>,send,FW: (otomatik iletme),auto forward to external address; external recipient
+2026-11-25T09:40:24Z,elif.kaya@northwind.test,elif.kaya.backup@mailbox.example.net,203.0.113.66,<gw-00278@northwind.test>,send,FW: (otomatik iletme),auto forward to external address; external recipient
+2026-11-25T09:40:28Z,elif.kaya@northwind.test,elif.kaya.backup@mailbox.example.net,203.0.113.66,<gw-00279@northwind.test>,send,FW: (otomatik iletme),auto forward to external address; external recipient
+2026-11-25T09:40:32Z,elif.kaya@northwind.test,elif.kaya.backup@mailbox.example.net,203.0.113.66,<gw-00280@northwind.test>,send,FW: (otomatik iletme),auto forward to external address; external recipient
+2026-11-25T09:40:36Z,elif.kaya@northwind.test,elif.kaya.backup@mailbox.example.net,203.0.113.66,<gw-00281@northwind.test>,send,FW: (otomatik iletme),auto forward to external address; external recipient
+2026-11-25T09:40:40Z,elif.kaya@northwind.test,elif.kaya.backup@mailbox.example.net,203.0.113.66,<gw-00282@northwind.test>,send,FW: (otomatik iletme),auto forward to external address; external recipient
+2026-11-25T09:40:44Z,elif.kaya@northwind.test,elif.kaya.backup@mailbox.example.net,203.0.113.66,<gw-00283@northwind.test>,send,FW: (otomatik iletme),auto forward to external address; external recipient
+2026-11-25T09:40:48Z,elif.kaya@northwind.test,elif.kaya.backup@mailbox.example.net,203.0.113.66,<gw-00284@northwind.test>,send,FW: (otomatik iletme),auto forward to external address; external recipient
+2026-11-25T09:40:52Z,elif.kaya@northwind.test,elif.kaya.backup@mailbox.example.net,203.0.113.66,<gw-00285@northwind.test>,send,FW: (otomatik iletme),auto forward to external address; external recipient
+2026-11-25T09:40:56Z,elif.kaya@northwind.test,elif.kaya.backup@mailbox.example.net,203.0.113.66,<gw-00286@northwind.test>,send,FW: (otomatik iletme),auto forward to external address; external recipient
+2026-11-25T09:41:00Z,elif.kaya@northwind.test,elif.kaya.backup@mailbox.example.net,203.0.113.66,<gw-00287@northwind.test>,send,FW: (otomatik iletme),auto forward to external address; external recipient
+2026-11-25T09:41:04Z,elif.kaya@northwind.test,elif.kaya.backup@mailbox.example.net,203.0.113.66,<gw-00288@northwind.test>,send,FW: (otomatik iletme),auto forward to external address; external recipient
+2026-11-25T09:41:08Z,elif.kaya@northwind.test,elif.kaya.backup@mailbox.example.net,203.0.113.66,<gw-00289@northwind.test>,send,FW: (otomatik iletme),auto forward to external address; external recipient
+2026-11-25T09:41:12Z,elif.kaya@northwind.test,elif.kaya.backup@mailbox.example.net,203.0.113.66,<gw-00290@northwind.test>,send,FW: (otomatik iletme),auto forward to external address; external recipient
+2026-11-25T09:41:16Z,elif.kaya@northwind.test,elif.kaya.backup@mailbox.example.net,203.0.113.66,<gw-00291@northwind.test>,send,FW: (otomatik iletme),auto forward to external address; external recipient
+2026-11-25T09:41:20Z,elif.kaya@northwind.test,elif.kaya.backup@mailbox.example.net,203.0.113.66,<gw-00292@northwind.test>,send,FW: (otomatik iletme),auto forward to external address; external recipient
+2026-11-25T09:41:24Z,elif.kaya@northwind.test,elif.kaya.backup@mailbox.example.net,203.0.113.66,<gw-00293@northwind.test>,send,FW: (otomatik iletme),auto forward to external address; external recipient
+2026-11-25T09:41:28Z,elif.kaya@northwind.test,elif.kaya.backup@mailbox.example.net,203.0.113.66,<gw-00294@northwind.test>,send,FW: (otomatik iletme),auto forward to external address; external recipient
+2026-11-25T09:41:32Z,elif.kaya@northwind.test,elif.kaya.backup@mailbox.example.net,203.0.113.66,<gw-00295@northwind.test>,send,FW: (otomatik iletme),auto forward to external address; external recipient
+2026-11-25T09:41:36Z,elif.kaya@northwind.test,elif.kaya.backup@mailbox.example.net,203.0.113.66,<gw-00296@northwind.test>,send,FW: (otomatik iletme),auto forward to external address; external recipient
+2026-11-25T09:41:40Z,elif.kaya@northwind.test,elif.kaya.backup@mailbox.example.net,203.0.113.66,<gw-00297@northwind.test>,send,FW: (otomatik iletme),auto forward to external address; external recipient
+2026-11-25T09:41:44Z,elif.kaya@northwind.test,elif.kaya.backup@mailbox.example.net,203.0.113.66,<gw-00298@northwind.test>,send,FW: (otomatik iletme),auto forward to external address; external recipient
+2026-11-25T09:41:48Z,elif.kaya@northwind.test,elif.kaya.backup@mailbox.example.net,203.0.113.66,<gw-00299@northwind.test>,send,FW: (otomatik iletme),auto forward to external address; external recipient
+2026-11-25T09:41:52Z,elif.kaya@northwind.test,elif.kaya.backup@mailbox.example.net,203.0.113.66,<gw-00300@northwind.test>,send,FW: (otomatik iletme),auto forward to external address; external recipient
+2026-11-25T09:41:56Z,elif.kaya@northwind.test,elif.kaya.backup@mailbox.example.net,203.0.113.66,<gw-00301@northwind.test>,send,FW: (otomatik iletme),auto forward to external address; external recipient
+2026-11-25T09:42:00Z,elif.kaya@northwind.test,elif.kaya.backup@mailbox.example.net,203.0.113.66,<gw-00302@northwind.test>,send,FW: (otomatik iletme),auto forward to external address; external recipient
+2026-11-25T09:42:04Z,elif.kaya@northwind.test,elif.kaya.backup@mailbox.example.net,203.0.113.66,<gw-00303@northwind.test>,send,FW: (otomatik iletme),auto forward to external address; external recipient
+2026-11-25T09:42:08Z,elif.kaya@northwind.test,elif.kaya.backup@mailbox.example.net,203.0.113.66,<gw-00304@northwind.test>,send,FW: (otomatik iletme),auto forward to external address; external recipient
+2026-11-25T09:42:12Z,elif.kaya@northwind.test,elif.kaya.backup@mailbox.example.net,203.0.113.66,<gw-00305@northwind.test>,send,FW: (otomatik iletme),auto forward to external address; external recipient
+2026-11-25T09:42:16Z,elif.kaya@northwind.test,elif.kaya.backup@mailbox.example.net,203.0.113.66,<gw-00306@northwind.test>,send,FW: (otomatik iletme),auto forward to external address; external recipient
+2026-11-25T09:42:20Z,elif.kaya@northwind.test,elif.kaya.backup@mailbox.example.net,203.0.113.66,<gw-00307@northwind.test>,send,FW: (otomatik iletme),auto forward to external address; external recipient
+2026-11-25T09:42:24Z,elif.kaya@northwind.test,elif.kaya.backup@mailbox.example.net,203.0.113.66,<gw-00308@northwind.test>,send,FW: (otomatik iletme),auto forward to external address; external recipient
+2026-11-25T09:42:28Z,elif.kaya@northwind.test,elif.kaya.backup@mailbox.example.net,203.0.113.66,<gw-00309@northwind.test>,send,FW: (otomatik iletme),auto forward to external address; external recipient
+2026-11-25T09:42:32Z,elif.kaya@northwind.test,elif.kaya.backup@mailbox.example.net,203.0.113.66,<gw-00310@northwind.test>,send,FW: (otomatik iletme),auto forward to external address; external recipient
+2026-11-25T09:42:36Z,elif.kaya@northwind.test,elif.kaya.backup@mailbox.example.net,203.0.113.66,<gw-00311@northwind.test>,send,FW: (otomatik iletme),auto forward to external address; external recipient
+2026-11-25T09:42:40Z,elif.kaya@northwind.test,elif.kaya.backup@mailbox.example.net,203.0.113.66,<gw-00312@northwind.test>,send,FW: (otomatik iletme),auto forward to external address; external recipient
+2026-11-25T09:42:44Z,elif.kaya@northwind.test,elif.kaya.backup@mailbox.example.net,203.0.113.66,<gw-00313@northwind.test>,send,FW: (otomatik iletme),auto forward to external address; external recipient
+2026-11-25T09:42:48Z,elif.kaya@northwind.test,elif.kaya.backup@mailbox.example.net,203.0.113.66,<gw-00314@northwind.test>,send,FW: (otomatik iletme),auto forward to external address; external recipient
+2026-11-25T09:42:52Z,elif.kaya@northwind.test,elif.kaya.backup@mailbox.example.net,203.0.113.66,<gw-00315@northwind.test>,send,FW: (otomatik iletme),auto forward to external address; external recipient
+2026-11-25T09:42:56Z,elif.kaya@northwind.test,elif.kaya.backup@mailbox.example.net,203.0.113.66,<gw-00316@northwind.test>,send,FW: (otomatik iletme),auto forward to external address; external recipient
+2026-11-25T09:43:00Z,elif.kaya@northwind.test,elif.kaya.backup@mailbox.example.net,203.0.113.66,<gw-00317@northwind.test>,send,FW: (otomatik iletme),auto forward to external address; external recipient
+2026-11-25T09:43:04Z,elif.kaya@northwind.test,elif.kaya.backup@mailbox.example.net,203.0.113.66,<gw-00318@northwind.test>,send,FW: (otomatik iletme),auto forward to external address; external recipient
+2026-11-25T09:43:08Z,elif.kaya@northwind.test,elif.kaya.backup@mailbox.example.net,203.0.113.66,<gw-00319@northwind.test>,send,FW: (otomatik iletme),auto forward to external address; external recipient
+2026-11-25T09:43:12Z,elif.kaya@northwind.test,elif.kaya.backup@mailbox.example.net,203.0.113.66,<gw-00320@northwind.test>,send,FW: (otomatik iletme),auto forward to external address; external recipient
+2026-11-25T09:43:16Z,elif.kaya@northwind.test,elif.kaya.backup@mailbox.example.net,203.0.113.66,<gw-00321@northwind.test>,send,FW: (otomatik iletme),auto forward to external address; external recipient
+2026-11-25T09:43:20Z,elif.kaya@northwind.test,elif.kaya.backup@mailbox.example.net,203.0.113.66,<gw-00322@northwind.test>,send,FW: (otomatik iletme),auto forward to external address; external recipient
+2026-11-25T09:43:24Z,elif.kaya@northwind.test,elif.kaya.backup@mailbox.example.net,203.0.113.66,<gw-00323@northwind.test>,send,FW: (otomatik iletme),auto forward to external address; external recipient
+2026-11-25T09:43:28Z,elif.kaya@northwind.test,elif.kaya.backup@mailbox.example.net,203.0.113.66,<gw-00324@northwind.test>,send,FW: (otomatik iletme),auto forward to external address; external recipient
+2026-11-25T09:43:32Z,elif.kaya@northwind.test,elif.kaya.backup@mailbox.example.net,203.0.113.66,<gw-00325@northwind.test>,send,FW: (otomatik iletme),auto forward to external address; external recipient
+2026-11-25T09:43:36Z,elif.kaya@northwind.test,elif.kaya.backup@mailbox.example.net,203.0.113.66,<gw-00326@northwind.test>,send,FW: (otomatik iletme),auto forward to external address; external recipient
+2026-11-25T09:44:01Z,zeynep.arslan@northwind.test,orders@tedarikci.test,192.0.2.10,<gw-00077@northwind.test>,send,Toplantı notları,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T09:45:57Z,orders@tedarikci.test,burak.celik@northwind.test,192.0.2.80,<gw-00087@northwind.test>,deliver,Toplantı notları,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T09:46:31Z,burak.celik@northwind.test,orders@tedarikci.test,192.0.2.10,<gw-00025@northwind.test>,send,Toplantı notları,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T09:46:43Z,burak.celik@northwind.test,mehmet.demir@northwind.test,192.0.2.10,<gw-00207@northwind.test>,send,Yemek menüsü,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T09:47:54Z,orders@tedarikci.test,it.destek@northwind.test,192.0.2.80,<gw-00236@northwind.test>,deliver,Yemek menüsü,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T09:49:05Z,it.destek@northwind.test,merve.polat@northwind.test,192.0.2.10,<gw-00037@northwind.test>,send,Kargo bilgisi,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T09:50:40Z,orders@tedarikci.test,it.destek@northwind.test,192.0.2.80,<gw-00125@northwind.test>,deliver,Re: Teklif,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T09:51:55Z,sales@yazilim-partner.test,burak.celik@northwind.test,192.0.2.80,<gw-00102@northwind.test>,deliver,Haftalık toplantı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T09:53:37Z,finans@northwind.test,info@lojistik.test,192.0.2.10,<gw-00058@northwind.test>,send,Re: Teklif,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T09:55:07Z,finans@northwind.test,deniz.sahin@northwind.test,192.0.2.10,<gw-00169@northwind.test>,send,Sipariş onayı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T09:55:53Z,mehmet.demir@northwind.test,can.ozturk@northwind.test,192.0.2.10,<gw-00183@northwind.test>,send,Sipariş onayı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T10:00:59Z,sales@yazilim-partner.test,ayse.yilmaz@northwind.test,192.0.2.80,<gw-00167@northwind.test>,deliver,Proje durumu,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T10:03:52Z,orders@tedarikci.test,it.destek@northwind.test,192.0.2.80,<gw-00219@northwind.test>,deliver,Haftalık toplantı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T10:06:49Z,mehmet.demir@northwind.test,info@lojistik.test,192.0.2.10,<gw-00226@northwind.test>,send,Yemek menüsü,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T10:09:43Z,orders@tedarikci.test,burak.celik@northwind.test,192.0.2.80,<gw-00166@northwind.test>,deliver,Re: Teklif,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T10:12:19Z,elif.kaya@northwind.test,selin.aydin@northwind.test,192.0.2.10,<gw-00139@northwind.test>,send,Yemek menüsü,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T10:16:26Z,deniz.sahin@northwind.test,sales@yazilim-partner.test,192.0.2.10,<gw-00213@northwind.test>,send,Kargo bilgisi,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T10:17:40Z,merve.polat@northwind.test,sales@yazilim-partner.test,192.0.2.10,<gw-00252@northwind.test>,send,Yemek menüsü,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T10:18:37Z,emre.koc@northwind.test,orders@tedarikci.test,192.0.2.10,<gw-00247@northwind.test>,send,Proje durumu,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T10:20:00Z,accounts@tedarikci-fatura.example.net,can.ozturk@northwind.test,198.51.100.77,<inv-1@tedarikci-fatura.example.net>,deliver,Fatura_2026_11 ödeme hatırlatma,spf=softfail dkim=none dmarc=fail; malicious attachment Fatura_2026_11.docm (macro-enabled)
+2026-11-25T10:20:11Z,accounts@tedarikci-fatura.example.net,selin.aydin@northwind.test,198.51.100.77,<inv-2@tedarikci-fatura.example.net>,deliver,Fatura_2026_11 ödeme hatırlatma,spf=softfail dkim=none dmarc=fail; malicious attachment Fatura_2026_11.docm (macro-enabled)
+2026-11-25T10:20:22Z,accounts@tedarikci-fatura.example.net,emre.koc@northwind.test,198.51.100.77,<inv-3@tedarikci-fatura.example.net>,deliver,Fatura_2026_11 ödeme hatırlatma,spf=softfail dkim=none dmarc=fail; malicious attachment Fatura_2026_11.docm (macro-enabled)
+2026-11-25T10:22:33Z,info@lojistik.test,finans@northwind.test,192.0.2.80,<gw-00091@northwind.test>,deliver,Sipariş onayı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T10:26:02Z,info@lojistik.test,emre.koc@northwind.test,192.0.2.80,<gw-00235@northwind.test>,deliver,Kargo bilgisi,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T10:28:05Z,sales@yazilim-partner.test,zeynep.arslan@northwind.test,192.0.2.80,<gw-00238@northwind.test>,deliver,Q4 bütçe taslağı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T10:29:01Z,emre.koc@northwind.test,elif.kaya@northwind.test,192.0.2.10,<gw-00174@northwind.test>,send,Yemek menüsü,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T10:29:13Z,merve.polat@northwind.test,can.ozturk@northwind.test,192.0.2.10,<gw-00250@northwind.test>,send,Kargo bilgisi,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T10:30:03Z,it.destek@northwind.test,emre.koc@northwind.test,192.0.2.10,<gw-00053@northwind.test>,send,Kargo bilgisi,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T10:32:21Z,deniz.sahin@northwind.test,sales@yazilim-partner.test,192.0.2.10,<gw-00026@northwind.test>,send,Q4 bütçe taslağı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T10:34:31Z,selin.aydin@northwind.test,info@lojistik.test,192.0.2.10,<gw-00245@northwind.test>,send,Toplantı notları,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T10:35:00Z,elif.kaya@northwind.test,orders@tedarikci.test,192.0.2.10,<gw-00159@northwind.test>,send,Proje durumu,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T10:38:31Z,orders@tedarikci.test,burak.celik@northwind.test,192.0.2.80,<gw-00242@northwind.test>,deliver,Haftalık toplantı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T10:38:37Z,deniz.sahin@northwind.test,info@lojistik.test,192.0.2.10,<gw-00027@northwind.test>,send,Q4 bütçe taslağı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T10:39:14Z,info@lojistik.test,zeynep.arslan@northwind.test,192.0.2.80,<gw-00120@northwind.test>,deliver,Q4 bütçe taslağı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T10:40:37Z,burak.celik@northwind.test,it.destek@northwind.test,192.0.2.10,<gw-00075@northwind.test>,send,Kargo bilgisi,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T10:41:33Z,merve.polat@northwind.test,sales@yazilim-partner.test,192.0.2.10,<gw-00203@northwind.test>,send,Haftalık toplantı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T10:44:55Z,merve.polat@northwind.test,info@lojistik.test,192.0.2.10,<gw-00240@northwind.test>,send,Yemek menüsü,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T10:45:34Z,it.destek@northwind.test,it.destek@northwind.test,192.0.2.10,<gw-00126@northwind.test>,send,Kargo bilgisi,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T10:46:47Z,info@lojistik.test,emre.koc@northwind.test,192.0.2.80,<gw-00114@northwind.test>,deliver,Q4 bütçe taslağı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T10:47:45Z,elif.kaya@northwind.test,sales@yazilim-partner.test,192.0.2.10,<gw-00051@northwind.test>,send,Re: Teklif,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T10:48:39Z,it.destek@northwind.test,can.ozturk@northwind.test,192.0.2.10,<gw-00108@northwind.test>,send,Yemek menüsü,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T10:49:22Z,mehmet.demir@northwind.test,orders@tedarikci.test,192.0.2.10,<gw-00254@northwind.test>,send,Q4 bütçe taslağı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T10:58:15Z,merve.polat@northwind.test,sales@yazilim-partner.test,192.0.2.10,<gw-00115@northwind.test>,send,Proje durumu,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T11:02:30Z,info@lojistik.test,merve.polat@northwind.test,192.0.2.80,<gw-00260@northwind.test>,deliver,Proje durumu,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T11:05:09Z,orders@tedarikci.test,mehmet.demir@northwind.test,192.0.2.80,<gw-00134@northwind.test>,deliver,Yemek menüsü,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T11:05:47Z,burak.celik@northwind.test,info@lojistik.test,192.0.2.10,<gw-00111@northwind.test>,send,Kargo bilgisi,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T11:06:45Z,elif.kaya@northwind.test,merve.polat@northwind.test,192.0.2.10,<gw-00009@northwind.test>,send,Yemek menüsü,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T11:06:47Z,zeynep.arslan@northwind.test,elif.kaya@northwind.test,192.0.2.10,<gw-00012@northwind.test>,send,Re: Teklif,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T11:08:27Z,info@lojistik.test,deniz.sahin@northwind.test,192.0.2.80,<gw-00132@northwind.test>,deliver,Re: Teklif,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T11:09:50Z,info@lojistik.test,selin.aydin@northwind.test,192.0.2.80,<gw-00163@northwind.test>,deliver,Haftalık toplantı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T11:10:48Z,burak.celik@northwind.test,info@lojistik.test,192.0.2.10,<gw-00156@northwind.test>,send,Kargo bilgisi,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T11:11:32Z,info@lojistik.test,it.destek@northwind.test,192.0.2.80,<gw-00165@northwind.test>,deliver,Haftalık toplantı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T11:15:35Z,it.destek@northwind.test,sales@yazilim-partner.test,192.0.2.10,<gw-00118@northwind.test>,send,Yemek menüsü,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T11:18:30Z,it.destek@northwind.test,finans@northwind.test,192.0.2.10,<gw-00248@northwind.test>,send,Haftalık toplantı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T11:21:03Z,orders@tedarikci.test,mehmet.demir@northwind.test,192.0.2.80,<gw-00209@northwind.test>,deliver,Re: Teklif,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T11:21:29Z,info@lojistik.test,deniz.sahin@northwind.test,192.0.2.80,<gw-00133@northwind.test>,deliver,Proje durumu,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T11:23:08Z,elif.kaya@northwind.test,burak.celik@northwind.test,192.0.2.10,<gw-00191@northwind.test>,send,Kargo bilgisi,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T11:24:26Z,finans@northwind.test,info@lojistik.test,192.0.2.10,<gw-00121@northwind.test>,send,Re: Teklif,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T11:25:01Z,mehmet.demir@northwind.test,sales@yazilim-partner.test,192.0.2.10,<gw-00229@northwind.test>,send,Kargo bilgisi,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T11:26:58Z,info@lojistik.test,ayse.yilmaz@northwind.test,192.0.2.80,<gw-00048@northwind.test>,deliver,Sipariş onayı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T11:28:07Z,sales@yazilim-partner.test,emre.koc@northwind.test,192.0.2.80,<gw-00223@northwind.test>,deliver,Re: Teklif,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T11:31:57Z,merve.polat@northwind.test,burak.celik@northwind.test,192.0.2.10,<gw-00017@northwind.test>,send,Kargo bilgisi,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T11:33:15Z,finans@northwind.test,orders@tedarikci.test,192.0.2.10,<gw-00162@northwind.test>,send,Re: Teklif,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T11:35:52Z,sales@yazilim-partner.test,ayse.yilmaz@northwind.test,192.0.2.80,<gw-00239@northwind.test>,deliver,Kargo bilgisi,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T11:44:42Z,deniz.sahin@northwind.test,orders@tedarikci.test,192.0.2.10,<gw-00181@northwind.test>,send,Sipariş onayı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T11:45:00Z,finans@northwind.test,orders@tedarikci.test,192.0.2.10,<gw-00044@northwind.test>,send,Sipariş onayı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T11:48:30Z,info@lojistik.test,finans@northwind.test,192.0.2.80,<gw-00233@northwind.test>,deliver,Re: Teklif,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T11:49:57Z,info@lojistik.test,mehmet.demir@northwind.test,192.0.2.80,<gw-00138@northwind.test>,deliver,Sipariş onayı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T11:50:08Z,orders@tedarikci.test,emre.koc@northwind.test,192.0.2.80,<gw-00175@northwind.test>,deliver,Sipariş onayı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T11:51:29Z,elif.kaya@northwind.test,burak.celik@northwind.test,192.0.2.10,<gw-00018@northwind.test>,send,Haftalık toplantı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T11:52:37Z,info@lojistik.test,emre.koc@northwind.test,192.0.2.80,<gw-00065@northwind.test>,deliver,Q4 bütçe taslağı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T11:56:36Z,sales@yazilim-partner.test,elif.kaya@northwind.test,192.0.2.80,<gw-00210@northwind.test>,deliver,Yemek menüsü,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T11:58:45Z,selin.aydin@northwind.test,emre.koc@northwind.test,192.0.2.10,<gw-00015@northwind.test>,send,Haftalık toplantı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T12:08:29Z,it.destek@northwind.test,ayse.yilmaz@northwind.test,192.0.2.10,<gw-00141@northwind.test>,send,Sipariş onayı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T12:09:25Z,selin.aydin@northwind.test,orders@tedarikci.test,192.0.2.10,<gw-00067@northwind.test>,send,Re: Teklif,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T12:10:30Z,orders@tedarikci.test,zeynep.arslan@northwind.test,192.0.2.80,<gw-00182@northwind.test>,deliver,Toplantı notları,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T12:16:17Z,orders@tedarikci.test,zeynep.arslan@northwind.test,192.0.2.80,<gw-00234@northwind.test>,deliver,Q4 bütçe taslağı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T12:18:08Z,orders@tedarikci.test,mehmet.demir@northwind.test,192.0.2.80,<gw-00144@northwind.test>,deliver,Yemek menüsü,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T12:19:34Z,finans@northwind.test,can.ozturk@northwind.test,192.0.2.10,<gw-00036@northwind.test>,send,Kargo bilgisi,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T12:22:23Z,sales@yazilim-partner.test,can.ozturk@northwind.test,192.0.2.80,<gw-00157@northwind.test>,deliver,Re: Teklif,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T12:23:27Z,info@lojistik.test,it.destek@northwind.test,192.0.2.80,<gw-00155@northwind.test>,deliver,Proje durumu,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T12:26:03Z,info@lojistik.test,mehmet.demir@northwind.test,192.0.2.80,<gw-00014@northwind.test>,deliver,Sipariş onayı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T12:26:56Z,orders@tedarikci.test,zeynep.arslan@northwind.test,192.0.2.80,<gw-00208@northwind.test>,deliver,Proje durumu,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T12:31:21Z,finans@northwind.test,ayse.yilmaz@northwind.test,192.0.2.10,<gw-00140@northwind.test>,send,Toplantı notları,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T12:32:39Z,it.destek@northwind.test,merve.polat@northwind.test,192.0.2.10,<gw-00040@northwind.test>,send,Yemek menüsü,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T12:33:18Z,can.ozturk@northwind.test,deniz.sahin@northwind.test,192.0.2.10,<gw-00107@northwind.test>,send,Kargo bilgisi,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T12:34:07Z,burak.celik@northwind.test,selin.aydin@northwind.test,192.0.2.10,<gw-00180@northwind.test>,send,Kargo bilgisi,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T12:36:53Z,orders@tedarikci.test,ayse.yilmaz@northwind.test,192.0.2.80,<gw-00110@northwind.test>,deliver,Sipariş onayı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T12:39:39Z,orders@tedarikci.test,can.ozturk@northwind.test,192.0.2.80,<gw-00063@northwind.test>,deliver,Yemek menüsü,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T12:42:22Z,orders@tedarikci.test,elif.kaya@northwind.test,192.0.2.80,<gw-00179@northwind.test>,deliver,Haftalık toplantı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T12:42:30Z,sales@yazilim-partner.test,can.ozturk@northwind.test,192.0.2.80,<gw-00249@northwind.test>,deliver,Yemek menüsü,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T12:47:04Z,finans@northwind.test,can.ozturk@northwind.test,192.0.2.10,<gw-00094@northwind.test>,send,Kargo bilgisi,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T12:58:18Z,mehmet.demir@northwind.test,info@lojistik.test,192.0.2.10,<gw-00093@northwind.test>,send,Yemek menüsü,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T13:00:25Z,merve.polat@northwind.test,deniz.sahin@northwind.test,192.0.2.10,<gw-00074@northwind.test>,send,Proje durumu,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T13:02:04Z,burak.celik@northwind.test,sales@yazilim-partner.test,192.0.2.10,<gw-00116@northwind.test>,send,Haftalık toplantı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T13:02:56Z,finans@northwind.test,sales@yazilim-partner.test,192.0.2.10,<gw-00196@northwind.test>,send,Kargo bilgisi,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T13:03:11Z,sales@yazilim-partner.test,ayse.yilmaz@northwind.test,192.0.2.80,<gw-00057@northwind.test>,deliver,Toplantı notları,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T13:06:16Z,orders@tedarikci.test,burak.celik@northwind.test,192.0.2.80,<gw-00056@northwind.test>,deliver,Kargo bilgisi,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T13:06:53Z,sales@yazilim-partner.test,ayse.yilmaz@northwind.test,192.0.2.80,<gw-00153@northwind.test>,deliver,Q4 bütçe taslağı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T13:08:47Z,info@lojistik.test,zeynep.arslan@northwind.test,192.0.2.80,<gw-00173@northwind.test>,deliver,Kargo bilgisi,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T13:09:31Z,orders@tedarikci.test,it.destek@northwind.test,192.0.2.80,<gw-00095@northwind.test>,deliver,Toplantı notları,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T13:13:07Z,merve.polat@northwind.test,orders@tedarikci.test,192.0.2.10,<gw-00030@northwind.test>,send,Haftalık toplantı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T13:14:11Z,sales@yazilim-partner.test,it.destek@northwind.test,192.0.2.80,<gw-00011@northwind.test>,deliver,Toplantı notları,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T13:17:34Z,can.ozturk@northwind.test,burak.celik@northwind.test,192.0.2.10,<gw-00147@northwind.test>,send,Yemek menüsü,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T13:20:26Z,mehmet.demir@northwind.test,deniz.sahin@northwind.test,192.0.2.10,<gw-00031@northwind.test>,send,Yemek menüsü,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T13:22:30Z,merve.polat@northwind.test,ayse.yilmaz@northwind.test,192.0.2.10,<gw-00088@northwind.test>,send,Haftalık toplantı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T13:24:34Z,sales@yazilim-partner.test,emre.koc@northwind.test,192.0.2.80,<gw-00007@northwind.test>,deliver,Kargo bilgisi,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T13:25:04Z,orders@tedarikci.test,selin.aydin@northwind.test,192.0.2.80,<gw-00187@northwind.test>,deliver,Re: Teklif,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T13:26:07Z,info@lojistik.test,zeynep.arslan@northwind.test,192.0.2.80,<gw-00255@northwind.test>,deliver,Q4 bütçe taslağı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T13:28:45Z,mehmet.demir@northwind.test,orders@tedarikci.test,192.0.2.10,<gw-00039@northwind.test>,send,Toplantı notları,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T13:29:33Z,orders@tedarikci.test,merve.polat@northwind.test,192.0.2.80,<gw-00158@northwind.test>,deliver,Haftalık toplantı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T13:31:46Z,sales@yazilim-partner.test,can.ozturk@northwind.test,192.0.2.80,<gw-00214@northwind.test>,deliver,Yemek menüsü,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T13:32:40Z,sales@yazilim-partner.test,selin.aydin@northwind.test,192.0.2.80,<gw-00101@northwind.test>,deliver,Haftalık toplantı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T13:32:54Z,selin.aydin@northwind.test,info@lojistik.test,192.0.2.10,<gw-00160@northwind.test>,send,Proje durumu,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T13:36:28Z,can.ozturk@northwind.test,ayse.yilmaz@northwind.test,192.0.2.10,<gw-00176@northwind.test>,send,Toplantı notları,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T13:38:44Z,sales@yazilim-partner.test,deniz.sahin@northwind.test,192.0.2.80,<gw-00224@northwind.test>,deliver,Haftalık toplantı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T13:38:57Z,sales@yazilim-partner.test,deniz.sahin@northwind.test,192.0.2.80,<gw-00188@northwind.test>,deliver,Proje durumu,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T13:40:09Z,deniz.sahin@northwind.test,info@lojistik.test,192.0.2.10,<gw-00145@northwind.test>,send,Re: Teklif,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T13:40:12Z,orders@tedarikci.test,burak.celik@northwind.test,192.0.2.80,<gw-00071@northwind.test>,deliver,Sipariş onayı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T13:41:35Z,burak.celik@northwind.test,info@lojistik.test,192.0.2.10,<gw-00082@northwind.test>,send,Toplantı notları,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T13:44:45Z,sales@yazilim-partner.test,merve.polat@northwind.test,192.0.2.80,<gw-00034@northwind.test>,deliver,Proje durumu,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T13:45:23Z,info@lojistik.test,mehmet.demir@northwind.test,192.0.2.80,<gw-00215@northwind.test>,deliver,Yemek menüsü,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T13:46:20Z,info@lojistik.test,zeynep.arslan@northwind.test,192.0.2.80,<gw-00218@northwind.test>,deliver,Q4 bütçe taslağı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T13:48:07Z,can.ozturk@northwind.test,orders@tedarikci.test,192.0.2.10,<gw-00078@northwind.test>,send,Re: Teklif,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T13:49:29Z,info@lojistik.test,finans@northwind.test,192.0.2.80,<gw-00220@northwind.test>,deliver,Haftalık toplantı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T13:49:45Z,info@lojistik.test,ayse.yilmaz@northwind.test,192.0.2.80,<gw-00059@northwind.test>,deliver,Sipariş onayı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T13:58:12Z,sales@yazilim-partner.test,emre.koc@northwind.test,192.0.2.80,<gw-00054@northwind.test>,deliver,Proje durumu,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T14:05:13Z,info@lojistik.test,it.destek@northwind.test,192.0.2.80,<gw-00035@northwind.test>,deliver,Sipariş onayı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T14:09:17Z,orders@tedarikci.test,elif.kaya@northwind.test,192.0.2.80,<gw-00050@northwind.test>,deliver,Kargo bilgisi,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T14:13:38Z,orders@tedarikci.test,elif.kaya@northwind.test,192.0.2.80,<gw-00021@northwind.test>,deliver,Sipariş onayı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T14:15:47Z,sales@yazilim-partner.test,burak.celik@northwind.test,192.0.2.80,<gw-00006@northwind.test>,deliver,Haftalık toplantı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T14:16:18Z,can.ozturk@northwind.test,sales@yazilim-partner.test,192.0.2.10,<gw-00130@northwind.test>,send,Toplantı notları,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T14:22:12Z,ayse.yilmaz@northwind.test,ayse.yilmaz@northwind.test,192.0.2.10,<gw-00072@northwind.test>,send,Haftalık toplantı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T14:23:01Z,merve.polat@northwind.test,it.destek@northwind.test,192.0.2.10,<gw-00148@northwind.test>,send,Haftalık toplantı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T14:23:24Z,burak.celik@northwind.test,orders@tedarikci.test,192.0.2.10,<gw-00096@northwind.test>,send,Kargo bilgisi,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T14:25:03Z,merve.polat@northwind.test,orders@tedarikci.test,192.0.2.10,<gw-00131@northwind.test>,send,Kargo bilgisi,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T14:28:59Z,emre.koc@northwind.test,mehmet.demir@northwind.test,192.0.2.10,<gw-00099@northwind.test>,send,Re: Teklif,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T14:30:50Z,info@lojistik.test,can.ozturk@northwind.test,192.0.2.80,<gw-00199@northwind.test>,deliver,Proje durumu,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T14:33:14Z,deniz.sahin@northwind.test,merve.polat@northwind.test,192.0.2.10,<gw-00069@northwind.test>,send,Kargo bilgisi,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T14:33:19Z,can.ozturk@northwind.test,sales@yazilim-partner.test,192.0.2.10,<gw-00049@northwind.test>,send,Q4 bütçe taslağı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T14:35:43Z,info@lojistik.test,emre.koc@northwind.test,192.0.2.80,<gw-00023@northwind.test>,deliver,Kargo bilgisi,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T14:39:55Z,merve.polat@northwind.test,selin.aydin@northwind.test,192.0.2.10,<gw-00184@northwind.test>,send,Haftalık toplantı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T14:41:52Z,merve.polat@northwind.test,emre.koc@northwind.test,192.0.2.10,<gw-00061@northwind.test>,send,Kargo bilgisi,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T14:42:14Z,orders@tedarikci.test,emre.koc@northwind.test,192.0.2.80,<gw-00081@northwind.test>,deliver,Toplantı notları,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T14:46:22Z,orders@tedarikci.test,elif.kaya@northwind.test,192.0.2.80,<gw-00070@northwind.test>,deliver,Q4 bütçe taslağı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T14:49:40Z,deniz.sahin@northwind.test,info@lojistik.test,192.0.2.10,<gw-00216@northwind.test>,send,Kargo bilgisi,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T14:54:02Z,info@lojistik.test,elif.kaya@northwind.test,192.0.2.80,<gw-00222@northwind.test>,deliver,Re: Teklif,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T14:55:29Z,burak.celik@northwind.test,sales@yazilim-partner.test,192.0.2.10,<gw-00228@northwind.test>,send,Sipariş onayı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T14:56:08Z,deniz.sahin@northwind.test,elif.kaya@northwind.test,192.0.2.10,<gw-00092@northwind.test>,send,Toplantı notları,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T14:57:31Z,finans@northwind.test,orders@tedarikci.test,192.0.2.10,<gw-00258@northwind.test>,send,Haftalık toplantı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T14:59:54Z,sales@yazilim-partner.test,burak.celik@northwind.test,192.0.2.80,<gw-00041@northwind.test>,deliver,Sipariş onayı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T15:12:07Z,orders@tedarikci.test,deniz.sahin@northwind.test,192.0.2.80,<gw-00097@northwind.test>,deliver,Re: Teklif,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T15:18:32Z,sales@yazilim-partner.test,finans@northwind.test,192.0.2.80,<gw-00241@northwind.test>,deliver,Yemek menüsü,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T15:18:47Z,finans@northwind.test,burak.celik@northwind.test,192.0.2.10,<gw-00206@northwind.test>,send,Haftalık toplantı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T15:22:14Z,burak.celik@northwind.test,ayse.yilmaz@northwind.test,192.0.2.10,<gw-00098@northwind.test>,send,Yemek menüsü,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T15:24:31Z,it.destek@northwind.test,ayse.yilmaz@northwind.test,192.0.2.10,<gw-00086@northwind.test>,send,Toplantı notları,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T15:27:01Z,orders@tedarikci.test,burak.celik@northwind.test,192.0.2.80,<gw-00168@northwind.test>,deliver,Haftalık toplantı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T15:31:48Z,finans@northwind.test,emre.koc@northwind.test,192.0.2.10,<gw-00104@northwind.test>,send,Yemek menüsü,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T15:33:54Z,info@lojistik.test,elif.kaya@northwind.test,192.0.2.80,<gw-00045@northwind.test>,deliver,Re: Teklif,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T15:34:16Z,info@lojistik.test,mehmet.demir@northwind.test,192.0.2.80,<gw-00100@northwind.test>,deliver,Yemek menüsü,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T15:35:26Z,ayse.yilmaz@northwind.test,sales@yazilim-partner.test,192.0.2.10,<gw-00064@northwind.test>,send,Sipariş onayı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T15:39:51Z,mehmet.demir@northwind.test,zeynep.arslan@northwind.test,192.0.2.10,<gw-00142@northwind.test>,send,Proje durumu,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T15:44:55Z,info@lojistik.test,elif.kaya@northwind.test,192.0.2.80,<gw-00221@northwind.test>,deliver,Kargo bilgisi,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T15:46:07Z,finans@northwind.test,elif.kaya@northwind.test,192.0.2.10,<gw-00105@northwind.test>,send,Yemek menüsü,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T15:47:46Z,sales@yazilim-partner.test,mehmet.demir@northwind.test,192.0.2.80,<gw-00197@northwind.test>,deliver,Kargo bilgisi,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T15:52:34Z,finans@northwind.test,elif.kaya@northwind.test,192.0.2.10,<gw-00024@northwind.test>,send,Q4 bütçe taslağı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T15:53:07Z,orders@tedarikci.test,emre.koc@northwind.test,192.0.2.80,<gw-00109@northwind.test>,deliver,Proje durumu,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T15:55:29Z,emre.koc@northwind.test,orders@tedarikci.test,192.0.2.10,<gw-00008@northwind.test>,send,Toplantı notları,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T15:56:03Z,info@lojistik.test,selin.aydin@northwind.test,192.0.2.80,<gw-00172@northwind.test>,deliver,Yemek menüsü,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T15:57:15Z,mehmet.demir@northwind.test,orders@tedarikci.test,192.0.2.10,<gw-00170@northwind.test>,send,Sipariş onayı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T15:59:01Z,ayse.yilmaz@northwind.test,sales@yazilim-partner.test,192.0.2.10,<gw-00022@northwind.test>,send,Kargo bilgisi,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T15:59:46Z,deniz.sahin@northwind.test,orders@tedarikci.test,192.0.2.10,<gw-00230@northwind.test>,send,Q4 bütçe taslağı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T16:01:08Z,deniz.sahin@northwind.test,it.destek@northwind.test,192.0.2.10,<gw-00205@northwind.test>,send,Haftalık toplantı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T16:01:48Z,it.destek@northwind.test,info@lojistik.test,192.0.2.10,<gw-00256@northwind.test>,send,Yemek menüsü,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T16:09:37Z,it.destek@northwind.test,selin.aydin@northwind.test,192.0.2.10,<gw-00154@northwind.test>,send,Proje durumu,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T16:10:32Z,info@lojistik.test,mehmet.demir@northwind.test,192.0.2.80,<gw-00032@northwind.test>,deliver,Kargo bilgisi,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T16:10:36Z,sales@yazilim-partner.test,mehmet.demir@northwind.test,192.0.2.80,<gw-00113@northwind.test>,deliver,Proje durumu,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T16:11:53Z,can.ozturk@northwind.test,can.ozturk@northwind.test,192.0.2.10,<gw-00085@northwind.test>,send,Toplantı notları,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T16:12:20Z,info@lojistik.test,it.destek@northwind.test,192.0.2.80,<gw-00127@northwind.test>,deliver,Q4 bütçe taslağı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T16:12:32Z,sales@yazilim-partner.test,finans@northwind.test,192.0.2.80,<gw-00052@northwind.test>,deliver,Sipariş onayı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T16:13:52Z,sales@yazilim-partner.test,deniz.sahin@northwind.test,192.0.2.80,<gw-00149@northwind.test>,deliver,Q4 bütçe taslağı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T16:14:03Z,orders@tedarikci.test,zeynep.arslan@northwind.test,192.0.2.80,<gw-00002@northwind.test>,deliver,Toplantı notları,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T16:15:50Z,can.ozturk@northwind.test,selin.aydin@northwind.test,192.0.2.10,<gw-00171@northwind.test>,send,Q4 bütçe taslağı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T16:16:34Z,mehmet.demir@northwind.test,burak.celik@northwind.test,192.0.2.10,<gw-00192@northwind.test>,send,Haftalık toplantı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T16:23:29Z,orders@tedarikci.test,deniz.sahin@northwind.test,192.0.2.80,<gw-00177@northwind.test>,deliver,Sipariş onayı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T16:23:53Z,mehmet.demir@northwind.test,sales@yazilim-partner.test,192.0.2.10,<gw-00010@northwind.test>,send,Re: Teklif,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T16:25:29Z,zeynep.arslan@northwind.test,orders@tedarikci.test,192.0.2.10,<gw-00204@northwind.test>,send,Yemek menüsü,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T16:27:17Z,info@lojistik.test,it.destek@northwind.test,192.0.2.80,<gw-00029@northwind.test>,deliver,Kargo bilgisi,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T16:37:42Z,elif.kaya@northwind.test,info@lojistik.test,192.0.2.10,<gw-00033@northwind.test>,send,Q4 bütçe taslağı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T16:40:41Z,elif.kaya@northwind.test,sales@yazilim-partner.test,192.0.2.10,<gw-00062@northwind.test>,send,Haftalık toplantı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T16:44:00Z,elif.kaya@northwind.test,sales@yazilim-partner.test,192.0.2.10,<gw-00195@northwind.test>,send,Proje durumu,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T16:52:08Z,zeynep.arslan@northwind.test,deniz.sahin@northwind.test,192.0.2.10,<gw-00164@northwind.test>,send,Haftalık toplantı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T16:57:56Z,mehmet.demir@northwind.test,it.destek@northwind.test,192.0.2.10,<gw-00186@northwind.test>,send,Toplantı notları,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T16:59:18Z,ayse.yilmaz@northwind.test,elif.kaya@northwind.test,192.0.2.10,<gw-00198@northwind.test>,send,Toplantı notları,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T17:01:11Z,elif.kaya@northwind.test,selin.aydin@northwind.test,192.0.2.10,<gw-00129@northwind.test>,send,Re: Teklif,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T17:03:00Z,orders@tedarikci.test,finans@northwind.test,192.0.2.80,<gw-00080@northwind.test>,deliver,Haftalık toplantı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T17:04:10Z,orders@tedarikci.test,deniz.sahin@northwind.test,192.0.2.80,<gw-00047@northwind.test>,deliver,Kargo bilgisi,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T17:10:06Z,selin.aydin@northwind.test,zeynep.arslan@northwind.test,192.0.2.10,<gw-00117@northwind.test>,send,Q4 bütçe taslağı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T17:13:18Z,mehmet.demir@northwind.test,elif.kaya@northwind.test,192.0.2.10,<gw-00043@northwind.test>,send,Haftalık toplantı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T17:22:11Z,sales@yazilim-partner.test,elif.kaya@northwind.test,192.0.2.80,<gw-00257@northwind.test>,deliver,Toplantı notları,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T17:27:30Z,sales@yazilim-partner.test,finans@northwind.test,192.0.2.80,<gw-00016@northwind.test>,deliver,Re: Teklif,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T17:28:59Z,orders@tedarikci.test,zeynep.arslan@northwind.test,192.0.2.80,<gw-00068@northwind.test>,deliver,Toplantı notları,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T17:29:28Z,info@lojistik.test,burak.celik@northwind.test,192.0.2.80,<gw-00119@northwind.test>,deliver,Haftalık toplantı,spf=pass dkim=pass dmarc=pass; delivered normally
+2026-11-25T17:29:49Z,elif.kaya@northwind.test,it.destek@northwind.test,192.0.2.10,<gw-00146@northwind.test>,send,Proje durumu,spf=pass dkim=pass dmarc=pass; delivered normally
