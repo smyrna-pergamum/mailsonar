@@ -691,7 +691,12 @@ pub(crate) mod tests {
                 // Exact duplicate of the previous record.
                 let j = i - 1;
                 writeln!(f, "{}", line(j, &sources, &actions)).unwrap();
-                dups += 1;
+                // If record j was written as a malformed line, this copy is unique.
+                if j % 997 == 996 {
+                    unique += 1;
+                } else {
+                    dups += 1;
+                }
                 continue;
             }
             writeln!(f, "{}", line(i, &sources, &actions)).unwrap();
