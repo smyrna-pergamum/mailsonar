@@ -4,6 +4,7 @@
 // the analyst presses "Add".
 import {customFindings, validateRules} from '../analysis.js';
 import {t} from '../i18n.js';
+import {tt} from './strings.js';
 import {createAgentPanel, esc} from './agent-view.js';
 import {parseRules, runHelm} from './helm-run.js';
 import {getProvider, isLoopback} from './provider.js';
@@ -20,21 +21,21 @@ const FIELDS = ['action', 'sender', 'recipient', 'ip', 'message_id', 'source', '
 export function mountRuleAi({host, api}) {
   const card = document.createElement('article');
   card.className = 'ms-rule-ai';
-  card.innerHTML = `<h2>${esc(t('Write detection rules with AI'))}</h2>
-    <p class="ms-muted">${esc(t('Describe what you want to detect. HELM picks real field values from this case, tests each rule and explains false positives.'))}</p>
-    <textarea class="ms-rule-intent" rows="3" placeholder="${esc(t('e.g. Alert when someone creates an inbox rule that hides mails containing payment'))}"></textarea>
+  card.innerHTML = `<h2>${tt('Write detection rules with AI')}</h2>
+    <p class="ms-muted">${tt('Describe what you want to detect. HELM picks real field values from this case, tests each rule and explains false positives.')}</p>
+    <textarea class="ms-rule-intent" rows="3" placeholder="${esc(t('e.g. Alert when someone creates an inbox rule that hides mails containing payment'))}" data-tp="${esc('e.g. Alert when someone creates an inbox rule that hides mails containing payment')}"></textarea>
     <div class="ms-chips"></div>
-    <p class="ms-warn ms-cloud-note" hidden>${esc(t('Cloud provider: identifiers are sent as aliases, so AI-written rules on sender, recipient, IP or message ID will not match. Use a local model for value-based rules.'))}</p>
-    <div class="ms-actions"><button type="button" class="primary ms-rule-run">${esc(t('Generate rules'))}</button></div>
+    <p class="ms-warn ms-cloud-note" hidden>${tt('Cloud provider: identifiers are sent as aliases, so AI-written rules on sender, recipient, IP or message ID will not match. Use a local model for value-based rules.')}</p>
+    <div class="ms-actions"><button type="button" class="primary ms-rule-run">${tt('Generate rules')}</button></div>
     <div class="ms-rule-result"></div>
-    <details class="ms-quick-rule"><summary>${esc(t('Quick rule without AI'))}</summary>
+    <details class="ms-quick-rule"><summary>${tt('Quick rule without AI')}</summary>
       <div class="ms-form-row">
-        <label>${esc(t('Field'))}<select class="qr-field">${FIELDS.map(f => `<option value="${f}">${f}</option>`).join('')}</select></label>
-        <label>${esc(t('contains'))}<input class="qr-contains" placeholder="inboxrule"></label>
-        <label>${esc(t('Severity'))}<select class="qr-sev" data-no-translate><option value="high">high</option><option value="medium" selected>medium</option><option value="low">low</option></select></label>
+        <label>${tt('Field')}<select class="qr-field">${FIELDS.map(f => `<option value="${f}">${f}</option>`).join('')}</select></label>
+        <label>${tt('contains')}<input class="qr-contains" placeholder="inboxrule"></label>
+        <label>${tt('Severity')}<select class="qr-sev" data-no-translate><option value="high">high</option><option value="medium" selected>medium</option><option value="low">low</option></select></label>
       </div>
-      <label>${esc(t('Description'))}<input class="qr-desc" placeholder="${esc(t('What the analyst should check'))}"></label>
-      <div class="ms-actions"><button type="button" class="qr-test">${esc(t('Test'))}</button><button type="button" class="primary qr-add">${esc(t('Add rule'))}</button><span class="qr-out ms-muted"></span></div>
+      <label>${tt('Description')}<input class="qr-desc" placeholder="${esc(t('What the analyst should check'))}" data-tp="${esc('What the analyst should check')}"></label>
+      <div class="ms-actions"><button type="button" class="qr-test">${tt('Test')}</button><button type="button" class="primary qr-add">${tt('Add rule')}</button><span class="qr-out ms-muted"></span></div>
     </details>`;
   host.prepend(card);
   const intent = card.querySelector('.ms-rule-intent');
@@ -44,6 +45,7 @@ export function mountRuleAi({host, api}) {
     chip.type = 'button';
     chip.className = 'ms-chip';
     chip.textContent = t(example);
+    chip.dataset.t = example;
     chip.onclick = () => {
       intent.value = chip.textContent;
       intent.focus();
@@ -62,15 +64,15 @@ export function mountRuleAi({host, api}) {
   function showProposals(rules) {
     result.replaceChildren();
     if (!rules.length) {
-      result.innerHTML = `<p class="ms-warn">${esc(t('No valid rule JSON found in the answer. Rephrase the request or use the quick form.'))}</p>`;
+      result.innerHTML = `<p class="ms-warn">${tt('No valid rule JSON found in the answer. Rephrase the request or use the quick form.')}</p>`;
       return;
     }
     const total = api.getCase().events.length;
     const rows = preview(rules).map(({rule, hits}, i) => `<tr>
       <td><input type="checkbox" data-i="${i}" checked></td><td><code>${esc(rule.id)}</code></td><td>${esc(rule.field)}</td>
       <td><code>${esc(rule.contains)}</code></td><td>${esc(rule.severity)}</td><td>${hits} (${total ? Math.round((hits / total) * 100) : 0}%)</td><td>${esc(rule.description)}</td></tr>`).join('');
-    result.innerHTML = `<h3>${esc(t('Proposed rules'))}</h3><div class="tablewrap"><table><thead><tr><th></th><th>ID</th><th>${esc(t('Field'))}</th><th>${esc(t('contains'))}</th><th>${esc(t('Severity'))}</th><th>${esc(t('Matches'))}</th><th>${esc(t('Description'))}</th></tr></thead><tbody>${rows}</tbody></table></div>
-      <div class="ms-actions"><button type="button" class="primary ms-add">${esc(t('Add selected rules'))}</button></div>`;
+    result.innerHTML = `<h3>${tt('Proposed rules')}</h3><div class="tablewrap"><table><thead><tr><th></th><th>ID</th><th>${tt('Field')}</th><th>${tt('contains')}</th><th>${tt('Severity')}</th><th>${tt('Matches')}</th><th>${tt('Description')}</th></tr></thead><tbody>${rows}</tbody></table></div>
+      <div class="ms-actions"><button type="button" class="primary ms-add">${tt('Add selected rules')}</button></div>`;
     result.querySelector('.ms-add').onclick = () => {
       const chosen = [...result.querySelectorAll('input[data-i]:checked')].map(box => rules[Number(box.dataset.i)]);
       add(chosen);

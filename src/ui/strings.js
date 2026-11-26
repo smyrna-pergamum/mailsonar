@@ -1,5 +1,5 @@
 // Translations for the simplified shell. English is the key; [en, de, tr].
-import {catalog} from '../i18n.js';
+import {catalog, t} from '../i18n.js';
 
 const rows = [
   ['Start', 'Start', 'Başla'],
@@ -368,4 +368,27 @@ const rows = [
 
 export function registerStrings() {
   for (const [en, de, tr] of rows) catalog[en] = {en, de, tr};
+}
+
+const escAttr = v => String(v ?? '').replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
+
+/** Translated text that re-translates itself when the language changes. */
+export function tt(key, params) {
+  const data = params ? ` data-tparams="${escAttr(JSON.stringify(params))}"` : '';
+  return `<span data-t="${escAttr(key)}"${data}>${escAttr(t(key, params ?? {}))}</span>`;
+}
+
+/** Re-apply translations to everything tagged by tt() or data-t / data-tp / data-ttitle. */
+export function retranslate(root = document) {
+  for (const node of root.querySelectorAll('[data-t]')) {
+    let params = {};
+    try {
+      params = node.dataset.tparams ? JSON.parse(node.dataset.tparams) : {};
+    } catch {
+      params = {};
+    }
+    node.textContent = t(node.dataset.t, params);
+  }
+  for (const node of root.querySelectorAll('[data-tp]')) node.setAttribute('placeholder', t(node.dataset.tp));
+  for (const node of root.querySelectorAll('[data-ttitle]')) node.setAttribute('title', t(node.dataset.ttitle));
 }

@@ -1,6 +1,12 @@
 # MailSonar — V1.3
 
-**Detect threats beneath the surface.**
+**Detect threats beneath the surface.** · 🇹🇷 [Türkçe README](README.tr.md)
+
+[![Release](https://img.shields.io/github/v/release/smyrna-pergamum/mailsonar)](https://github.com/smyrna-pergamum/mailsonar/releases/latest)
+![Platforms](https://img.shields.io/badge/platforms-Windows%20%7C%20Linux%20%7C%20macOS-blue)
+![UI](https://img.shields.io/badge/UI-EN%20%7C%20DE%20%7C%20TR-informational)
+
+![MailSonar start page with the synthetic BEC case loaded](docs/screenshots/start.jpg)
 
 MailSonar is a local-first e-mail forensics and incident-response workbench (Rust + Tauri 2, vanilla JS UI). It investigates phishing, business e-mail compromise (BEC), account takeover, malicious attachments and data exfiltration from mail-gateway, identity, mailbox-audit, MTA and message evidence. Deterministic parsing, detection and correlation work without AI; the **HELM** agent adds evidence-cited AI analysis with local Hugging Face models or any OpenAI-compatible provider.
 
@@ -8,14 +14,16 @@ MailSonar is a local-first e-mail forensics and incident-response workbench (Rus
 
 ## Download
 
-Get the installer for your system from [Releases](https://github.com/smyrna-pergamum/mailsonar/releases):
+Latest release: **[v1.2.0](https://github.com/smyrna-pergamum/mailsonar/releases/latest)** (all releases: [Releases](https://github.com/smyrna-pergamum/mailsonar/releases)).
 
-| System | File |
+| System | Download |
 |---|---|
-| Windows 10/11 x64 | `MailSonar_<version>_x64-setup.exe` or `.msi` |
-| Linux x64 | `.AppImage`, `.deb` or `.rpm` |
-| macOS Apple Silicon | `MailSonar_<version>_aarch64.dmg` |
-| macOS Intel | `MailSonar_<version>_x64.dmg` |
+| Windows 10/11 x64 | [Installer (.exe)](https://github.com/smyrna-pergamum/mailsonar/releases/download/v1.2.0/MailSonar_1.2.0_x64-setup.exe) · [MSI](https://github.com/smyrna-pergamum/mailsonar/releases/download/v1.2.0/MailSonar_1.2.0_x64_en-US.msi) |
+| Linux x64 | [AppImage](https://github.com/smyrna-pergamum/mailsonar/releases/download/v1.2.0/MailSonar_1.2.0_amd64.AppImage) · [.deb](https://github.com/smyrna-pergamum/mailsonar/releases/download/v1.2.0/MailSonar_1.2.0_amd64.deb) · [.rpm](https://github.com/smyrna-pergamum/mailsonar/releases/download/v1.2.0/MailSonar-1.2.0-1.x86_64.rpm) |
+| macOS Apple Silicon | [.dmg](https://github.com/smyrna-pergamum/mailsonar/releases/download/v1.2.0/MailSonar_1.2.0_aarch64.dmg) |
+| macOS Intel | [.dmg](https://github.com/smyrna-pergamum/mailsonar/releases/download/v1.2.0/MailSonar_1.2.0_x64.dmg) |
+
+V1.3 features below (large investigations, graph filters, VirusTotal links, deep analysis redesign) ship with the next release; build from source to use them today.
 
 Builds are not code-signed. macOS: `xattr -dr com.apple.quarantine /Applications/MailSonar.app` once. Windows SmartScreen: *More info → Run anyway*. Every build bundles the CPU build of the llama.cpp engine; AI models are downloaded inside the app.
 
@@ -33,7 +41,17 @@ Builds are not code-signed. macOS: `xattr -dr com.apple.quarantine /Applications
 3. **AI analizi** → tek tıkla sorular veya kaydettiğiniz kendi sorgularınız. **E-posta analizi** → başlıklar, Received zinciri, SPF/DKIM/DMARC, URL'ler ve ekler. **Tespit kuralları** → kuralı doğal dille tarif edin.
 4. **Eğitim modu** → örnek veri setleri üzerinde cevap kontrollü, adım adım dersler.
 
-The UI is available in English, German and Turkish.
+The UI is available in English, German and Turkish and switches live from the language menu.
+
+## Screenshots
+
+| | |
+|---|---|
+| ![E-mail analysis](docs/screenshots/email-analysis.jpg) **E-mail analysis** — risk-sorted messages, SPF/DKIM/DMARC, Received chain, look-alike domains, VirusTotal links | ![One-click AI analysis](docs/screenshots/ai-analysis.jpg) **AI analysis** — one-click HELM profiles, free questions, saved queries |
+| ![Training mode](docs/screenshots/training-mode.jpg) **Training mode** — lessons with answer checking on bundled datasets | ![Relationship graph](docs/screenshots/relationship-graph.jpg) **Relationship graph** — filters for scope, entity type, time, connections and search |
+| ![AI model](docs/screenshots/ai-model.jpg) **AI model** — local discovery, self-test, one-click Hugging Face models | |
+
+Screenshots show the synthetic sample case in the browser preview.
 
 ## Screens
 
@@ -144,12 +162,15 @@ cargo test --manifest-path src-tauri/Cargo.toml demo_helm_with_real_model -- --i
 ## Project layout
 
 ```
-src/                    UI (vanilla JS): main.js, ui/ (start, training, e-mail view, AI, rules, model hub, skills)
+src/                    UI (vanilla JS): main.js, ui/ (start, training, e-mail view, AI, rules, model hub,
+                        skills, large investigations, graph filters)
 src-tauri/src/          Rust backend: parsing, email.rs, sources.rs, agent.rs (HELM), skills.rs,
-                        local_ai.rs, embedded_ai.rs, samples.rs, queries.rs, workflow.rs, vault.rs
+                        local_ai.rs, embedded_ai.rs, inv_*.rs (large investigations), lookup.rs,
+                        samples.rs, queries.rs, workflow.rs, vault.rs
 src-tauri/skills/       Built-in HELM skills (Markdown)
 samples/demo/           Synthetic BEC case (dataset/generators/demo_scenario.py)
 dataset/                Labelled multi-source dataset, generators and ground truth
+docs/screenshots/       README screenshots
 tests/                  Node and Python tests, preview fixtures
 ```
 

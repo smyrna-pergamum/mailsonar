@@ -3,6 +3,7 @@
 // paged findings and records, log sources, HELM on the whole store and
 // "copy to workspace" for subsets that need the in-memory tools.
 import {t} from '../i18n.js';
+import {tt} from './strings.js';
 import {createAgentPanel, esc} from './agent-view.js';
 import {runHelm} from './helm-run.js';
 import {PROFILES} from './quick-ai.js';
@@ -15,9 +16,9 @@ const mb = b => `${(Number(b ?? 0) / 1048576).toFixed(1)} MB`;
 export function mountLargeCases({section, api}) {
   const state = {list: [], current: '', overview: null, view: 'overview', progress: {}, running: new Set(), findings: null, fpage: 0, fsev: '', records: null, rpage: 0, q: '', field: '', deep: false, log: []};
   section.innerHTML = `<div class="ms-large">
-    <article class="ms-large-list"><h2>${esc(t('Large investigations'))}</h2>
-      <p class="ms-muted">${esc(t('For evidence beyond the 100,000-record workspace: files are streamed in batches into an on-disk store, with checkpoints, de-duplication and cross-batch correlation. Millions of events per investigation.'))}</p>
-      <div class="ms-ask"><input class="ms-new-name" placeholder="${esc(t('Name, e.g. IR-2026-001'))}"><button type="button" class="primary" data-act="create">${esc(t('Create'))}</button></div>
+    <article class="ms-large-list"><h2>${tt('Large investigations')}</h2>
+      <p class="ms-muted">${tt('For evidence beyond the 100,000-record workspace: files are streamed in batches into an on-disk store, with checkpoints, de-duplication and cross-batch correlation. Millions of events per investigation.')}</p>
+      <div class="ms-ask"><input class="ms-new-name" placeholder="${esc(t('Name, e.g. IR-2026-001'))}" data-tp="${esc('Name, e.g. IR-2026-001')}"><button type="button" class="primary" data-act="create">${tt('Create')}</button></div>
       <div class="ms-inv-items"></div></article>
     <article class="ms-large-body"></article></div>`;
   const listHost = section.querySelector('.ms-inv-items');
@@ -32,8 +33,8 @@ export function mountLargeCases({section, api}) {
       api.status(String(error?.message ?? error));
     }
     listHost.innerHTML = state.list.length ? state.list.map(i => `<button type="button" class="ms-inv ${i.id === state.current ? 'active' : ''}" data-open="${esc(i.id)}">
-        <strong>${esc(i.name)}</strong><small>${fmt(i.events)} ${esc(t('records'))} · ${fmt(i.findings)} ${esc(t('findings'))} · ${mb(i.bytes)}${state.running.has(i.id) ? ` · ${esc(t('importing…'))}` : ''}</small></button>`).join('')
-      : `<p class="empty">${esc(t('No large investigation yet.'))}</p>`;
+        <strong>${esc(i.name)}</strong><small>${fmt(i.events)} ${tt('records')} · ${fmt(i.findings)} ${tt('findings')} · ${mb(i.bytes)}${state.running.has(i.id) ? ` · ${tt('importing…')}` : ''}</small></button>`).join('')
+      : `<p class="empty">${tt('No large investigation yet.')}</p>`;
   }
 
   async function open(id) {
@@ -59,43 +60,43 @@ export function mountLargeCases({section, api}) {
     const pct = p?.bytes ? Math.min(100, Math.round((p.bytes_read / p.bytes) * 100)) : 0;
     return `<div class="ms-ingest">
       <div class="ms-ingest-head"><strong>${esc(t(p?.state ?? 'importing'))}</strong> <span class="ms-muted">${esc(p?.file ?? '')}</span>
-        ${state.running.has(state.current) ? `<button type="button" data-act="cancel">${esc(t('Stop (resumable)'))}</button>` : ''}</div>
+        ${state.running.has(state.current) ? `<button type="button" data-act="cancel">${tt('Stop (resumable)')}</button>` : ''}</div>
       <div class="download-bar"><span style="width:${pct}%"></span></div>
-      <p class="ms-muted">${fmt(p?.records)} ${esc(t('records'))} · ${fmt(p?.inserted)} ${esc(t('new'))} · ${fmt(p?.duplicates)} ${esc(t('duplicates'))}${p?.failed ? ` · ${fmt(p.failed)} ${esc(t('failed'))}` : ''} · ${fmt(p?.eps)} ${esc(t('events/s'))}${p?.batch ? ` · ${esc(t('batch'))} ${p.batch} (${fmt(p.batch_size)})` : ''}</p>
-      ${state.log.length ? `<details><summary>${esc(t('Import log'))}</summary><pre>${esc(state.log.slice(-30).join('\n'))}</pre></details>` : ''}
+      <p class="ms-muted">${fmt(p?.records)} ${tt('records')} · ${fmt(p?.inserted)} ${tt('new')} · ${fmt(p?.duplicates)} ${tt('duplicates')}${p?.failed ? ` · ${fmt(p.failed)} ${tt('failed')}` : ''} · ${fmt(p?.eps)} ${tt('events/s')}${p?.batch ? ` · ${tt('batch')} ${p.batch} (${fmt(p.batch_size)})` : ''}</p>
+      ${state.log.length ? `<details><summary>${tt('Import log')}</summary><pre>${esc(state.log.slice(-30).join('\n'))}</pre></details>` : ''}
     </div>`;
   }
 
   function overviewHtml(o) {
     const sev = Object.fromEntries((o.severities ?? []).map(s => [s.severity, s.count]));
-    const top = (title, rows) => `<div><h4>${esc(t(title))}</h4><ol class="ms-top">${(rows ?? []).map(r => `<li><button type="button" class="ms-link" data-search="${esc(r.value)}">${esc(r.value)}</button> <span class="ms-muted">${fmt(r.count)}</span></li>`).join('')}</ol></div>`;
+    const top = (title, rows) => `<div><h4>${tt(title)}</h4><ol class="ms-top">${(rows ?? []).map(r => `<li><button type="button" class="ms-link" data-search="${esc(r.value)}">${esc(r.value)}</button> <span class="ms-muted">${fmt(r.count)}</span></li>`).join('')}</ol></div>`;
     const max = Math.max(1, ...(o.timeline ?? []).map(x => x[1]));
     const bars = (o.timeline ?? []).slice(-240).map(([h, c]) => `<span title="${esc(new Date(h * 1000).toISOString().slice(0, 13))}h · ${c}" style="height:${Math.max(2, Math.round((c / max) * 60))}px"></span>`).join('');
     return `<div class="metrics">${[['Records', o.events], ['Findings', o.findings], ['Critical', sev.critical ?? 0], ['High', sev.high ?? 0], ['Cross-batch findings', o.global_findings], ['Failed records', o.failures]]
-      .map(([l, v]) => `<div class="metric"><small>${esc(t(l))}</small><strong>${fmt(v)}</strong></div>`).join('')}</div>
+      .map(([l, v]) => `<div class="metric"><small>${tt(l)}</small><strong>${fmt(v)}</strong></div>`).join('')}</div>
       ${o.first ? `<p class="ms-muted">${esc(new Date(o.first * 1000).toISOString())} → ${esc(new Date(o.last * 1000).toISOString())}</p>` : ''}
       ${bars ? `<div class="ms-spark" aria-label="Events per hour">${bars}</div>` : ''}
-      <h4>${esc(t('Top rules'))}</h4><div class="ms-chips">${(o.rules ?? []).slice(0, 20).map(r => `<button type="button" class="ms-chip" data-rule="${esc(r.rule)}">${esc(r.rule)} · ${esc(r.severity)} · ${fmt(r.count)}</button>`).join('')}</div>
+      <h4>${tt('Top rules')}</h4><div class="ms-chips">${(o.rules ?? []).slice(0, 20).map(r => `<button type="button" class="ms-chip" data-rule="${esc(r.rule)}">${esc(r.rule)} · ${esc(r.severity)} · ${fmt(r.count)}</button>`).join('')}</div>
       <div class="ms-top-grid">${top('Top senders', o.top_senders)}${top('Top recipients', o.top_recipients)}${top('Top IPs', o.top_ips)}${top('Top actions', o.top_actions)}</div>`;
   }
 
   function findingsHtml() {
     const f = state.findings;
-    if (!f) return `<p class="ms-muted">${esc(t('Loading…'))}</p>`;
-    return `<div class="ms-actions"><label>${esc(t('Severity'))} <select data-f="fsev">${['', 'critical', 'high', 'medium', 'low', 'info'].map(s => `<option value="${s}" ${s === state.fsev ? 'selected' : ''}>${esc(s || t('All priorities'))}</option>`).join('')}</select></label>
-        <span class="ms-muted">${fmt(f.total)} ${esc(t('findings'))}</span>${pager('f', state.fpage, f.total)}</div>
+    if (!f) return `<p class="ms-muted">${tt('Loading…')}</p>`;
+    return `<div class="ms-actions"><label>${tt('Severity')} <select data-f="fsev">${['', 'critical', 'high', 'medium', 'low', 'info'].map(s => `<option value="${s}" ${s === state.fsev ? 'selected' : ''}>${esc(s || t('All priorities'))}</option>`).join('')}</select></label>
+        <span class="ms-muted">${fmt(f.total)} ${tt('findings')}</span>${pager('f', state.fpage, f.total)}</div>
       <div class="tablewrap"><table data-no-translate><thead><tr><th>Rule</th><th>Severity</th><th>Description</th><th>Evidence</th><th>Scope</th></tr></thead><tbody>
       ${f.findings.map(x => `<tr><td>${esc(x.rule)}</td><td>${esc(x.severity)}</td><td>${esc(x.description)}</td><td>${(x.evidence ?? []).slice(0, 4).map(id => `<button type="button" class="ms-evid" data-ev="${esc(id)}">#${esc(String(id).split(':')[2])}</button>`).join('')}${x.evidence?.length > 4 ? ` +${x.evidence.length - 4}` : ''}</td><td>${esc(x.scope)}</td></tr>`).join('')}</tbody></table></div>`;
   }
 
   function recordsHtml() {
     const r = state.records;
-    return `<div class="ms-actions"><input class="ms-rq" value="${esc(state.q)}" placeholder="${esc(t('Search sender, recipient, IP, message ID, action…'))}">
+    return `<div class="ms-actions"><input class="ms-rq" value="${esc(state.q)}" placeholder="${esc(t('Search sender, recipient, IP, message ID, action…'))}" data-tp="${esc('Search sender, recipient, IP, message ID, action…')}">
         <select class="ms-rf">${['', 'sender', 'recipient', 'ip', 'message_id', 'action', 'id'].map(f => `<option value="${f}" ${f === state.field ? 'selected' : ''}>${esc(f ? `= ${f}` : t('contains (any field)'))}</option>`).join('')}</select>
-        <label><input type="checkbox" class="ms-rd" ${state.deep ? 'checked' : ''}> ${esc(t('also raw content (slower)'))}</label>
-        <button type="button" class="primary" data-act="search">${esc(t('Search'))}</button>
-        <button type="button" data-act="subset">${esc(t('Copy results to workspace'))}</button></div>
-      ${r ? `<p class="ms-muted">${fmt(r.total)}${r.total_capped ? '+' : ''} ${esc(t('records'))} ${pager('r', state.rpage, r.total)}</p>
+        <label><input type="checkbox" class="ms-rd" ${state.deep ? 'checked' : ''}> ${tt('also raw content (slower)')}</label>
+        <button type="button" class="primary" data-act="search">${tt('Search')}</button>
+        <button type="button" data-act="subset">${tt('Copy results to workspace')}</button></div>
+      ${r ? `<p class="ms-muted">${fmt(r.total)}${r.total_capped ? '+' : ''} ${tt('records')} ${pager('r', state.rpage, r.total)}</p>
       <div class="tablewrap"><table data-no-translate><thead><tr><th>Time</th><th>Source</th><th>Sender</th><th>Recipient</th><th>IP</th><th>Action</th></tr></thead><tbody>
       ${r.events.map(e => `<tr><td><button type="button" class="ms-link" data-ev="${esc(e.id)}">${esc(e.timestamp || '—')}</button></td><td>${esc(e.source)}</td><td>${esc(e.sender)}</td><td>${esc(e.recipient)}</td><td>${esc(e.ip)}</td><td>${esc(e.action)}</td></tr>`).join('')}</tbody></table></div>` : ''}
       <pre class="ms-record" data-no-translate hidden></pre>`;
@@ -108,18 +109,18 @@ export function mountLargeCases({section, api}) {
 
   function render() {
     if (!state.current || !state.overview) {
-      body.innerHTML = `<h2>${esc(t('How it works'))}</h2><ol class="ms-howto">
-        <li>${esc(t('Create an investigation and add files (CSV, JSONL, LOG, MBOX, GZ, ZIP stream line by line; EML, JSON, EVTX, XLSX up to 256 MB each).'))}</li>
-        <li>${esc(t('Files are split into batches of 2,000–20,000 records depending on free memory, processed in parallel and committed in order with a checkpoint.'))}</li>
-        <li>${esc(t('Stopping or a crash keeps everything already committed; adding the same file again resumes from the checkpoint. Identical events are stored once.'))}</li>
-        <li>${esc(t('After import, cross-batch correlation links bursts, traces and attack chains across all files. HELM can query the whole store.'))}</li></ol>`;
+      body.innerHTML = `<h2>${tt('How it works')}</h2><ol class="ms-howto">
+        <li>${tt('Create an investigation and add files (CSV, JSONL, LOG, MBOX, GZ, ZIP stream line by line; EML, JSON, EVTX, XLSX up to 256 MB each).')}</li>
+        <li>${tt('Files are split into batches of 2,000–20,000 records depending on free memory, processed in parallel and committed in order with a checkpoint.')}</li>
+        <li>${tt('Stopping or a crash keeps everything already committed; adding the same file again resumes from the checkpoint. Identical events are stored once.')}</li>
+        <li>${tt('After import, cross-batch correlation links bursts, traces and attack chains across all files. HELM can query the whole store.')}</li></ol>`;
       return;
     }
     const o = state.overview;
     body.innerHTML = `<div class="ms-inv-head"><h2>${esc(o.name ?? state.current)}</h2>
-        <div class="ms-actions"><button type="button" class="primary" data-act="add">${esc(t('Add files'))}</button><button type="button" data-act="refresh">${esc(t('Refresh'))}</button><button type="button" class="cp-danger" data-act="delete">${esc(t('Delete'))}</button></div></div>
+        <div class="ms-actions"><button type="button" class="primary" data-act="add">${tt('Add files')}</button><button type="button" data-act="refresh">${tt('Refresh')}</button><button type="button" class="cp-danger" data-act="delete">${tt('Delete')}</button></div></div>
       ${progressHtml()}
-      <div class="copilot-tabs">${[['overview', 'Overview'], ['findings', 'Findings'], ['records', 'Records'], ['sources', 'Log sources'], ['helm', 'HELM agent']].map(([id, label]) => `<button type="button" class="${state.view === id ? 'active' : ''}" data-view="${id}">${esc(t(label))}</button>`).join('')}</div>
+      <div class="copilot-tabs">${[['overview', 'Overview'], ['findings', 'Findings'], ['records', 'Records'], ['sources', 'Log sources'], ['helm', 'HELM agent']].map(([id, label]) => `<button type="button" class="${state.view === id ? 'active' : ''}" data-view="${id}">${tt(label)}</button>`).join('')}</div>
       <div class="ms-inv-view"></div>`;
     const view = body.querySelector('.ms-inv-view');
     if (state.view === 'overview') view.innerHTML = overviewHtml(o);
@@ -127,13 +128,13 @@ export function mountLargeCases({section, api}) {
     if (state.view === 'records') view.innerHTML = recordsHtml();
     if (state.view === 'sources') {
       view.innerHTML = sourcesHtml((o.files ?? []).map(f => ({source: f.name, events: {length: f.records}, profile: f.profile})))
-        + `<div class="tablewrap"><table><thead><tr><th>${esc(t('File'))}</th><th>Status</th><th>${esc(t('records'))}</th><th>${esc(t('duplicates'))}</th><th>${esc(t('failed'))}</th><th>${esc(t('batches'))}</th><th>${esc(t('Time'))}</th></tr></thead><tbody data-no-translate>
+        + `<div class="tablewrap"><table><thead><tr><th>${tt('File')}</th><th>Status</th><th>${tt('records')}</th><th>${tt('duplicates')}</th><th>${tt('failed')}</th><th>${tt('batches')}</th><th>${tt('Time')}</th></tr></thead><tbody data-no-translate>
         ${(o.files ?? []).map(f => `<tr><td>${esc(f.name)}<div class="ms-muted"><code>${esc(f.sha256.slice(0, 16))}…</code> · ${mb(f.bytes)}</div></td><td>${esc(f.status)}${f.error ? ` <span class="ms-warn">${esc(f.error)}</span>` : ''}</td><td>${fmt(f.records)}</td><td>${fmt(f.duplicates)}</td><td>${fmt(f.failed)}</td><td>${fmt(f.batches)} × ${fmt(f.batch_size)}</td><td>${(f.ms / 1000).toFixed(1)} s</td></tr>`).join('')}</tbody></table></div>`;
     }
     if (state.view === 'helm') {
-      view.innerHTML = `<p class="ms-muted">${esc(t('HELM queries the on-disk store with filters, aggregates and searches; it never loads all records into memory.'))}</p>
-        <div class="ms-profiles">${PROFILES.slice(0, 6).map(p => `<button type="button" class="ms-profile" data-helm="${esc(p.skill)}"><strong>${esc(t(p.title))}</strong><small>${esc(t(p.hint))}</small></button>`).join('')}</div>
-        <div class="ms-ask"><input class="ms-helm-q" placeholder="${esc(t('Or ask your own question, e.g. Which accounts were compromised?'))}"><button type="button" class="primary" data-helm="">${esc(t('Ask HELM'))}</button></div>`;
+      view.innerHTML = `<p class="ms-muted">${tt('HELM queries the on-disk store with filters, aggregates and searches; it never loads all records into memory.')}</p>
+        <div class="ms-profiles">${PROFILES.slice(0, 6).map(p => `<button type="button" class="ms-profile" data-helm="${esc(p.skill)}"><strong>${tt(p.title)}</strong><small>${tt(p.hint)}</small></button>`).join('')}</div>
+        <div class="ms-ask"><input class="ms-helm-q" placeholder="${esc(t('Or ask your own question, e.g. Which accounts were compromised?'))}" data-tp="${esc('Or ask your own question, e.g. Which accounts were compromised?')}"><button type="button" class="primary" data-helm="">${tt('Ask HELM')}</button></div>`;
       view.append(helm.el);
     }
   }
@@ -276,6 +277,10 @@ export function mountLargeCases({section, api}) {
     }).catch(() => {});
   }
   section.addEventListener('ms:shown', () => refreshList());
+  api.onLocale?.(() => {
+    refreshList();
+    render();
+  });
   refreshList();
   render();
   return {refreshList};

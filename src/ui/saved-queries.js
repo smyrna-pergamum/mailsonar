@@ -2,6 +2,7 @@
 // backend in <app data>/analysis-queries.json so they survive restarts and can be
 // copied between workstations.
 import {t} from '../i18n.js';
+import {tt} from './strings.js';
 import {esc} from './agent-view.js';
 
 export function newQueryId(existing) {
@@ -46,22 +47,22 @@ export function mountSavedQueries({card, api, run, freeInput}) {
 
   function form(q) {
     return `<div class="ms-query-form">
-      <label>${esc(t('Title'))}<input class="qf-title" maxlength="80" value="${esc(q.title)}"></label>
-      <label>${esc(t('Short description'))}<input class="qf-hint" maxlength="160" value="${esc(q.hint)}"></label>
-      <label>${esc(t('Question for HELM'))}<textarea class="qf-task" rows="4" maxlength="4000">${esc(q.task)}</textarea></label>
-      <label>${esc(t('Skill (optional)'))}<select class="qf-skill"><option value="">${esc(t('automatic'))}</option>${state.skills.map(s => `<option value="${esc(s)}" ${s === q.skill ? 'selected' : ''}>/${esc(s)}</option>`).join('')}</select></label>
-      <div class="ms-actions"><button type="button" class="primary" data-q="save">${esc(t('Save query'))}</button><button type="button" data-q="cancel">${esc(t('Cancel'))}</button><span class="qf-error ms-warn"></span></div>
+      <label>${tt('Title')}<input class="qf-title" maxlength="80" value="${esc(q.title)}"></label>
+      <label>${tt('Short description')}<input class="qf-hint" maxlength="160" value="${esc(q.hint)}"></label>
+      <label>${tt('Question for HELM')}<textarea class="qf-task" rows="4" maxlength="4000">${esc(q.task)}</textarea></label>
+      <label>${tt('Skill (optional)')}<select class="qf-skill"><option value="" data-t="${esc('automatic')}">${esc(t('automatic'))}</option>${state.skills.map(s => `<option value="${esc(s)}" ${s === q.skill ? 'selected' : ''}>/${esc(s)}</option>`).join('')}</select></label>
+      <div class="ms-actions"><button type="button" class="primary" data-q="save">${tt('Save query')}</button><button type="button" data-q="cancel">${tt('Cancel')}</button><span class="qf-error ms-warn"></span></div>
     </div>`;
   }
 
   function render() {
     const list = state.items.map(q => `<div class="ms-profile ms-custom" data-run="${esc(q.id)}" role="button" tabindex="0">
         <strong>${esc(q.title)}</strong><small>${esc(q.hint || q.task.slice(0, 90))}</small>
-        <span class="ms-custom-actions"><button type="button" class="ms-link" data-edit="${esc(q.id)}">${esc(t('Edit'))}</button><button type="button" class="ms-link" data-del="${esc(q.id)}">${esc(t('Delete'))}</button></span>
+        <span class="ms-custom-actions"><button type="button" class="ms-link" data-edit="${esc(q.id)}">${tt('Edit')}</button><button type="button" class="ms-link" data-del="${esc(q.id)}">${tt('Delete')}</button></span>
       </div>`).join('');
-    box.innerHTML = `<h3>${esc(t('My saved queries'))}</h3>
-      ${state.items.length ? `<div class="ms-profiles">${list}</div>` : `<p class="ms-muted">${esc(t('Save questions you ask often; they appear here as one-click buttons.'))}</p>`}
-      ${state.editing ? form(state.editing) : `<div class="ms-actions"><button type="button" data-q="new">${esc(t('+ New query'))}</button><button type="button" data-q="from-free">${esc(t('Save the question above'))}</button></div>`}`;
+    box.innerHTML = `<h3>${tt('My saved queries')}</h3>
+      ${state.items.length ? `<div class="ms-profiles">${list}</div>` : `<p class="ms-muted">${tt('Save questions you ask often; they appear here as one-click buttons.')}</p>`}
+      ${state.editing ? form(state.editing) : `<div class="ms-actions"><button type="button" data-q="new">${tt('+ New query')}</button><button type="button" data-q="from-free">${tt('Save the question above')}</button></div>`}`;
   }
 
   box.addEventListener('click', async event => {
@@ -115,6 +116,7 @@ export function mountSavedQueries({card, api, run, freeInput}) {
       }
     }
   });
+  api.onLocale?.(render);
   setTimeout(load, 0);
   return {load};
 }

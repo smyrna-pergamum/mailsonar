@@ -1,6 +1,7 @@
 // One-click AI analysis: each profile is a HELM skill. The skill's preload tools run
 // deterministically in the backend, so even small local models start from real data.
 import {t} from '../i18n.js';
+import {tt} from './strings.js';
 import {createAgentPanel, esc} from './agent-view.js';
 import {runHelm} from './helm-run.js';
 import {describeProvider, onProvider, providerReady} from './provider.js';
@@ -21,11 +22,11 @@ export const PROFILES = [
 export function mountQuickAi({host, api}) {
   const card = document.createElement('article');
   card.className = 'ms-quick';
-  card.innerHTML = `<h2>${esc(t('One-click AI analysis'))}</h2>
-    <p class="ms-muted">${esc(t('Pick a question. HELM loads the matching skill, gathers the evidence with read-only tools and writes a cited answer.'))}</p>
-    <p class="ms-provider-line"><span class="ms-dot"></span><span class="ms-provider-text"></span> <button type="button" class="ms-link" data-go="settings">${esc(t('Change AI model'))}</button></p>
+  card.innerHTML = `<h2>${tt('One-click AI analysis')}</h2>
+    <p class="ms-muted">${tt('Pick a question. HELM loads the matching skill, gathers the evidence with read-only tools and writes a cited answer.')}</p>
+    <p class="ms-provider-line"><span class="ms-dot"></span><span class="ms-provider-text"></span> <button type="button" class="ms-link" data-go="settings">${tt('Change AI model')}</button></p>
     <div class="ms-profiles"></div>
-    <div class="ms-ask"><input class="ms-free" placeholder="${esc(t('Or ask your own question, e.g. Which accounts were compromised?'))}"><button type="button" class="primary ms-free-run">${esc(t('Ask HELM'))}</button></div>`;
+    <div class="ms-ask"><input class="ms-free" placeholder="${esc(t('Or ask your own question, e.g. Which accounts were compromised?'))}" data-tp="${esc('Or ask your own question, e.g. Which accounts were compromised?')}"><button type="button" class="primary ms-free-run">${tt('Ask HELM')}</button></div>`;
   host.prepend(card);
   const panel = createAgentPanel({onEvidence: id => api.inspect(id)});
   card.append(panel.el);
@@ -34,7 +35,7 @@ export function mountQuickAi({host, api}) {
     const button = document.createElement('button');
     button.type = 'button';
     button.className = 'ms-profile';
-    button.innerHTML = `<strong>${esc(t(profile.title))}</strong><small>${esc(t(profile.hint))}</small>`;
+    button.innerHTML = `<strong>${tt(profile.title)}</strong><small>${tt(profile.hint)}</small>`;
     button.onclick = () => run(profile.task, profile.skill, t(profile.title));
     grid.append(button);
   }
@@ -69,6 +70,7 @@ export function mountQuickAi({host, api}) {
     card.querySelector('.ms-dot').className = `ms-dot ${providerReady(p) ? 'ok' : 'bad'}`;
   };
   onProvider(refresh);
+  api.onLocale?.(() => refresh());
   refresh();
   return {run, reloadSaved: () => saved.load()};
 }

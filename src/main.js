@@ -30,7 +30,7 @@ import {mountAcademy} from './ui/academy.js';
 import {mountAdvancedAi} from './ui/advanced-ai.js';
 import {mountGraphFilters} from './ui/graph-filters.js';
 import {mountLargeCases} from './ui/large-cases.js';
-import {registerStrings} from './ui/strings.js';
+import {registerStrings,retranslate} from './ui/strings.js';
 import './ui/simple.css';
 registerStrings();
 document.documentElement.dataset.theme=preferredTheme();
@@ -292,7 +292,8 @@ for(const value of ['', 'high','medium','low','info']){const option=el('option',
 filter.onchange=()=>listFindings('findinglist',findings);$('findinglist').before(filter);
 const logPanel=el('article');logPanel.append(el('h2','Application messages'));const log=el('ol');log.id='operationLog';logPanel.append(log);$('case').append(logPanel);
 const note=el('p','Raw evidence is preserved. AI explanations require analyst verification.');$('explorer').prepend(note);
-mountLocale(document.body,()=>{renderCyber();renderAnalysisPanels();renderRows();updateSelection();listFindings('recent',findings.slice(0,8));listFindings('findinglist',findings);renderQuality();renderOperations();$('status').textContent=t(...lastStatus);$('consent').checked=false;if($('cpConsent')){$('cpConsent').checked=false;$('cpConsent').dispatchEvent(new Event('change'));}rulesWorkbench?.render();reviewPanel?.render();trainingPanel?.render();});
+const localeRenderers=[];
+mountLocale(document.body,()=>{retranslate(document.body);for(const fn of localeRenderers){try{fn();}catch{}}renderCyber();renderAnalysisPanels();renderRows();updateSelection();listFindings('recent',findings.slice(0,8));listFindings('findinglist',findings);renderQuality();renderOperations();$('status').textContent=t(...lastStatus);$('consent').checked=false;if($('cpConsent')){$('cpConsent').checked=false;$('cpConsent').dispatchEvent(new Event('change'));}rulesWorkbench?.render();reviewPanel?.render();trainingPanel?.render();});
 renderQuality();
 
 for(const [buttonId,target,outputId] of [['vaultCheck','evidence','vaultOutput'],['traceShow','timeline','traceOutput'],['aiVerify','ai','referenceOutput']]){
@@ -323,6 +324,7 @@ trainingPanel=mountTraining({host:$('settings'),getState:()=>({events,findings,f
   backend,status,tab:go,
   getCase:()=>({events,findings,iocs,evidence}),
   getRules:()=>rules,
+  onLocale:fn=>localeRenderers.push(fn),
   selectedIds:()=>[...selected],
   select:ids=>{selected.clear();for(const id of [...new Set(ids)].slice(0,25))selected.add(id);renderRows();updateSelection();},
   lookup:(kind,value)=>backend('open_lookup',{kind,value}),
